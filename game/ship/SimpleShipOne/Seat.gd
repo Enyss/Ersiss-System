@@ -1,21 +1,19 @@
 extends KinematicBody
-var mouse_sensitivity = 0.3
-var camera_angle = 0
 
 export var active = false
 
-var a = Vector3()
+var simbody
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-		
-func _input_event( _camera,  event,  _click_position,  _click_normal,  _shape_idx ):
-	if (event.is_action_pressed("ui_click")):
-		var player = get_node("/root/Player")
-		player.lock_to(self)
-		
+	$Control.set_process_input(active)
+	$PoV/Camera.current = active
+	
+func set_active( active ):
+	simbody = get_parent().get_parent().simbody
+	$Control.set_process_input(active)
+	$PoV/Camera.current = active
+	$CollisionShape.disabled = active
 
-
-func _input(event):
-	pass
+func click():
+	get_node("/root/Spaced/Player").change_body(self)

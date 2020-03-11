@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://skybox/3D_Skybox_Viewport.gd" type="Script" id=1]
 [ext_resource path="res://skybox/3D_Skybox_Scene.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://player/Label.gd" type="Script" id=9]
 [ext_resource path="res://sim/Simulation.gd" type="Script" id=10]
 [ext_resource path="res://player/UI.gd" type="Script" id=11]
+[ext_resource path="res://Player.gd" type="Script" id=12]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -38,7 +39,8 @@ width = 128
 
 [sub_resource type="Environment" id=5]
 background_energy = 0.0
-ambient_light_energy = 0.0
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.01
 
 [node name="Spaced" type="Node"]
 
@@ -46,6 +48,7 @@ ambient_light_energy = 0.0
 script = ExtResource( 10 )
 
 [node name="Player" type="Node" parent="."]
+script = ExtResource( 12 )
 
 [node name="UI" type="Control" parent="Player"]
 anchor_right = 1.0
@@ -138,7 +141,8 @@ position_in_km = Vector3( 7000, 0, 0 )
 velocity = Vector3( 0, 0, 7800 )
 
 [node name="SSO-inside" parent="Local Bubble" instance=ExtResource( 5 )]
-position_in_km = Vector3( 7000.01, 0, 0 )
+transform = Transform( -0.510123, 0, 0.860102, 0, 1, 0, -0.860102, 0, -0.510123, 0, 0, 0 )
+position_in_km = Vector3( 7000, 0.004, 0 )
 velocity = Vector3( 0, 0, 7800 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

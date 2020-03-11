@@ -19,6 +19,12 @@ config/name="Ersiss-System"
 run/main_scene="res://MainScene.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/stretch/mode="viewport"
+
 [gdnative]
 
 singletons=[  ]

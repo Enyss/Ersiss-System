@@ -37,7 +37,7 @@ func _process(_delta):
 	skybox_camera.translation = local_bubble.player_body.simbody.position /1000000
 	skybox_camera.scale = tmp_scale
 	
-	light_source = $Sun.transform.origin - skybox_camera.transform.origin
+	light_source = skybox_camera.transform.origin-$Sun.transform.origin 
 	for body  in celestial_bodies:
 		body.transform.origin = body.simbody.position/1000000
 	

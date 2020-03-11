@@ -35,11 +35,17 @@ func _input(event):
 		#yaw
 		var yaw_change = -event.relative.x*mouse_sensitivity
 		#if yaw_angle+yaw_change < yaw_range/2 and yaw_angle+yaw_change > - yaw_range/2:
-		var axis = camera.global_transform.basis.y
-		global_rotate(axis,deg2rad(-event.relative.x*mouse_sensitivity))
+		var axis = $Camera.global_transform.basis.y
+		global_rotate(axis,deg2rad(yaw_change))
 		#	yaw_angle += yaw_change		
 		#pitch	
 		var pitch_change = -event.relative.y*mouse_sensitivity
-		if pitch_angle+pitch_change < pitch_range/2  and pitch_angle+pitch_change > -pitch_range/2:
-			camera.rotate_x(deg2rad(pitch_change))
-			pitch_angle += pitch_change
+		axis = $Camera.global_transform.basis.x
+		#if pitch_angle+pitch_change < pitch_range/2  and pitch_angle+pitch_change > -pitch_range/2:
+		global_rotate(axis,deg2rad(pitch_change))
+		#	pitch_angle += pitch_change
+		#else :
+		#	axis = camera.global_transform.basis.x
+		#	global_rotate(axis,deg2rad(-pitch_change))
+		
+		print(get_parent().name, ": Pitch=", pitch_change, ", Yaw=", yaw_change)

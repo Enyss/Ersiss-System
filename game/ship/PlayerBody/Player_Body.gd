@@ -13,11 +13,10 @@ func _ready():
 	simbody.velocity = velocity
 	get_parent().add_to_local_objects(self)
 	
-func set_active():
-	$PoV/Camera.current = true
-	
-func set_controlled():
-	$Control.set_active()
+func set_active( active ):
+	$Control.set_process(active)
+	$PoV.set_process_input(active)
+	$PoV/Camera.current = active
 			
 func _process(delta):
 	simbody.acceleration = base_acceleration

@@ -31,8 +31,7 @@ var local_objects = Array()
 func _ready():
 	center = simbody
 	player_body = get_node(starting_body_path)
-	player_body.set_active()
-	player_body.set_controlled()
+	player_body.set_active(true)
 	_on_Center_Local_Bubble_timeout()
 	pass # Replace with function body.
 
