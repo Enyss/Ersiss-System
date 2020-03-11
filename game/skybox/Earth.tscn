@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://skybox/Earth/earth_material.tres" type="Material" id=1]
+[ext_resource path="res://sim/Physical_Body.gd" type="Script" id=2]
+[ext_resource path="res://skybox/Celestial_Body.gd" type="Script" id=3]
+
+[sub_resource type="SphereMesh" id=1]
+material = ExtResource( 1 )
+radius = 6.35
+height = 12.7
+radial_segments = 256
+rings = 64
+
+[node name="Earth" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="SimBody" type="Node" parent="."]
+script = ExtResource( 2 )
+body_class = 1

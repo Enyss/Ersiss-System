@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Battery.gd" type="Script" id=1]
+[ext_resource path="res://Pump.gd" type="Script" id=2]
+[ext_resource path="res://Wire.gd" type="Script" id=3]
+[ext_resource path="res://TestLabel.gd" type="Script" id=4]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.1, 0.1, 5 )
+
+[sub_resource type="BoxShape" id=3]
+
+[node name="Sim" type="Spatial"]
+
+[node name="Battery" type="Area" parent="."]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource( 1 )
+nominal_voltage = 250.0
+nominal_capacity = 10.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Battery"]
+shape = SubResource( 1 )
+
+[node name="Wire" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.70275 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wire"]
+shape = SubResource( 2 )
+
+[node name="Pump" type="Area" parent="."]
+script = ExtResource( 2 )
+power_consumption_per_second = 1000.0
+minimal_voltage = 200.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Pump"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.1129 )
+shape = SubResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 1.758
+margin_right = 12.942
+margin_bottom = -207.4
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="power" from="Battery" to="Wire" method="_on_Battery_power"]
+[connection signal="power" from="Wire" to="Pump" method="_on_Wire_power"]
