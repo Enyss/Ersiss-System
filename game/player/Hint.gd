@@ -21,15 +21,17 @@
 extends Label
 
 var RAY_LENGTH = 10
+var local_bubble
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	local_bubble = get_node("/root/Spaced/Local Bubble")
 	pass # Replace with function body.
 
-func _process(delta):
-#	var looking_at = get_node("/Camera/RayCast").get_collider()
-#	if (looking_at != null):
-#		text = looking_at.name
-#	else:
-#		text = ""
+func _process(delta):	
+	var looking_at = local_bubble.player_body.get_node("PoV/Camera/RayCast").get_collider()
+	if (looking_at != null):
+		text = looking_at.name
+	else:
+		text = ""
 	pass

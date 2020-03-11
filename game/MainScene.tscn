@@ -105,6 +105,9 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 14.0
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Global_Viewport" type="Viewport" parent="."]
 own_world = true

@@ -91,6 +91,10 @@ roll_counterclockwise={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_2="Interactive"
+
 [physics]
 
 3d/physics_engine="Bullet"
