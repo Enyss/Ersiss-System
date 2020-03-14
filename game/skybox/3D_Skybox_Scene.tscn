@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://skybox/3D_Skybox_Scene.gd" type="Script" id=1]
 [ext_resource path="res://skybox/Earth.tscn" type="PackedScene" id=2]
 [ext_resource path="res://skybox/Skybox/MilkyWay.jpg" type="Texture" id=3]
 [ext_resource path="res://skybox/Sun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://skybox/Moon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://skybox/Skybox_Camera.gd" type="Script" id=6]
+[ext_resource path="res://skybox/SolarSystemSettings.gd" type="Script" id=7]
+[ext_resource path="res://sim/Physical_Body.gd" type="Script" id=8]
 
 [sub_resource type="PanoramaSky" id=1]
 radiance_size = 1
@@ -24,18 +28,48 @@ adjustment_saturation = 1.5
 
 [node name="3D_Skybox_Scene" type="Spatial"]
 script = ExtResource( 1 )
+root_body_path = NodePath("Sun")
 
-[node name="Skybox_Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.836878, 0, -32.9573 )
-current = true
-fov = 50.0
-far = 1e+06
+[node name="Settings" type="Node" parent="."]
+script = ExtResource( 7 )
+global_bubble_path = NodePath("../Skybox_Camera")
+light_source_path = NodePath("../Sun")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
-[node name="Earth" parent="." instance=ExtResource( 2 )]
-
-[node name="Sun" parent="." instance=ExtResource( 4 )]
-position_in_Mm = Vector3( 150000, 0, 0 )
+[node name="Sun" parent="." groups=[
+"Celestial_Body",
+] instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+is_root = true
 mass_in_earth_mass = 330000.0
+
+[node name="Earth" parent="." groups=[
+"Celestial_Body",
+] instance=ExtResource( 2 )]
+parent_body_path = NodePath("../Sun")
+semi_major_axis_in_Gm = 150.0
+
+[node name="Moon" parent="." groups=[
+"Celestial_Body",
+] instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.159, 0, -12.077 )
+parent_body_path = NodePath("../Earth")
+semi_major_axis_in_Gm = 0.384
+true_anomaly_in_degree = 120.0
+orbital_period_in_days = 27.3
+mass_in_earth_mass = 0.012
+
+[node name="Skybox_Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.649099, 0, -32.5418 )
+current = true
+fov = 50.0
+far = 1e+06
+script = ExtResource( 6 )
+parent_body_path = NodePath("../Earth")
+true_anomaly_in_degree = 120.0
+
+[node name="Simbody" type="Node" parent="Skybox_Camera"]
+script = ExtResource( 8 )
+body_class = 3

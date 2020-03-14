@@ -48,4 +48,4 @@ func _input(event):
 		#	axis = camera.global_transform.basis.x
 		#	global_rotate(axis,deg2rad(-pitch_change))
 		
-		print(get_parent().name, ": Pitch=", pitch_change, ", Yaw=", yaw_change)
+		#print(get_parent().name, ": Pitch=", pitch_change, ", Yaw=", yaw_change)

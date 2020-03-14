@@ -69,13 +69,21 @@ Vector3 Body::get_acceleration(){
     return Vector3( (float)acceleration.x, (float)acceleration.y, (float)acceleration.z );
 }
 
-Vector3 Body::getPositionRelativeTo(Body * b)
+/*Vector3 Body::getPositionRelativeTo(Body * b)
 {
     return (position-b->position).toVector3();
 }
 void Body::setPositionRelativeTo(Body *b, Vector3 p)
 {
-    position = b->position+Vector3d(p.x, p.y, p.z);
+    position = b->position + Vector3d(p.x, p.y, p.z);
+}*/
+Vector3 Body::getPositionRelativeTo(Body * b, float unit = 1.0)
+{
+    return ((position-b->position)/unit).toVector3();
+}
+void Body::setPositionRelativeTo(Body *b, Vector3 p, float unit = 1.0)
+{
+    position = b->position + unit*Vector3d(p.x, p.y, p.z);
 }
 Vector3 Body::getVelocityRelativeTo(Body *b)
 {

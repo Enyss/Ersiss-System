@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-extends "res://sim/Physical_Body.gd"
+extends Node
 
 #Bodies in Local Scene
 export (NodePath) var starting_body_path
@@ -29,17 +29,20 @@ var local_objects = Array()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	center = simbody
 	player_body = get_node(starting_body_path)
 	player_body.set_active(true)
-	_on_Center_Local_Bubble_timeout()
-	pass # Replace with function body.
+	
+func initialize_simbody(simbody):
+	center = simbody
+	for object in local_objects:
+		object.simbody.set_position_relative_to(center, object.transform.origin ,1)
+		object.simbody.set_velocity_relative_to(center, object.velocity )
 
 func add_to_local_objects(object):
 	local_objects.append(object)
 
 func _on_Center_Local_Bubble_timeout():
-	center.set_position_relative_to(player_body.simbody, Vector3() )	
+	center.set_position_relative_to(player_body.simbody, Vector3(),1 )	
 	center.set_velocity_relative_to(player_body.simbody, Vector3() )	
 	for object in local_objects:
-		object.transform.origin = object.simbody.position_relative_to(center)
+		object.transform.origin = object.simbody.position_relative_to(center,1)

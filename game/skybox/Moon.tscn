@@ -19,4 +19,4 @@ material/0 = null
 
 [node name="SimBody" type="Node" parent="."]
 script = ExtResource( 2 )
-position_in_km = Vector3( 0, 0, 150000 )
+body_class = 1

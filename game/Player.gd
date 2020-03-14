@@ -20,17 +20,15 @@
 
 extends Node
 
-var local_bubble
+onready var local_bubble = $Simulation/LocalBubble
 var base_body
 var current_body
 var looking_at = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	base_body = get_node("../Local Bubble/Player_Body")
-	local_bubble = get_node("../Local Bubble")
+	base_body = local_bubble.player_body
 	current_body = base_body
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

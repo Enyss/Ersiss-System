@@ -21,25 +21,45 @@
 extends Spatial
 
 var celestial_bodies = Array()
-var skybox_camera
+
+export (NodePath) var root_body_path
+export (NodePath) var local_bubble_path
 var local_bubble
-var light_source = Vector3()
+var global_bubble
+
+var time = 0
+
+var light_source
+var light_direction = Vector3()
 
 func _ready():
-	local_bubble = get_node("/root/Spaced/Local Bubble")
-	skybox_camera = $Skybox_Camera
+	local_bubble = get_node(local_bubble_path)
+	global_bubble = $Settings.get_global_bubble()
+	
+	celestial_bodies = get_tree().get_nodes_in_group("Celestial_Body")
+	
+	get_node(root_body_path).set_position()
+	global_bubble.set_simbody() 
+		
+	light_source = $Settings.get_light_source()
+
 
 func _process(_delta):
-	var tmp_scale = skybox_camera.scale;
+	#camera synchro
+	var tmp_scale = global_bubble.scale;
 	var target_camera = local_bubble.player_body.get_node("PoV/Camera")
-	skybox_camera.global_transform.basis = target_camera.global_transform.basis
-	var tmp = local_bubble.player_body.simbody.position /1000000
-	skybox_camera.translation = local_bubble.player_body.simbody.position /1000000
-	skybox_camera.scale = tmp_scale
+	global_bubble.global_transform.basis = target_camera.global_transform.basis
+	global_bubble.scale = tmp_scale
 	
-	light_source = skybox_camera.transform.origin-$Sun.transform.origin 
-	for body  in celestial_bodies:
-		body.transform.origin = body.simbody.position/1000000
+	#update celestial bodies position
+	global_bubble.global_transform.origin = Vector3()
+	for body in celestial_bodies:
+		var p = body.simbody.position_relative_to(local_bubble.player_body.simbody,1000000)
+		print(p)
+		body.global_transform.origin = p
+	print("--------------------------")
+	
+	light_direction = -light_source.global_transform.origin
 	
 func add_to_local_objects(object):
 	celestial_bodies.append(object)

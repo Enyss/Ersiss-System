@@ -44,9 +44,6 @@ ambient_light_energy = 0.01
 
 [node name="Spaced" type="Node"]
 
-[node name="Simulation" type="Node" parent="."]
-script = ExtResource( 10 )
-
 [node name="Player" type="Node" parent="."]
 script = ExtResource( 12 )
 
@@ -111,40 +108,41 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+sim_path = NodePath("../../Simulation/Global_Viewport/Global_Scene")
 
-[node name="Global_Viewport" type="Viewport" parent="."]
+[node name="Simulation" type="Node" parent="Player"]
+script = ExtResource( 10 )
+
+[node name="Global_Viewport" type="Viewport" parent="Player/Simulation"]
 own_world = true
 render_target_update_mode = 3
 script = ExtResource( 1 )
-path_to_viewport_viewer = NodePath("../../Spaced/Player/UI/3D_Skybox_Viewer")
+path_to_viewport_viewer = NodePath("../../UI/3D_Skybox_Viewer")
 
-[node name="Global_Scene" parent="Global_Viewport" instance=ExtResource( 2 )]
+[node name="Global_Scene" parent="Player/Simulation/Global_Viewport" instance=ExtResource( 2 )]
+local_bubble_path = NodePath("../../LocalBubble")
 
-[node name="Local Bubble" type="Node" parent="."]
+[node name="LocalBubble" type="Node" parent="Player/Simulation"]
 script = ExtResource( 4 )
-body_class = 3
 starting_body_path = NodePath("Player_Body")
 
-[node name="Center_Local_Bubble" type="Timer" parent="Local Bubble"]
+[node name="Center_Local_Bubble" type="Timer" parent="Player/Simulation/LocalBubble"]
 process_mode = 0
-wait_time = 5.0
+wait_time = 15.0
 autostart = true
 
-[node name="Sun" type="DirectionalLight" parent="Local Bubble"]
+[node name="Sun" type="DirectionalLight" parent="Player/Simulation/LocalBubble"]
 shadow_enabled = true
 script = ExtResource( 6 )
+global_scene_path = NodePath("../../Global_Viewport/Global_Scene")
 
-[node name="Player_Body" parent="Local Bubble" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.470445 )
+[node name="Player_Body" parent="Player/Simulation/LocalBubble" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.43605, 0, 1.54684 )
 input_ray_pickable = false
-position_in_km = Vector3( 7000, 0, 0 )
-velocity = Vector3( 0, 0, 7800 )
 
-[node name="SSO-inside" parent="Local Bubble" instance=ExtResource( 5 )]
+[node name="SSO-inside" parent="Player/Simulation/LocalBubble" instance=ExtResource( 5 )]
 transform = Transform( -0.510123, 0, 0.860102, 0, 1, 0, -0.860102, 0, -0.510123, 0, 0, 0 )
-position_in_km = Vector3( 7000, 0.004, 0 )
-velocity = Vector3( 0, 0, 7800 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 5 )
-[connection signal="timeout" from="Local Bubble/Center_Local_Bubble" to="Local Bubble" method="_on_Center_Local_Bubble_timeout"]
+[connection signal="timeout" from="Player/Simulation/LocalBubble/Center_Local_Bubble" to="Player/Simulation/LocalBubble" method="_on_Center_Local_Bubble_timeout"]

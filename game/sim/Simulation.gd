@@ -25,14 +25,16 @@ var simulation_speed = 1
 var time =0.0
 var simulated_bodies = Array()
 var massive_bodies = Array()
-var bubble_bodies = Array()
+var bubble
 
 # Called when the node enters the scene tree for the first time.
 func _init():
 	orbital_simulation = load("res://bin/orbital_simulation.gdns").new()
 	
 func _ready():
-	pass 
+	var scene = $Global_Viewport/Global_Scene
+	$LocalBubble.initialize_simbody(scene.global_bubble.simbody)
+	
 
 func _input(event):
 	if event.is_action_pressed("sim_speed_up"):
@@ -46,8 +48,11 @@ func _input(event):
 
 func _physics_process(delta):
 	time += simulation_speed*delta
+	
+	#orbital_simulation.print_internal_state()
 	for i in range(simulation_speed):
 		orbital_simulation.update(delta)
+		
 
 func add_body_to_simulation(body):
 	match body.body_class:
@@ -58,7 +63,7 @@ func add_body_to_simulation(body):
 			simulated_bodies.push_back(body)
 			orbital_simulation.add_simulated_body(body.simbody)
 		body.BodyClass.BUBBLE:
-			bubble_bodies.push_back(body)
+			bubble = body
 			orbital_simulation.add_simulated_body(body.simbody)
 			
 func remove_body_from_simulation(body):

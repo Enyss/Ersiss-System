@@ -30,7 +30,7 @@ func _init():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("/root/Spaced/Simulation").add_body_to_simulation(self)
+	get_node("/root/Spaced/Player/Simulation").add_body_to_simulation(self)
 
 func _exit_tree():
 	simbody.queue_free()

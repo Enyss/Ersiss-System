@@ -44,7 +44,7 @@ private:
     std::list<Body*> celestialBodies;
 
     void computeBodyMovement(Body* body, float h);
-    Vector3d computeGravity( const Vector3d& position ); 
+    Vector3d computeGravity( Body* baseBody, const Vector3d& position ); 
 
 public:
     const double GMe = 3.986e14; // gravitational parameter = G x Earth Mass
@@ -65,6 +65,8 @@ public:
     void addCelestialBody(Body* body);
     void addCelestialBodies(Array bodies);
     void removeBody(Body* body);
+
+    void printState(void);
 };
 
 }

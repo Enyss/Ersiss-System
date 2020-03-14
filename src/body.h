@@ -48,8 +48,10 @@ public:
     void set_acceleration(Vector3);
     Vector3 get_acceleration();
     
-    Vector3 getPositionRelativeTo(Body * b);
-    void setPositionRelativeTo(Body *b, Vector3 p);
+    /*Vector3 getPositionRelativeTo(Body * b);
+    void setPositionRelativeTo(Body *b, Vector3 p);*/
+    Vector3 getPositionRelativeTo(Body * b, float unit);
+    void setPositionRelativeTo(Body *b, Vector3 p, float unit);
     Vector3 getVelocityRelativeTo(Body * b);
     void setVelocityRelativeTo(Body *b, Vector3 v);
 

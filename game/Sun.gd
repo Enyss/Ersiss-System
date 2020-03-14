@@ -20,17 +20,14 @@
 
 extends DirectionalLight
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+export (NodePath) var global_scene_path
+var global_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	global_scene = get_node(global_scene_path)
 
 
 func _process(delta):
-	look_at(get_node("/root/Spaced/Global_Viewport/Global_Scene").light_source, Vector3(0,1,0))
+	look_at(global_scene.light_direction, Vector3(0,1,0))
 	pass
