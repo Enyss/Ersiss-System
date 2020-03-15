@@ -55,10 +55,9 @@ func _process(_delta):
 	global_bubble.global_transform.origin = Vector3()
 	for body in celestial_bodies:
 		var p = body.simbody.position_relative_to(local_bubble.player_body.simbody,1000000)
-		print(p)
 		body.global_transform.origin = p
-	print("--------------------------")
 	
+	#update light
 	light_direction = -light_source.global_transform.origin
 	
 func add_to_local_objects(object):

@@ -25,7 +25,10 @@ var sim
 var earth
 var p
 
-var format_string = """Visual:
+var format_string = """FPS : {fps}
+Simulation speed : {speed}x
+
+Visual:
 dx={dx}
 dy={dy}
 dz={dz}
@@ -51,6 +54,8 @@ func _process(delta):
 	var e = earth.global_transform.origin
 	var dp = earth.simbody.position_relative_to(p,1000000)
 	self.text = format_string.format({
+		"fps":Engine.get_frames_per_second(),
+		"speed" : get_node("/root/Spaced/Player/Simulation").simulation_speed,
 		"dx": e.x,
 		"dy": e.y,
 		"dz": e.z,

@@ -19,7 +19,7 @@ collision_layer = 512
 collision_mask = 0
 script = ExtResource( 1 )
 nominal_voltage = 250.0
-nominal_capacity = 10.0
+nominal_capacity = 1.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Battery"]
 shape = SubResource( 1 )

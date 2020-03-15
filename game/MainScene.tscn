@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://skybox/3D_Skybox_Viewport.gd" type="Script" id=1]
 [ext_resource path="res://skybox/3D_Skybox_Scene.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://sim/Simulation.gd" type="Script" id=10]
 [ext_resource path="res://player/UI.gd" type="Script" id=11]
 [ext_resource path="res://Player.gd" type="Script" id=12]
+[ext_resource path="res://Test/Hype.gd" type="Script" id=13]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -143,6 +144,13 @@ input_ray_pickable = false
 [node name="SSO-inside" parent="Player/Simulation/LocalBubble" instance=ExtResource( 5 )]
 transform = Transform( -0.510123, 0, 0.860102, 0, 1, 0, -0.860102, 0, -0.510123, 0, 0, 0 )
 
+[node name="Hype" type="Node" parent="Player/Simulation/LocalBubble"]
+script = ExtResource( 13 )
+
+[node name="Timer" type="Timer" parent="Player/Simulation/LocalBubble/Hype"]
+wait_time = 0.1
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 5 )
 [connection signal="timeout" from="Player/Simulation/LocalBubble/Center_Local_Bubble" to="Player/Simulation/LocalBubble" method="_on_Center_Local_Bubble_timeout"]
+[connection signal="timeout" from="Player/Simulation/LocalBubble/Hype/Timer" to="Player/Simulation/LocalBubble/Hype" method="_on_Timer_timeout"]
