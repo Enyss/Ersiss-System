@@ -22,6 +22,7 @@ extends Viewport
 
 export (NodePath) var path_to_viewport_viewer;
 var viewport_viewer;
+var active_camera;
 
 func _ready():
 	var root_viewport = get_tree().root;

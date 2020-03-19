@@ -2,7 +2,7 @@ extends KinematicBody
 
 var base_acceleration = Vector3()
 export var velocity : Vector3
-
+export (NodePath) var camera_viewport
 var simbody
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +17,7 @@ func set_controlled():
 	$Control.set_active()
 			
 func _physics_process(delta):
+	rotate_x(delta/15)
 	transform.origin = simbody.position_relative_to(get_parent().center,1)
 
 #func _integrate_forces(physicState):

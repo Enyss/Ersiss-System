@@ -1,8 +1,10 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=101 format=2]
 
 [ext_resource path="res://ship/SimpleShipOne/material.material" type="Material" id=1]
 [ext_resource path="res://ship/SimpleShipOne/Color_005_.material" type="Material" id=2]
 [ext_resource path="res://ship/SimpleShipOne/Seat.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ship/SimpleShipOne/Cockpit/Screen/Cockpit_Screen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Camera/PoV.tscn" type="PackedScene" id=5]
 [ext_resource path="res://sim/Physical_Body.gd" type="Script" id=7]
 [ext_resource path="res://ship/SimpleShipOne/SSO-Inside.gd" type="Script" id=8]
 
@@ -1058,11 +1060,19 @@ surfaces/0 = {
 input_ray_pickable = false
 script = ExtResource( 8 )
 
+[node name="PoV" parent="." instance=ExtResource( 5 )]
+transform = Transform( -1.62921e-07, -1, 1.62921e-07, 0, -1.62921e-07, -1, 1, -1.62921e-07, 2.65431e-14, 0, 1.90001, 0 )
+
+[node name="Cockpit_Screen" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 0.219955, 0.355364, 9.15527e-05 )
+pov_path = NodePath("../PoV")
+
 [node name="SimBody" type="Node" parent="."]
 script = ExtResource( 7 )
 body_class = 2
 
 [node name="Walls" type="Spatial" parent="."]
+visible = false
 
 [node name="wall" type="MeshInstance" parent="Walls"]
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 0, 0, 0, 0.0254, -1.4114, -5.78467, 1.22327 )
@@ -1216,14 +1226,16 @@ disabled = true
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.897225, 0.430101, 0.262805 )
+visible = false
 light_energy = 0.5
 
 [node name="OmniLight2" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.990462, -2.10188, 0.679172 )
-light_energy = 0.5
+light_energy = 0.1
 
 [node name="OmniLight3" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.582644, -3.5608, 0.262805 )
+visible = false
 light_energy = 0.5
 
 [node name="Back_CollisionShape" type="CollisionShape" parent="."]

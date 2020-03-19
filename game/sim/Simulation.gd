@@ -27,6 +27,8 @@ var simulated_bodies = Array()
 var massive_bodies = Array()
 var bubble
 
+var cameras = Dictionary()
+
 # Called when the node enters the scene tree for the first time.
 func _init():
 	orbital_simulation = load("res://bin/orbital_simulation.gdns").new()
@@ -50,7 +52,7 @@ func _physics_process(delta):
 	time += simulation_speed*delta
 	
 	#orbital_simulation.print_internal_state()
-	for i in range(simulation_speed):
+	for _i in range(simulation_speed):
 		orbital_simulation.update(delta)
 		
 

@@ -29,9 +29,10 @@ var looking_at = null
 func _ready():
 	base_body = local_bubble.player_body
 	current_body = base_body
+	get_tree().call_group("PoV","create_background_camera")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	looking_at = local_bubble.player_body.get_node("PoV/Camera/RayCast").get_collider()
 	if (looking_at!=null):
 		if Input.is_action_just_pressed("ui_click"):

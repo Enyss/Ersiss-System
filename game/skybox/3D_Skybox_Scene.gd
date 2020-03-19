@@ -27,10 +27,15 @@ export (NodePath) var local_bubble_path
 var local_bubble
 var global_bubble
 
+var povs = Dictionary()
+var pov_background
 var time = 0
 
 var light_source
 var light_direction = Vector3()
+
+func _init():
+	pov_background = preload("res://Camera/PoV_Background.tscn")
 
 func _ready():
 	local_bubble = get_node(local_bubble_path)
@@ -46,6 +51,11 @@ func _ready():
 
 func _process(_delta):
 	#camera synchro
+	
+	#for camera in cameras.keys():
+	#	cameras[camera].global_transform.basis = camera.global_transform.basis
+	#	cameras[camera].global_transform.origin = camera.get_global_position()
+		
 	var tmp_scale = global_bubble.scale;
 	var target_camera = local_bubble.player_body.get_node("PoV/Camera")
 	global_bubble.global_transform.basis = target_camera.global_transform.basis
@@ -60,5 +70,12 @@ func _process(_delta):
 	#update light
 	light_direction = -light_source.global_transform.origin
 	
+func add_pov(pov):
+	var b = pov_background.instance()
+	b.pov = pov
+	povs[pov] = b
+	add_child(b)
+	return b
+
 func add_to_local_objects(object):
 	celestial_bodies.append(object)

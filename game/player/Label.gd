@@ -50,7 +50,7 @@ func _ready():
 func _process(delta):
 	if earth == null:
 		earth = sim.get_node("Earth")
-	var p = sim.global_bubble.simbody
+	p = sim.global_bubble.simbody
 	var e = earth.global_transform.origin
 	var dp = earth.simbody.position_relative_to(p,1000000)
 	self.text = format_string.format({

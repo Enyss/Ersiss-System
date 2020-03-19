@@ -64,7 +64,6 @@ mass_in_earth_mass = 0.012
 [node name="Skybox_Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.649099, 0, -32.5418 )
 current = true
-fov = 50.0
 far = 1e+06
 script = ExtResource( 6 )
 parent_body_path = NodePath("../Earth")
