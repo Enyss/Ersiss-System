@@ -1,53 +1,31 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://skybox/3D_Skybox_Viewport.gd" type="Script" id=1]
+[ext_resource path="res://player/Hint.gd" type="Script" id=1]
 [ext_resource path="res://skybox/3D_Skybox_Scene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/Crosshair_01.png" type="Texture" id=3]
 [ext_resource path="res://Local_Bubble.gd" type="Script" id=4]
-[ext_resource path="res://ship/SimpleShipOne/SSO-Inside.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ship/SimpleShipOne/SSO-temp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sun.gd" type="Script" id=6]
 [ext_resource path="res://ship/PlayerBody/Player_Body.tscn" type="PackedScene" id=7]
-[ext_resource path="res://player/Hint.gd" type="Script" id=8]
-[ext_resource path="res://player/Label.gd" type="Script" id=9]
+[ext_resource path="res://player/Label.gd" type="Script" id=8]
 [ext_resource path="res://sim/Simulation.gd" type="Script" id=10]
 [ext_resource path="res://player/UI.gd" type="Script" id=11]
 [ext_resource path="res://Player.gd" type="Script" id=12]
+[ext_resource path="res://MainCamera.gd" type="Script" id=13]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform sampler2D viewport_texture : hint_black;
-
-void fragment()
-{
-	vec4 screen_fragment = texture(SCREEN_TEXTURE, SCREEN_UV);
-	vec4 viewport_fragment = texture(viewport_texture, SCREEN_UV);
-	
-	vec3 final_color = mix(viewport_fragment.rgb, screen_fragment.rgb, screen_fragment.a);
-	
-	COLOR.rgb = final_color;
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-
-[sub_resource type="Gradient" id=3]
-
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
-width = 128
-
-[sub_resource type="Environment" id=5]
+[sub_resource type="Environment" id=1]
+background_mode = 4
 background_energy = 0.0
+background_canvas_max_layer = -1
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.01
 
 [node name="Spaced" type="Node"]
 
-[node name="Player" type="Node" parent="."]
-script = ExtResource( 12 )
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 
-[node name="UI" type="Control" parent="Player"]
+[node name="UI" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -56,18 +34,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="3D_Skybox_Viewer" type="TextureRect" parent="Player/UI"]
-material = SubResource( 2 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-texture = SubResource( 4 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cursor" type="TextureRect" parent="Player/UI"]
+[node name="Cursor" type="TextureRect" parent="UI/UI"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -84,7 +51,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hint" type="Label" parent="Player/UI"]
+[node name="Hint" type="Label" parent="UI/UI"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -96,19 +63,34 @@ margin_bottom = 40.0
 grow_horizontal = 2
 align = 1
 valign = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+player_path = NodePath("../../../Player")
+
+[node name="Label" type="Label" parent="UI/UI"]
+margin_right = 40.0
+margin_bottom = 14.0
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+sim_path = NodePath("../../../Player/Simulation/Global_Viewport/Global_Scene")
 
-[node name="Label" type="Label" parent="Player/UI"]
-margin_right = 40.0
-margin_bottom = 14.0
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-sim_path = NodePath("../../Simulation/Global_Viewport/Global_Scene")
+[node name="Player" type="Node" parent="."]
+script = ExtResource( 12 )
+
+[node name="Camera" type="Camera" parent="Player"]
+far = 2000.0
+script = ExtResource( 13 )
+global_scene_path = NodePath("../Simulation/Global_Viewport/Global_Scene")
+background_path = NodePath("../../Background/Background")
+
+[node name="RayCast" type="RayCast" parent="Player/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -20 )
+collision_mask = 2
 
 [node name="Simulation" type="Node" parent="Player"]
 script = ExtResource( 10 )
@@ -116,8 +98,6 @@ script = ExtResource( 10 )
 [node name="Global_Viewport" type="Viewport" parent="Player/Simulation"]
 own_world = true
 render_target_update_mode = 3
-script = ExtResource( 1 )
-path_to_viewport_viewer = NodePath("../../UI/3D_Skybox_Viewer")
 
 [node name="Global_Scene" parent="Player/Simulation/Global_Viewport" instance=ExtResource( 2 )]
 local_bubble_path = NodePath("../../LocalBubble")
@@ -137,12 +117,23 @@ script = ExtResource( 6 )
 global_scene_path = NodePath("../../Global_Viewport/Global_Scene")
 
 [node name="Player_Body" parent="Player/Simulation/LocalBubble" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458916, -0.483364, 0.597286 )
+transform = Transform( -0.547224, -0.758288, -0.354323, -0.317559, 0.579779, -0.750342, 0.774404, -0.298086, -0.55807, -0.948139, 5.36951, -4.79491 )
 input_ray_pickable = false
 
-[node name="SSO-inside" parent="Player/Simulation/LocalBubble" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 0.0586966, 0.998276, 0, -0.998276, 0.0586966, 0, 0, 0 )
+[node name="SSO-Complete" parent="Player/Simulation/LocalBubble" instance=ExtResource( 5 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
+environment = SubResource( 1 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="Player/Simulation/LocalBubble/Center_Local_Bubble" to="Player/Simulation/LocalBubble" method="_on_Center_Local_Bubble_timeout"]

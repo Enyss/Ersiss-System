@@ -29,5 +29,11 @@ func _ready():
 
 
 func _process(delta):
-	look_at(global_scene.light_direction, Vector3(0,1,0))
+	var d = global_scene.light_direction
+	var p 
+	if d.z == 0 :
+		p = Vector3(d.y,-d.x, 0)
+	else :
+		p = Vector3(1,1,(d.x+d.y)/(-d.z))
+	look_at(d, p)
 	pass

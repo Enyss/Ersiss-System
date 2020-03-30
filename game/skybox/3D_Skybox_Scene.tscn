@@ -17,7 +17,7 @@ panorama = ExtResource( 3 )
 background_mode = 2
 background_sky = SubResource( 1 )
 background_color = Color( 0.0117647, 0.0235294, 0.0980392, 1 )
-background_energy = 0.09
+background_energy = 0.42
 ambient_light_sky_contribution = 0.0
 dof_blur_far_distance = 20.0
 glow_intensity = 0.83
@@ -57,14 +57,12 @@ semi_major_axis_in_Gm = 150.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.159, 0, -12.077 )
 parent_body_path = NodePath("../Earth")
 semi_major_axis_in_Gm = 0.384
-true_anomaly_in_degree = 120.0
+true_anomaly_in_degree = 15.0
 orbital_period_in_days = 27.3
 mass_in_earth_mass = 0.012
 
-[node name="Skybox_Camera" type="Camera" parent="."]
+[node name="Skybox_Camera" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.649099, 0, -32.5418 )
-current = true
-far = 1e+06
 script = ExtResource( 6 )
 parent_body_path = NodePath("../Earth")
 true_anomaly_in_degree = 120.0

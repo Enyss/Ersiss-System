@@ -21,48 +21,31 @@
 extends Label
 
 export (NodePath) var sim_path
-var sim
 var earth
-var p
+var bubble
 
 var format_string = """FPS : {fps}
 Simulation speed : {speed}x
 
-Visual:
-dx={dx}
-dy={dy}
-dz={dz}
-
-Simulation :
-dx={sim_dx}
-dy={sim_dy}
-dz={sim_dz}
-
-Error :
-Error x={err_dx}
-Error y={err_dy}
-Error z={err_dx}"""
+Position (km) : {h}
+	{pos}
+Velocity (m/s) : {v} 
+	{vel}"""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sim = get_node(sim_path)
+	bubble = get_node("/root/Spaced/Player/Simulation/LocalBubble")
 
 func _process(delta):
 	if earth == null:
-		earth = sim.get_node("Earth")
-	p = sim.global_bubble.simbody
-	var e = earth.global_transform.origin
-	var dp = earth.simbody.position_relative_to(p,1000000)
+		earth = get_node(sim_path).get_node("Earth")
+	var pos = earth.simbody.position_relative_to(bubble.anchor,1000)
+	var vel = earth.simbody.velocity_relative_to(bubble.anchor,1)
 	self.text = format_string.format({
 		"fps":Engine.get_frames_per_second(),
 		"speed" : get_node("/root/Spaced/Player/Simulation").simulation_speed,
-		"dx": e.x,
-		"dy": e.y,
-		"dz": e.z,
-		"sim_dx": dp.x,
-		"sim_dy": dp.y,
-		"sim_dz": dp.z,
-		"err_dx": dp.x-e.x,
-		"err_dy": dp.y-e.y,
-		"err_dz": dp.z-e.z,
+		"h" : "%.4f" % pos.length(),
+		"pos" : "(%.f , %.f, %.f)" % [pos.x,pos.y,pos.z],
+		"v" : "%.4f" % vel.length(),
+		"vel" : "(%.f , %.f, %.f)" % [vel.x,vel.y,vel.z],		
 		})

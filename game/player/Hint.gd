@@ -20,14 +20,16 @@
 
 extends Label
 
+export (NodePath) var player_path
+var player
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	player = get_node(player_path)
 
 func _process(delta):	
-	var looking_at = get_parent().get_parent().looking_at
-	if (looking_at != null):
-		text = looking_at.name
+	if (player.looking_at != null):
+		text = player.looking_at.name
 	else:
 		text = ""
 	pass

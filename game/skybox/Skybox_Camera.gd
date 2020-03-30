@@ -1,4 +1,4 @@
-extends Camera
+extends Spatial
 
 export (NodePath) var parent_body_path
 export (float) var altitude_in_km = 7000

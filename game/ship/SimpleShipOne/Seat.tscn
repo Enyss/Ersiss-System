@@ -991,6 +991,7 @@ script = ExtResource( 6 )
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 22.9504, 41.11, -12.4288 )
 
 [node name="Camera" type="Camera" parent="PoV"]
+near = 0.01
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.974059, -0.225634, -0.0172564, 0.225481, 0.974191, -0.0103839, 0.019154, 0.00622352, 0.999795, 21.3542, 28.3398, -12.3572 )

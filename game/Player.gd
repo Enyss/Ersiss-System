@@ -20,28 +20,43 @@
 
 extends Node
 
-onready var local_bubble = $Simulation/LocalBubble
-var base_body
-var current_body
+var base_controller_path = "Simulation/LocalBubble/Player_Body/Control"
+onready var pov = $Camera
+
+var base_controller
+var controller
+
 var looking_at = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	base_body = local_bubble.player_body
-	current_body = base_body
+	#create the background camera
 	get_tree().call_group("PoV","create_background_camera")
+	#set the active controller
+	base_controller = get_node(base_controller_path)
+	controller = base_controller
+	controller.activate()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	looking_at = local_bubble.player_body.get_node("PoV/Camera/RayCast").get_collider()
+	looking_at = pov.looking_at()
 	if (looking_at!=null):
 		if Input.is_action_just_pressed("ui_click"):
 			looking_at.click()
 
-func change_body(body):
-	current_body.set_active(false)
-	if (body != null):
-		current_body = body
+func set_controller(new_controller):
+	#If the controller don't change
+	if (new_controller == controller):
+		return;
+	
+	#If the controller change
+	controller.desactivate()
+	if (new_controller == null):
+		controller = base_controller
 	else:
-		current_body = base_body
-	current_body.set_active(true)
+		controller = new_controller
+	controller.activate()
+
+func reset_controller( position ):
+	set_controller(base_controller)
+	controller.set_movement(position, $Simulation/LocalBubble.anchor )

@@ -4,18 +4,28 @@ var base_acceleration = Vector3()
 export var velocity : Vector3
 
 var simbody
+var controller
+var pov
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	controller = $Control
 	simbody = $SimBody.simbody
 	get_parent().add_to_local_objects(self)
 	
-func set_active( active ):
-	$Control.set_process(active)
-	$PoV.set_process_input(active)
-	$PoV/Camera.current = active
-			
+func desactivate():
+	set_process(false)
+	set_physics_process(false)
+
+func activate():
+	set_process(true)
+	set_physics_process(true)
+	get_tree().call_group("Bubble", "set_bubble_anchor", simbody)
+	
 func _process(delta):
+	if (pov == null):
+		pov = get_node("/root/Spaced/Player").pov
+	pov.global_transform.origin = global_transform.origin
 	simbody.acceleration = base_acceleration
 
 func _physics_process(delta):	
@@ -28,7 +38,8 @@ func _physics_process(delta):
 		var damp = 0.2
 		var dv = simbody.velocity_relative_to(center)-collision.collider_velocity
 		var new_speed = damp*(dv.bounce(collision.normal) )
-		simbody.set_velocity_relative_to(collision.collider.simbody, new_speed)
+#		simbody.set_velocity_relative_to(collision.collider.simbody, new_speed)
+		simbody.set_velocity_relative_to(center, new_speed + collision.collider_velocity)
 		
 	transform.origin = simbody.position_relative_to(center,1)
 	

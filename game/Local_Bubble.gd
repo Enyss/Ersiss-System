@@ -24,13 +24,16 @@ extends Node
 export (NodePath) var starting_body_path
 
 var center
-var player_body
+var anchor
 var local_objects = Array()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player_body = get_node(starting_body_path)
-	player_body.set_active(true)
+	add_to_group("Bubble")
+#	player_body.set_active(true)
+	
+func set_bubble_anchor(body):
+	anchor = body
 	
 func initialize_simbody(simbody):
 	center = simbody
@@ -42,7 +45,7 @@ func add_to_local_objects(object):
 	local_objects.append(object)
 
 func _on_Center_Local_Bubble_timeout():
-	center.set_position_relative_to(player_body.simbody, Vector3(),1 )	
-	center.set_velocity_relative_to(player_body.simbody, Vector3() )	
+	center.set_position_relative_to(anchor, Vector3(),1 )	
+	center.set_velocity_relative_to(anchor, Vector3() )	
 	for object in local_objects:
 		object.transform.origin = object.simbody.position_relative_to(center,1)

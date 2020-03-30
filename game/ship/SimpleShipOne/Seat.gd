@@ -7,7 +7,7 @@ var simbody
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Control.set_process_input(active)
-	$PoV/Camera.current = active
+#	$PoV/Camera.current = active
 	
 func set_active( new_state ):
 	simbody = get_parent().get_parent().simbody

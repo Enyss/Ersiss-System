@@ -56,15 +56,15 @@ func _process(_delta):
 	#	cameras[camera].global_transform.basis = camera.global_transform.basis
 	#	cameras[camera].global_transform.origin = camera.get_global_position()
 		
-	var tmp_scale = global_bubble.scale;
-	var target_camera = local_bubble.player_body.get_node("PoV/Camera")
-	global_bubble.global_transform.basis = target_camera.global_transform.basis
-	global_bubble.scale = tmp_scale
+	#var tmp_scale = global_bubble.scale;
+	#var target_camera = local_bubble.player_body.get_node("PoV/Camera")
+#	global_bubble.global_transform.basis = target_camera.global_transform.basis
+#	global_bubble.scale = tmp_scale
 	
 	#update celestial bodies position
 	global_bubble.global_transform.origin = Vector3()
 	for body in celestial_bodies:
-		var p = body.simbody.position_relative_to(local_bubble.player_body.simbody,1000000)
+		var p = body.simbody.position_relative_to(local_bubble.anchor,1000000)
 		body.global_transform.origin = p
 	
 	#update light

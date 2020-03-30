@@ -1,4 +1,4 @@
-extends KinematicBody
+extends Spatial
 
 var base_acceleration = Vector3()
 export var velocity : Vector3
@@ -11,13 +11,13 @@ func _ready():
 	get_parent().add_to_local_objects(self)
 	
 func set_active():
-	$PoV/Camera.current = true
+	pass
 	
 func set_controlled():
-	$Control.set_active()
+	pass
 			
 func _physics_process(delta):
-	rotate_x(delta/15)
+	#rotate_x(delta/100)
 	transform.origin = simbody.position_relative_to(get_parent().center,1)
 
 #func _integrate_forces(physicState):

@@ -1061,7 +1061,7 @@ input_ray_pickable = false
 script = ExtResource( 8 )
 
 [node name="PoV" parent="." instance=ExtResource( 5 )]
-transform = Transform( -1.62921e-07, -1, 1.62921e-07, 0, -1.62921e-07, -1, 1, -1.62921e-07, 2.65431e-14, 0, 1.90001, 0 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.90001, 0 )
 
 [node name="Cockpit_Screen" parent="." instance=ExtResource( 4 )]
 transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 0.219955, 0.355364, 9.15527e-05 )
@@ -1072,7 +1072,6 @@ script = ExtResource( 7 )
 body_class = 2
 
 [node name="Walls" type="Spatial" parent="."]
-visible = false
 
 [node name="wall" type="MeshInstance" parent="Walls"]
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 0, 0, 0, 0.0254, -1.4114, -5.78467, 1.22327 )

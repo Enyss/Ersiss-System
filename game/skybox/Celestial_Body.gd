@@ -34,7 +34,7 @@ var simbody
 func _ready():
 	simbody = $SimBody.simbody
 	simbody.mass = mass_in_earth_mass
-	parent = get_node(parent_body_path)
+	parent = get_node_or_null(parent_body_path)
 	if (parent != null):
 		parent.register_child_body(self)
 

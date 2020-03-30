@@ -31,8 +31,8 @@ func _ready():
 	
 	root_viewport.connect("size_changed", self, "_on_root_viewport_size_changed");
 	
-	viewport_viewer = get_node(path_to_viewport_viewer);
-	viewport_viewer.material.set_shader_param("viewport_texture", get_texture());
+#	viewport_viewer = get_node(path_to_viewport_viewer);
+#	viewport_viewer.material.set_shader_param("viewport_texture", get_texture());
 
 
 func _on_root_viewport_size_changed():
