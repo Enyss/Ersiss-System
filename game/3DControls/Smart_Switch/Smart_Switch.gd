@@ -20,7 +20,7 @@
 
 extends KinematicBody
 
-signal changed(pressed)
+signal changed(button)
 export var pressed = false
 
 var state = 0
@@ -35,14 +35,19 @@ var audio
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	emit_signal("changed",pressed)
+	emit_signal("changed",self)
 	audio = get_node("AudioPlay")
 
 func _input_event( _camera,  event,  _click_position,  _click_normal,  _shape_idx ):
 	if (event.is_action_pressed("ui_click")):
 		pressed = !pressed
 		move_button()
-		emit_signal("changed",pressed)
+		emit_signal("changed",self)
+
+func click():
+	pressed = !pressed
+	move_button()
+	emit_signal("changed",self)
 
 func update_state(new_state):
 	state = new_state

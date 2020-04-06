@@ -30,6 +30,7 @@ emission_on_uv2 = false
 emission_texture = SubResource( 5 )
 
 [node name="Smart Switch" type="KinematicBody"]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="Viewport" type="Viewport" parent="."]

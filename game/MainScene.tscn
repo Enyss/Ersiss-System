@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player/Hint.gd" type="Script" id=1]
 [ext_resource path="res://skybox/3D_Skybox_Scene.tscn" type="PackedScene" id=2]
@@ -13,14 +13,32 @@
 [ext_resource path="res://Player.gd" type="Script" id=12]
 [ext_resource path="res://MainCamera.gd" type="Script" id=13]
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Gradient" id=1]
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Environment" id=3]
 background_mode = 4
-background_energy = 0.0
+background_energy = 0.54
 background_canvas_max_layer = -1
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.01
 
 [node name="Spaced" type="Node"]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 2 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
@@ -123,17 +141,5 @@ input_ray_pickable = false
 [node name="SSO-Complete" parent="Player/Simulation/LocalBubble" instance=ExtResource( 5 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
-
-[node name="Background" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="Background" type="TextureRect" parent="Background"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand = true
-flip_v = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+environment = SubResource( 3 )
 [connection signal="timeout" from="Player/Simulation/LocalBubble/Center_Local_Bubble" to="Player/Simulation/LocalBubble" method="_on_Center_Local_Bubble_timeout"]

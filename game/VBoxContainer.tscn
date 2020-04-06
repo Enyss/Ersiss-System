@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://3DControls/BatteryUI/BatteryUI.gd" type="Script" id=1]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+anchor_right = 0.156
+anchor_bottom = 0.146
+margin_right = 0.47998
+margin_bottom = 0.319992
+custom_constants/separation = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Control" parent="."]
+margin_right = 300.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="Title"]
+margin_right = 172.0
+margin_bottom = 29.0
+rect_scale = Vector2( 1.75, 1.75 )
+text = "Battery 1 "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="Control" parent="."]
+margin_top = 33.0
+margin_right = 300.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="Bar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 10.0
+margin_right = -50.0
+color = Color( 0.501961, 0.501961, 0.501961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Bar/Background"]
+anchor_right = 0.974
+anchor_bottom = 1.0
+color = Color( 0.172549, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Bar/Background"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 0.588608
+margin_bottom = 0.588608
+grow_vertical = 0
+text = " 99%"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Legend" type="Control" parent="."]
+margin_top = 66.0
+margin_right = 300.0
+margin_bottom = 157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Legend"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 6.0
+margin_right = -14.0
+margin_bottom = -49.0
+text = "Capacity : 346.5 Ah
+Consumption : 12 A
+Voltage : 25.2 V"
+__meta__ = {
+"_edit_use_anchors_": false
+}

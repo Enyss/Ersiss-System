@@ -5,6 +5,7 @@ var global_camera
 export (NodePath) var background_path
 var background
 
+var zoom = false
 onready var raycast = $RayCast
 
 
@@ -16,6 +17,13 @@ func looking_at():
 	return raycast.get_collider()
 	
 func _process(delta):
+	if Input.is_action_just_pressed("fps_zoom"):
+		zoom = !zoom
+		if zoom:
+			fov=30
+		else:
+			fov = 70
+		global_camera.camera.fov = fov
 	global_camera.camera.global_transform.basis = global_transform.basis
 	global_camera.camera.global_transform.origin = global_transform.origin / 1000000
 
