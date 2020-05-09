@@ -15,5 +15,5 @@ var simbody
 #	active = new_state
 
 func click():
-	var player = get_node("/root/Spaced/Player")
+	var player = get_node("/root/Main/Player")
 	player.set_controller($Control)

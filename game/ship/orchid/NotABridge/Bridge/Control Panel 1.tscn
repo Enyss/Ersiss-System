@@ -4,8 +4,10 @@
 [ext_resource path="res://ship/orchid/NotABridge/Color_000_.material" type="Material" id=3]
 [ext_resource path="res://ship/orchid/NotABridge/Color_005_.material" type="Material" id=4]
 [ext_resource path="res://ship/orchid/NotABridge/Color_009_.material" type="Material" id=5]
-[ext_resource path="res://3DControls/Smart_Switch/Smart_Switch.tscn" type="PackedScene" id=6]
+[ext_resource path="res://3DControls/Switch/Switch.tscn" type="PackedScene" id=6]
 [ext_resource path="res://3DControls/Rotating_Switch/Rotating_Switch.tscn" type="PackedScene" id=7]
+
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "group_673044"

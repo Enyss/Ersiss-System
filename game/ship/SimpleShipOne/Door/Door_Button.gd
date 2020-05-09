@@ -1,12 +1,8 @@
-extends "res://3DControls/Smart_Switch/Smart_Switch.gd"
+extends Switch
 
+func setup()->void:
+	self.connect("clicked", system, "on_door_button_pressed")
+	system.connect("updated", self, "on_system_update")
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func on_system_update()->void:
+	update_state(system.state)

@@ -1,4 +1,4 @@
-extends "res://3DControls/Smart_Switch/Smart_Switch.gd"
+extends "res://3DControls/Switch/Switch.gd"
 
 var button_states = [{"text":"BAT 1", "color":Color.lightgray},
 	{"text":"BAT 1", "color":Color.green},

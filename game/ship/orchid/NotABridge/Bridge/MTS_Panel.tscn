@@ -1,7 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://3DControls/Smart_Switch/Smart_Switch.tscn" type="PackedScene" id=1]
+[ext_resource path="res://3DControls/Switch/Switch.tscn" type="PackedScene" id=1]
 [ext_resource path="res://3DControls/Rotating_Switch/Rotating_Switch.tscn" type="PackedScene" id=2]
+
+
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 2, 0.1, 2 )

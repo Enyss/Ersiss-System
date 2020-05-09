@@ -1,4 +1,4 @@
-extends "res://Controller.gd"
+extends Controller
 
 var sensibility = 0.3
 var camera
@@ -15,7 +15,7 @@ func activate():
 	set_process(true)
 	set_process_input(true)
 	get_parent().input_ray_pickable = false
-	camera = get_node("/root/Spaced/Player").pov
+	camera = get_node("/root/Main/Player").pov
 	angle = Vector2()
 	
 	ship = get_node(ship_path)
@@ -61,19 +61,19 @@ func _process(delta):
 	print(ship.simbody.acceleration)
 		
 	#rotation
-	var angle = delta*rotation_speed
+	var alpha = delta*rotation_speed
 	if Input.is_action_pressed("ship_rotate_up"):
-		ship.rotate(basis.z, angle)
+		ship.rotate(basis.z, alpha)
 	if Input.is_action_pressed("ship_rotate_down"):
-		ship.rotate(basis.z, -angle)
+		ship.rotate(basis.z, -alpha)
 	if Input.is_action_pressed("ship_rotate_left"):
-		ship.rotate(basis.x, -angle)
+		ship.rotate(basis.x, -alpha)
 	if Input.is_action_pressed("ship_rotate_right"):
-		ship.rotate(basis.x, angle)
+		ship.rotate(basis.x, alpha)
 	if Input.is_action_pressed("ship_rotate_clockwise"):
-		ship.rotate(basis.y, angle)
+		ship.rotate(basis.y, alpha)
 	if Input.is_action_pressed("ship_rotate_counterclockwise"):
-		ship.rotate(basis.y, -angle)
+		ship.rotate(basis.y, -alpha)
 	
 	#Update camera position
 	camera.global_transform = anchor.global_transform

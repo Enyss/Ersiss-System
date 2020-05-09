@@ -1,4 +1,4 @@
-extends "res://Controller.gd"
+extends Controller
 
 var parent
 var camera
@@ -11,7 +11,8 @@ func activate():
 	set_process_input(true)
 	parent = get_parent()
 	parent.activate()
-	camera = get_node("/root/Spaced/Player").pov
+	parent.get_parent().anchor = parent
+	camera = get_node("/root/Main/Player").pov
 	
 func desactivate():
 	set_process(false)

@@ -3,8 +3,8 @@
 [ext_resource path="res://ship/SimpleShipOne/Color_D10_.material" type="Material" id=1]
 [ext_resource path="res://3DControls/BatteryUI/BatteryUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Battery.gd" type="Script" id=3]
-[ext_resource path="res://ship/SimpleShipOne/Cockpit/Battery_button_activate.gd" type="Script" id=4]
-[ext_resource path="res://3DControls/Smart_Switch/Smart_Switch.tscn" type="PackedScene" id=5]
+[ext_resource path="res://3DControls/Switch/Switch_data.gd" type="Script" id=4]
+[ext_resource path="res://3DControls/Switch/Switch.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -20,6 +20,8 @@ surfaces/0 = {
 "vertex_count": 346
 }
 
+[sub_resource type="BoxShape" id=3]
+
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
 "aabb": AABB( 0, 10.4553, -37.6882, 24.0737, 15.867, 39.2693 ),
@@ -34,32 +36,46 @@ surfaces/0 = {
 "vertex_count": 328
 }
 
-[sub_resource type="BoxShape" id=5]
-
 [node name="Cockpit" type="Spatial"]
 
 [node name="group_28" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="group_29" type="MeshInstance" parent="."]
+[node name="BatteryUI" parent="group_28" instance=ExtResource( 2 )]
+transform = Transform( 3.46753e-07, 3.06418, 2.57115, -4.88096e-07, -2.57115, 3.06418, -4, 5.7937e-07, -1.51014e-07, 0.831301, 21.3057, -20.6997 )
+component_name = "battery_screen"
+system_name = "battery"
+
+[node name="Battery" type="Area" parent="group_28"]
 transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -19.8862, 0, 0 )
-mesh = SubResource( 2 )
-material/0 = null
-
-[node name="BatteryUI" parent="group_29" instance=ExtResource( 2 )]
-transform = Transform( -3.46753e-07, -3.06418, -2.57115, -8.37787e-07, -2.57115, 3.06418, -4, 8.04147e-07, -4.18893e-07, -20.7175, 21.3057, -20.6997 )
-battery_path = NodePath("../Battery")
-
-[node name="Battery" type="Area" parent="group_29"]
 script = ExtResource( 3 )
 nominal_voltage = 24.0
 nominal_capacity = 10.0
 
-[node name="CollisionShape" type="CollisionShape" parent="group_29/Battery"]
-shape = SubResource( 5 )
+[node name="CollisionShape" type="CollisionShape" parent="group_28/Battery"]
+shape = SubResource( 3 )
 
-[node name="Battery 1" parent="group_29" instance=ExtResource( 5 )]
-transform = Transform( 0.010813, 0.635117, -0.772341, 0.014185, -0.772405, -0.634971, 0.999841, 0.00408973, 0.0173612, -19.8605, 22.3514, -17.9076 )
+[node name="Battery 1" parent="group_28" instance=ExtResource( 5 )]
+transform = Transform( -0.010813, -0.635117, 0.772341, 0.0141849, -0.772405, -0.634971, 0.999841, 0.00408966, 0.0173611, -0.0256996, 22.3514, -17.9076 )
+component_name = "battery_switch"
+system_name = "battery"
+
+[node name="on" type="Node" parent="group_28/Battery 1"]
 script = ExtResource( 4 )
-[connection signal="changed" from="group_29/Battery 1" to="group_29/BatteryUI" method="_on_Smart_Switch_changed"]
+state = "on"
+color = Color( 0.196078, 1, 0, 1 )
+text = "BAT 1"
+font_color = Color( 0.196078, 1, 0, 1 )
+
+[node name="off" type="Node" parent="group_28/Battery 1"]
+script = ExtResource( 4 )
+state = "off"
+color = Color( 1, 1, 0, 1 )
+text = "BAT 1"
+font_color = Color( 1, 1, 0, 1 )
+
+[node name="group_29" type="MeshInstance" parent="."]
+transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -19.8862, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null

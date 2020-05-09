@@ -1,16 +1,16 @@
-extends KinematicBody
+extends OrbitalBody
+class_name PlayerBody
 
 var base_acceleration = Vector3()
 export var velocity : Vector3
 
-var simbody
-var controller
-var pov
+var pov 
+
+onready var body : KinematicBody = $Body
+onready var controller : Controller = $Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	controller = $Control
-	simbody = $SimBody.simbody
 	get_parent().add_to_local_objects(self)
 	
 func desactivate():
@@ -20,28 +20,28 @@ func desactivate():
 func activate():
 	set_process(true)
 	set_physics_process(true)
-	get_tree().call_group("Bubble", "set_bubble_anchor", simbody)
+	get_parent().set_bubble_anchor(simbody)
 	
-func _process(delta):
+func _process(_delta):
 	if (pov == null):
-		pov = get_node("/root/Spaced/Player").pov
+		pov = get_node("/root/Main/Player").pov
 	pov.global_transform.origin = global_transform.origin
-	simbody.acceleration = base_acceleration
 
 func _physics_process(delta):	
+	simbody.acceleration = base_acceleration
 	var center = get_parent().center
-	var collision = move_and_collide(simbody.velocity_relative_to(center)*delta, true, true, true )
+	var collision = body.move_and_collide(simbody.velocity_relative_to(center)*delta, true, true, true )
 	if collision != null:
-		var new_position = simbody.position_relative_to(center,1) - collision.remainder \
+		var new_position = simbody.position_relative_to(center) - collision.remainder \
 			+ collision.remainder.bounce(collision.normal) 
-		simbody.set_position_relative_to(center, new_position,1)
+		simbody.set_position_relative_to(center, new_position)
 		var damp = 0.2
 		var dv = simbody.velocity_relative_to(center)-collision.collider_velocity
 		var new_speed = damp*(dv.bounce(collision.normal) )
 #		simbody.set_velocity_relative_to(collision.collider.simbody, new_speed)
 		simbody.set_velocity_relative_to(center, new_speed + collision.collider_velocity)
 		
-	transform.origin = simbody.position_relative_to(center,1)
+	transform.origin = simbody.position_relative_to(center)
 	
 
 #func _integrate_forces(physicState):

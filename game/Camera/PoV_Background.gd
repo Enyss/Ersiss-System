@@ -1,4 +1,5 @@
 extends Viewport
+class_name PovBackground
 
 var pov
 var camera

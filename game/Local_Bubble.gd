@@ -23,29 +23,29 @@ extends Node
 #Bodies in Local Scene
 export (NodePath) var starting_body_path
 
-var center
-var anchor
-var local_objects = Array()
+var center : Simbody
+var anchor : Simbody
+var local_objects := Array()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("Bubble")
 #	player_body.set_active(true)
 	
-func set_bubble_anchor(body):
-	anchor = body
+func set_bubble_anchor(simbody : Simbody) -> void:
+	anchor = simbody
 	
-func initialize_simbody(simbody):
+func initialize_simbody(simbody : Simbody) -> void:
 	center = simbody
 	for object in local_objects:
-		object.simbody.set_position_relative_to(center, object.transform.origin ,1)
+		object.simbody.set_position_relative_to(center, object.transform.origin)
 		object.simbody.set_velocity_relative_to(center, object.velocity )
 
 func add_to_local_objects(object):
 	local_objects.append(object)
 
 func _on_Center_Local_Bubble_timeout():
-	center.set_position_relative_to(anchor, Vector3(),1 )	
+	center.set_position_relative_to(anchor, Vector3() )	
 	center.set_velocity_relative_to(anchor, Vector3() )	
 	for object in local_objects:
-		object.transform.origin = object.simbody.position_relative_to(center,1)
+		object.transform.origin = object.simbody.position_relative_to(center)

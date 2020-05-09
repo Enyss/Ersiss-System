@@ -2,7 +2,6 @@ extends Camera
 
 export (NodePath) var global_scene_path
 var global_camera
-export (NodePath) var background_path
 var background
 
 var zoom = false
@@ -16,7 +15,7 @@ func _ready():
 func looking_at():
 	return raycast.get_collider()
 	
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("fps_zoom"):
 		zoom = !zoom
 		if zoom:
@@ -29,10 +28,9 @@ func _process(delta):
 
 func create_background_camera():
 	#setup the global camera
-	var sky = get_node(global_scene_path)
-	global_camera = sky.add_pov(self)
+	var global = get_node("/root/Main/Global")
+	global_camera = global.add_pov(self)
 	global_camera.camera.fov = fov
-	global_camera. size = get_tree().get_root().size
+	global_camera.size = get_tree().get_root().size
 	#setup the background to recieve the global camera view
-	background = get_node(background_path)
-	background.texture = global_camera.get_texture()
+	$Background/texture.texture = global_camera.get_texture()

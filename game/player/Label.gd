@@ -20,11 +20,10 @@
 
 extends Label
 
-export (NodePath) var sim_path
-var earth
-var bubble
+var earth : Node
+var bubble : Node
 
-var format_string = """FPS : {fps}
+const format_string = """FPS : {fps}
 Simulation speed : {speed}x
 
 Position (km) : {h}
@@ -34,16 +33,20 @@ Velocity (m/s) : {v}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bubble = get_node("/root/Spaced/Player/Simulation/LocalBubble")
+	bubble = get_node("/root/Main/Local")
 
-func _process(delta):
+func _process(_delta):
 	if earth == null:
-		earth = get_node(sim_path).get_node("Earth")
-	var pos = earth.simbody.position_relative_to(bubble.anchor,1000)
-	var vel = earth.simbody.velocity_relative_to(bubble.anchor,1)
+		earth = get_node("/root/Main/Global/Earth")
+	if bubble.anchor == null:
+		return
+	var e = earth.simbody
+	var a = bubble.anchor.simbody
+	var pos = e.position_relative_to_scaled(a,1000)
+	var vel = e.velocity_relative_to(a)
 	self.text = format_string.format({
 		"fps":Engine.get_frames_per_second(),
-		"speed" : get_node("/root/Spaced/Player/Simulation").simulation_speed,
+		"speed" : Simulation.simulation_speed,
 		"h" : "%.4f" % pos.length(),
 		"pos" : "(%.f , %.f, %.f)" % [pos.x,pos.y,pos.z],
 		"v" : "%.4f" % vel.length(),

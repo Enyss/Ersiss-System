@@ -3,7 +3,7 @@
 [ext_resource path="res://bin/orbitalsimulation.gdnlib" type="GDNativeLibrary" id=1]
 
 [resource]
-
 resource_name = "orbital_simulation"
 class_name = "OrbitalSimulation"
 library = ExtResource( 1 )
+script_class_name = "Sim"

@@ -8,23 +8,102 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "Celestial_Body",
+"language": "GDScript",
+"path": "res://Solar_System/Celestial_Body.gd"
+}, {
+"base": "Spatial",
+"class": "Component",
+"language": "GDScript",
+"path": "res://Core/Component.gd"
+}, {
+"base": "Node",
+"class": "Controller",
+"language": "GDScript",
+"path": "res://Controller.gd"
+}, {
+"base": "Spatial",
+"class": "OrbitalBody",
+"language": "GDScript",
+"path": "res://Core/OrbitalBody.gd"
+}, {
+"base": "OrbitalBody",
+"class": "PlayerBody",
+"language": "GDScript",
+"path": "res://ship/PlayerBody/Player_Body.gd"
+}, {
+"base": "Spatial",
+"class": "Pov",
+"language": "GDScript",
+"path": "res://Camera/PoV.gd"
+}, {
+"base": "Viewport",
+"class": "PovBackground",
+"language": "GDScript",
+"path": "res://Camera/PoV_Background.gd"
+}, {
+"base": "OrbitalBody",
+"class": "Ship",
+"language": "GDScript",
+"path": "res://Core/Ship.gd"
+}, {
+"base": "Node",
+"class": "Sim",
+"language": "NativeScript",
+"path": "res://bin/orbital_simulation.gdns"
+}, {
+"base": "Node",
+"class": "Simbody",
+"language": "NativeScript",
+"path": "res://bin/orbsim_body.gdns"
+}, {
+"base": "Component",
+"class": "Switch",
+"language": "GDScript",
+"path": "res://3DControls/Switch/Switch.gd"
+}, {
+"base": "Node",
+"class": "SwitchData",
+"language": "GDScript",
+"path": "res://3DControls/Switch/Switch_data.gd"
+}, {
+"base": "Node",
+"class": "System",
+"language": "GDScript",
+"path": "res://Core/System.gd"
+} ]
 _global_script_class_icons={
-
+"Celestial_Body": "",
+"Component": "",
+"Controller": "",
+"OrbitalBody": "",
+"PlayerBody": "",
+"Pov": "",
+"PovBackground": "",
+"Ship": "",
+"Sim": "",
+"Simbody": "",
+"Switch": "",
+"SwitchData": "",
+"System": ""
 }
 
 [application]
 
 config/name="Ersiss-System"
-run/main_scene="res://MainScene.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Simulation="*res://sim/Simulation.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/size/borderless=true
-window/size/fullscreen=true
+window/size/width=1570
+window/size/height=841
 window/stretch/mode="viewport"
 
 [gdnative]

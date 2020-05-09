@@ -1,7 +1,7 @@
 extends Node
 
 export (NodePath) var global_bubble_path
-export (NodePath) var light_source_path
+var global_bubble : OrbitalBody
 
 func _ready():
 	pass

@@ -1,4 +1,5 @@
 extends Spatial
+class_name Pov
 
 var sky
 var global_camera
@@ -19,12 +20,12 @@ func _ready():
 	camera.fov = fov
 #	camera_texture.texture = viewport.get_texture()
 
-func _process(delta):
+func _process(_delta):
 	camera.translation = global_transform.origin
 	camera.global_transform.basis = global_transform.basis
 
 func create_background_camera():
-	sky = get_node("/root/Spaced/Player/Simulation/Global_Viewport/Global_Scene")
+	sky = get_node("/root/Main/Global/Global_Scene")
 	global_camera = sky.add_pov(self)
 	global_camera.camera.fov = camera.fov
 	background = $Viewport/Background

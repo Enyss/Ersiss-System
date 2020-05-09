@@ -25,15 +25,15 @@ var global_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	global_scene = get_node(global_scene_path)
+	pass#global_scene = get_node(global_scene_path)
 
 
-func _process(delta):
-	var d = global_scene.light_direction
-	var p 
-	if d.z == 0 :
-		p = Vector3(d.y,-d.x, 0)
-	else :
-		p = Vector3(1,1,(d.x+d.y)/(-d.z))
-	look_at(d, p)
+func _process(_delta):
+	#var d = global_scene.light_direction
+	#var p 
+	#if d.z == 0 :
+	#	p = Vector3(d.y,-d.x, 0)
+	#else :
+	#	p = Vector3(1,1,(d.x+d.y)/(-d.z))
+	#look_at(d, p)
 	pass

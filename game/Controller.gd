@@ -1,4 +1,7 @@
 extends Node
+class_name Controller
+
+export (bool) var active := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

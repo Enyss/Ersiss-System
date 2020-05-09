@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Local/local.gd" type="Script" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://skybox/Global_Scene.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ship/Player_Body.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ship/SSO-temp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+ambient_light_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+ambient_light_energy = 0.5
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+
+[node name="Global" parent="." instance=ExtResource( 3 )]
+
+[node name="Local" type="Node" parent="."]
+script = ExtResource( 1 )
+max_distance = 1000.0
+
+[node name="Player_Body" parent="Local" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0732594, 0.724934, -11.8276 )
+
+[node name="SSO-Complete" parent="Local" instance=ExtResource( 5 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )

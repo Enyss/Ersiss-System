@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://sim/Physical_Body.gd" type="Script" id=1]
 [ext_resource path="res://skybox/Celestial_Body.gd" type="Script" id=2]
 
 [sub_resource type="SphereMesh" id=1]
@@ -22,10 +21,6 @@ script = ExtResource( 2 )
 light_energy = 2.9
 omni_range = 5e+06
 omni_attenuation = 1.1
-
-[node name="SimBody" type="Node" parent="."]
-script = ExtResource( 1 )
-body_class = 1
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )

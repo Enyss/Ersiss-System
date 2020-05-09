@@ -33,8 +33,11 @@ void Body::_register_methods(){
     register_method("_process", &Body::_process);
     register_method("position_relative_to", &Body::getPositionRelativeTo);
     register_method("set_position_relative_to", &Body::setPositionRelativeTo);
+    register_method("position_relative_to_scaled", &Body::getPositionRelativeToScaled);
+    register_method("set_position_relative_to_scaled", &Body::setPositionRelativeToScaled);
     register_method("velocity_relative_to", &Body::getVelocityRelativeTo);
     register_method("set_velocity_relative_to", &Body::setVelocityRelativeTo);
+    register_method("distance_to", &Body::distanceTo);
     register_property<Body, float>("mass", &Body::set_mass, &Body::get_mass, 1.0);
     register_property<Body, Vector3>("position", &Body::set_position, &Body::get_position, Vector3());
     register_property<Body, Vector3>("velocity", &Body::set_velocity, &Body::get_velocity, Vector3());
@@ -69,19 +72,19 @@ Vector3 Body::get_acceleration(){
     return Vector3( (float)acceleration.x, (float)acceleration.y, (float)acceleration.z );
 }
 
-/*Vector3 Body::getPositionRelativeTo(Body * b)
+Vector3 Body::getPositionRelativeTo(Body * b)
 {
     return (position-b->position).toVector3();
+}
+Vector3 Body::getPositionRelativeToScaled(Body * b, float unit = 1.0)
+{
+    return ((position-b->position)/unit).toVector3();
 }
 void Body::setPositionRelativeTo(Body *b, Vector3 p)
 {
     position = b->position + Vector3d(p.x, p.y, p.z);
-}*/
-Vector3 Body::getPositionRelativeTo(Body * b, float unit = 1.0)
-{
-    return ((position-b->position)/unit).toVector3();
 }
-void Body::setPositionRelativeTo(Body *b, Vector3 p, float unit = 1.0)
+void Body::setPositionRelativeToScaled(Body *b, Vector3 p, float unit = 1.0)
 {
     position = b->position + unit*Vector3d(p.x, p.y, p.z);
 }
@@ -92,6 +95,11 @@ Vector3 Body::getVelocityRelativeTo(Body *b)
 void Body::setVelocityRelativeTo(Body *b, Vector3 v)
 {
     velocity = b->velocity+Vector3d(v.x, v.y, v.z);
+}
+
+float Body::distanceTo(Body * b)
+{
+    return (position-b->position).length();
 }
 
 void Body::_init()
