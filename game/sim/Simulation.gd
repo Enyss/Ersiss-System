@@ -21,20 +21,25 @@ extends Node
 
 var sim : Sim
 
-var simulation_speed := 1.0
+var simulation_speed : int = 0
 var time :=0.0
 
 var simulated_bodies : Array = Array()
 var massive_bodies : Array = Array()
 var bubble
 
-func _init():
+func _ready():
+	print("Sim initialization")
 	sim = Sim.new()
 
 func _physics_process(delta):
 	time += simulation_speed*delta
-	for _i in range(simulation_speed):
+	var time_start = OS.get_ticks_msec()
+	if simulation_speed > 0:
 		sim.update(delta)
+		var elapsed_time = OS.get_ticks_msec() - time_start
+		print("sim update time = ", elapsed_time)
+		simulation_speed = 1
 
 func add_body(body : Node ) -> void:
 	match body.body_class:
@@ -47,6 +52,8 @@ func add_body(body : Node ) -> void:
 		body.BodyClass.BUBBLE:
 			bubble = body
 			sim.add_simulated_body(body.simbody)
+		_:
+			print("Unknown body class !!!")
 			
 func remove_body_from_simulation(body : Node):
 	print("remove_body_from_simulation not yet implemented")

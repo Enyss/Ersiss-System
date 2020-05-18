@@ -41,7 +41,11 @@ func _physics_process(delta):
 #		simbody.set_velocity_relative_to(collision.collider.simbody, new_speed)
 		simbody.set_velocity_relative_to(center, new_speed + collision.collider_velocity)
 		
-	transform.origin = simbody.position_relative_to(center)
+	var p : Vector3 = simbody.position_relative_to(center)
+	if p.length() < 50000:
+		transform.origin = p
+	else :
+		print("plop")
 	
 
 #func _integrate_forces(physicState):

@@ -80,4 +80,4 @@ func _process(delta):
 	
 	#Leave the Seat
 	if Input.is_action_pressed("leave_seat"):
-		get_node("/root/Spaced/Player").reset_controller($Spawn_point.global_transform.origin)
+		get_node("/root/Main/Player").reset_controller($Spawn_point.global_transform.origin)

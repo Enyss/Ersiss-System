@@ -1,10 +1,11 @@
 {
 	"folders": [
 		{
-			"path": "C:\\Git\\Spaced"
+			"path": "C:\\Git\\Godot\\ersiss-system"
 		}
 	],
 	"settings": {
+		"editor_path": "C:\\Git\\Godot\\Godot_v3.2-stable_win64.exe",
 		"files.associations": {
 			"cmath": "cpp"
 		}

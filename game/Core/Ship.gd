@@ -8,6 +8,7 @@ func _ready():
 	systems = Dictionary()
 	components = Array()
 	register_systems()
+	get_parent().add_to_local_objects(self)
 
 func register_systems() -> void:
 	get_systems_recursive(self)

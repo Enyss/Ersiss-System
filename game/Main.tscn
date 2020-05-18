@@ -25,8 +25,10 @@ max_distance = 1000.0
 
 [node name="Player_Body" parent="Local" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0732594, 0.724934, -11.8276 )
+body_class = 2
 
 [node name="SSO-Complete" parent="Local" instance=ExtResource( 5 )]
+body_class = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )

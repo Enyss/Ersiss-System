@@ -98,7 +98,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Simulation="*res://sim/Simulation.gd"
+Simulation="*res://Singleton/simulation_singleton.gd"
+Player="*res://Singleton/player_singleton.gd"
+Scene="*res://Singleton/scene_singleton.gd"
 
 [display]
 
@@ -254,7 +256,6 @@ fps_zoom={
 
 [physics]
 
-3d/physics_engine="Bullet"
 3d/active_soft_world=false
 3d/default_gravity=0.0
 3d/default_linear_damp=0.0
