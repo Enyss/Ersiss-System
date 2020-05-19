@@ -4,14 +4,12 @@ class_name PlayerBody
 var base_acceleration = Vector3()
 export var velocity : Vector3
 
-var pov 
-
 onready var body : KinematicBody = $Body
 onready var controller : Controller = $Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_parent().add_to_local_objects(self)
+	Scene.add_to_local_objects(self)
 	
 func desactivate():
 	set_process(false)
@@ -20,16 +18,11 @@ func desactivate():
 func activate():
 	set_process(true)
 	set_physics_process(true)
-	get_parent().set_bubble_anchor(simbody)
-	
-func _process(_delta):
-	if (pov == null):
-		pov = get_node("/root/Main/Player").pov
-	pov.global_transform.origin = global_transform.origin
+	Scene.set_anchor(self)
 
 func _physics_process(delta):	
 	simbody.acceleration = base_acceleration
-	var center = get_parent().center
+	var center = Scene.center
 	var collision = body.move_and_collide(simbody.velocity_relative_to(center)*delta, true, true, true )
 	if collision != null:
 		var new_position = simbody.position_relative_to(center) - collision.remainder \

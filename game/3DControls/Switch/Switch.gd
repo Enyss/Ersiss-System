@@ -31,6 +31,8 @@ var current_state : SwitchData
 export (bool) var pressed : bool = false
 
 func _ready():
+	#set the button texture
+	$Button/Text.get_surface_material(0).albedo_texture = $Texture.get_texture()
 	#get the different switch states	
 	var children = get_children()
 	for child in children:

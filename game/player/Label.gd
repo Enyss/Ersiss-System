@@ -31,17 +31,13 @@ Position (km) : {h}
 Velocity (m/s) : {v} 
 	{vel}"""
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	bubble = get_node("/root/Main/Local")
-
 func _process(_delta):
 	if earth == null:
 		earth = get_node("/root/Main/Global/Earth")
-	if bubble.anchor == null:
+	if Scene.anchor == null:
 		return
 	var e = earth.simbody
-	var a = bubble.anchor.simbody
+	var a = Scene.anchor.simbody
 	var pos = e.position_relative_to_scaled(a,1000)
 	var vel = e.velocity_relative_to(a)
 	self.text = format_string.format({

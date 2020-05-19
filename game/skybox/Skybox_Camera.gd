@@ -18,3 +18,5 @@ func set_simbody():
 	var vz = speed_in_ms * sin(deg2rad(true_anomaly_in_degree-90))
 	var v = Vector3(vx,0,vz)
 	simbody.set_velocity_relative_to(parent, v)
+	
+	Scene.center = simbody

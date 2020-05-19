@@ -1,18 +1,18 @@
 extends Controller
 
 var parent
-var camera
 var acceleration = 1.0
 var sensibility = 0.3
-# Called when the node enters the scene tree for the first time.
+
+func _ready():
+	Player.base_controller = self 
 
 func activate():
 	set_process(true)
 	set_process_input(true)
 	parent = get_parent()
 	parent.activate()
-	parent.get_parent().anchor = parent
-	camera = get_node("/root/Main/Player").pov
+	Scene.anchor = parent
 	
 func desactivate():
 	set_process(false)
@@ -54,4 +54,4 @@ func _process(delta):
 		parent.global_rotate(basis.z, +PI/4*delta)
 	get_parent().base_acceleration = a.normalized()*acceleration
 	
-	camera.global_transform = get_parent().global_transform
+	Player.pov.global_transform = get_parent().global_transform

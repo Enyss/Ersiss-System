@@ -21,7 +21,6 @@
 extends Viewport
 
 var celestial_bodies := Array()
-var povs := Dictionary()
 onready var global_bubble : OrbitalBody = $Local_Bubble
 
 var pov_background : PackedScene = preload("res://Camera/PoV_Background.tscn")
@@ -42,12 +41,6 @@ func _process(_delta):
 	
 	#update light
 	#light_direction = -light_source.global_transform.origin
-	
-func add_pov(pov : Node ) -> PovBackground :
-	var b : PovBackground = pov_background.instance() 
-	b.pov = pov
-	add_child(b)
-	return b
 
 func add_to_local_objects(object : OrbitalBody) -> void:
 	celestial_bodies.append(object)

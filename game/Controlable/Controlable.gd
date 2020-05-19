@@ -20,7 +20,7 @@
 
 extends Node
 
-var active = false
+export (bool) var 
 	
 func _ready():
 	set_process(active)

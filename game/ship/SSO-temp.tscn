@@ -1,4 +1,4 @@
-[gd_scene load_steps=308 format=2]
+[gd_scene load_steps=309 format=2]
 
 [ext_resource path="res://ship/SimpleShipOne/Color_D10_.material" type="Material" id=1]
 [ext_resource path="res://ship/SimpleShipOne/Color_003_.material" type="Material" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://ship/SimpleShipOne/Door/Door_Button.gd" type="Script" id=19]
 [ext_resource path="res://ship/Battery_System.gd" type="Script" id=20]
 [ext_resource path="res://ship/SimpleShipOne/Door/Door.tscn" type="PackedScene" id=21]
+[ext_resource path="res://ship/Screen_System.gd" type="Script" id=22]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 60, 40, 10 )
@@ -5863,11 +5864,14 @@ text = "Error"
 font_color = Color( 1, 0, 0, 1 )
 
 [node name="Door" parent="Ship" instance=ExtResource( 21 )]
+component_name = "door"
+system_name = "door"
 
 [node name="Systems" type="Node" parent="."]
 
 [node name="Door" type="Node" parent="Systems"]
 script = ExtResource( 13 )
+system_name = "door"
 
 [node name="Battery" type="Node" parent="Systems"]
 script = ExtResource( 20 )
@@ -5875,3 +5879,7 @@ system_name = "battery"
 nominal_capacity = 50.0
 capacity = 50.0
 voltage = 12.0
+
+[node name="Screen" type="Node" parent="Systems"]
+script = ExtResource( 22 )
+system_name = "screen"

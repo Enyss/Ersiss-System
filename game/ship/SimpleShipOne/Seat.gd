@@ -8,7 +8,7 @@ var simbody
 func _ready():
 	$Control.set_process_input(active)
 #	$PoV/Camera.current = active
-	
+
 func set_active( new_state ):
 	simbody = get_parent().get_parent().simbody
 	$Control.set_process_input(new_state)
@@ -17,4 +17,4 @@ func set_active( new_state ):
 	active = new_state
 
 func click():
-	get_node("/root/Spaced/Player").change_body(self)
+	Player.set_controller($Control)

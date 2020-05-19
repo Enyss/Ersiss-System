@@ -17,12 +17,13 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
 extends Node
 
 var simulation : Sim setget , get_sim
 func get_sim() -> Sim :
 	return simulation
-var simulation_speed : int = 0
+var simulation_speed : int = 1
 var time :=0.0
 
 var simulated_bodies : Array = Array()

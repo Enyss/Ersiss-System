@@ -13,7 +13,7 @@ func set_controlled():
 func _physics_process(delta):
 	#rotate_x(delta/100)
 	
-	var p : Vector3 = simbody.position_relative_to(get_parent().center)
+	var p : Vector3 = simbody.position_relative_to(Scene.center)
 	if p.length() < 50000:
 		transform.origin = p
 	else :

@@ -1,16 +1,46 @@
+# Copyright (c) 2020 The Eriss-System Project Contributors
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 extends Node
 
+var pov
+var base_controller : Controller
+var controller : Controller setget set_controller, get_controller
+var looking_at : Node = null
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+func set_controller(new_controller : Controller) -> void:
+	#If the controller don't change
+	if (new_controller == controller):
+		return;
+	#If the controller change
+	if (controller != null):
+		controller.desactivate()
+	if (new_controller == null):
+		controller = base_controller
+	else:
+		controller = new_controller
+	controller.activate()
+	
+func get_controller() -> Controller:
+	return controller
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func reset_controller() -> void:
+	set_controller(base_controller)
+#	controller.set_movement(position, $Simulation/LocalBubble.anchor )

@@ -15,7 +15,7 @@ func activate():
 	set_process(true)
 	set_process_input(true)
 	get_parent().input_ray_pickable = false
-	camera = get_node("/root/Main/Player").pov
+	camera = Player.pov
 	angle = Vector2()
 	
 	ship = get_node(ship_path)
@@ -80,4 +80,4 @@ func _process(delta):
 	
 	#Leave the Seat
 	if Input.is_action_pressed("leave_seat"):
-		get_node("/root/Main/Player").reset_controller($Spawn_point.global_transform.origin)
+		Player.reset_controller()

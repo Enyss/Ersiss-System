@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Local/local.gd" type="Script" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
 [ext_resource path="res://skybox/Global_Scene.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ship/Player_Body.tscn" type="PackedScene" id=4]
@@ -20,8 +19,6 @@ script = ExtResource( 2 )
 [node name="Global" parent="." instance=ExtResource( 3 )]
 
 [node name="Local" type="Node" parent="."]
-script = ExtResource( 1 )
-max_distance = 1000.0
 
 [node name="Player_Body" parent="Local" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0732594, 0.724934, -11.8276 )

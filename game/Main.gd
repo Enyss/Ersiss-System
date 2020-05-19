@@ -27,8 +27,7 @@ onready var player = $Player
 var cameras = Dictionary()
 
 func _ready():
-	local.initialize( global )
-	player.set_base_controller()
+	Scene.initialize()
 
 func _input(event):
 	if event.is_action_pressed("sim_speed_up"):

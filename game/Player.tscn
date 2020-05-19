@@ -1,19 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/UI.gd" type="Script" id=1]
 [ext_resource path="res://player/Hint.gd" type="Script" id=2]
 [ext_resource path="res://player/Label.gd" type="Script" id=3]
 [ext_resource path="res://MainCamera.gd" type="Script" id=4]
-[ext_resource path="res://Player.gd" type="Script" id=5]
 [ext_resource path="res://player/Crosshair_01.png" type="Texture" id=6]
 
 [node name="Player" type="Node"]
-script = ExtResource( 5 )
 
 [node name="Camera" type="Camera" parent="."]
 far = 2000.0
 script = ExtResource( 4 )
-global_scene_path = NodePath("../../../Main/Global/Global_Scene")
 
 [node name="RayCast" type="RayCast" parent="Camera"]
 enabled = true
@@ -78,7 +75,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-player_path = NodePath("../../..")
 
 [node name="Label" type="Label" parent="UI/UI"]
 margin_right = 40.0
