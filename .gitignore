@@ -1,4 +1,5 @@
+*.obj
+*.idb
+*.pdb
 /builds
 /game/.import
-vc140.idb
-vc140.pdb
