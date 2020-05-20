@@ -12,5 +12,6 @@ func _ready():
 	pov = get_node(pov_path)
 	camera_view = pov.viewport.get_texture()	
 	#$Viewport/Background.texture = camera_view
-	screen_material.albedo_texture = camera_view #$Viewport.get_texture()
+	screen_material.albedo_texture = load("res://BSOD2.jpg")
+	 #camera_view #$Viewport.get_texture()
 	$Cockpit_Mesh.set_material_override(screen_material)
