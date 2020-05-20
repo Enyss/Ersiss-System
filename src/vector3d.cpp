@@ -99,7 +99,7 @@ Vector3d Vector3d::operator/(double rhs)
 }
 Vector3d Vector3d::operator*(double rhs) 
 {
-    return Vector3d::Vector3d( x * rhs, y * rhs, z * rhs);
+    return Vector3d( x * rhs, y * rhs, z * rhs);
 }
 
 Vector3d operator+(Vector3d lhs, const Vector3d& rhs) 
@@ -114,6 +114,6 @@ Vector3d operator-(Vector3d lhs, const Vector3d& rhs)
 } 
 Vector3d operator*(double lhs, const Vector3d& rhs) 
 {
-    return Vector3d::Vector3d( lhs * rhs.x, lhs * rhs.y, lhs * rhs.z);
+    return Vector3d( lhs * rhs.x, lhs * rhs.y, lhs * rhs.z);
 }
  
