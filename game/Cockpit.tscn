@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ship/SimpleShipOne/Color_D10_.material" type="Material" id=1]
 [ext_resource path="res://3DControls/BatteryUI/BatteryUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Battery.gd" type="Script" id=3]
 [ext_resource path="res://3DControls/Switch/Switch_data.gd" type="Script" id=4]
 [ext_resource path="res://3DControls/Switch/Switch.tscn" type="PackedScene" id=5]
+[ext_resource path="res://3DControls/Switch/Camera_Switch.gd" type="Script" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -74,6 +75,26 @@ state = "off"
 color = Color( 1, 1, 0, 1 )
 text = "BAT 1"
 font_color = Color( 1, 1, 0, 1 )
+
+[node name="Camera" parent="group_28" instance=ExtResource( 5 )]
+transform = Transform( 0.0054564, -0.412903, 0.910758, -0.00473677, -0.910773, -0.412881, 0.999974, -0.0020612, -0.00692537, 0, 22.3022, -16.7001 )
+script = ExtResource( 6 )
+component_name = "camera_switch"
+system_name = "screen"
+
+[node name="front" type="Node" parent="group_28/Camera"]
+script = ExtResource( 4 )
+state = "front_camera"
+color = Color( 0.196078, 1, 0, 1 )
+text = "FRONT"
+font_color = Color( 0.196078, 1, 0, 1 )
+
+[node name="back" type="Node" parent="group_28/Camera"]
+script = ExtResource( 4 )
+state = "back_camera"
+color = Color( 0.196078, 1, 0, 1 )
+text = "BACK"
+font_color = Color( 0.196078, 1, 0, 1 )
 
 [node name="group_29" type="MeshInstance" parent="."]
 transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -19.8862, 0, 0 )

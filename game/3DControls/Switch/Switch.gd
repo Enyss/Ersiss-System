@@ -54,10 +54,10 @@ func click():
 	emit_signal("clicked",self)
 
 func update_state(state : String) -> void:
-	var label = get_node("Viewport/Label")
+	var label = get_node("Texture/Label")
 	label.text = states[state].text
 	label.add_color_override("font_color", states[state].font_color)
-	get_node("Viewport/Outline").color = states[state].color
+	get_node("Texture/Outline").color = states[state].color
 
 func reset():
 	pressed = false

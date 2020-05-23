@@ -8,6 +8,7 @@ func _ready():
 	systems = Dictionary()
 	components = Array()
 	register_systems()
+	initialize_systems()
 	Scene.add_to_local_objects(self)
 
 func register_systems() -> void:
@@ -16,7 +17,12 @@ func register_systems() -> void:
 		if systems.has(component.system_name):
 			systems[component.system_name].register_component(component)
 		else :
-			print("Error : No %s system found for component %s", component.system_name, component.name)
+			print("Error : No ", component.system_name, 
+				" system found for component ", component.name)
+				
+func initialize_systems() -> void:
+	for system in systems.values():
+		system.initialize()
 
 func get_systems_recursive(node : Node) -> void:
 	for n in node.get_children():

@@ -21,6 +21,8 @@ surfaces/0 = {
 [node name="Cockpit_Screen" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05991e-06, 0, 9.15527e-05 )
 script = ExtResource( 1 )
+component_name = "main_screen"
+system_name = "screen"
 
 [node name="Cockpit_Mesh" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0, 1, 0, -1, 1 )

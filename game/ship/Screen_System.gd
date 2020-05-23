@@ -1,16 +1,28 @@
 extends System
 
+signal camera_changed()
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var cameras : Dictionary
+var active_camera
+	
+func register_component(component):
+	.register_component(component)
+	if component is Pov:
+		cameras[component.component_name] = component
 
+func initialize():
+	for component in components.values() :
+		component.setup()
+		
+	set_active_camera("front_camera")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func set_active_camera(camera_name):
+	active_camera = cameras[camera_name]
+	emit_signal("camera_changed")
+	
+func next_camera(node):
+	if active_camera.component_name == "front_camera":
+		set_active_camera("back_camera")
+	else:
+		set_active_camera("front_camera")
+	

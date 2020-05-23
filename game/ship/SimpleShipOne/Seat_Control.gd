@@ -58,7 +58,6 @@ func _process(delta):
 	if Input.is_action_pressed("ship_translate_down"):
 		a+= basis.x
 	ship.simbody.acceleration = a.normalized()*acceleration
-	print(ship.simbody.acceleration)
 		
 	#rotation
 	var alpha = delta*rotation_speed

@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ship/PlayerBody/Player_Body.gd"
 }, {
-"base": "Spatial",
+"base": "Component",
 "class": "Pov",
 "language": "GDScript",
 "path": "res://Camera/PoV.gd"

@@ -2,7 +2,6 @@ extends Ship
 
 var base_acceleration = Vector3()
 export var velocity : Vector3
-export (NodePath) var camera_viewport
 
 func set_active():
 	pass

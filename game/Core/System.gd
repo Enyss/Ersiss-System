@@ -3,8 +3,11 @@ class_name System
 
 signal updated()
 export (String) var system_name
-var components : Array
+var components : Dictionary
 
 func register_component(component):
 	component.set_system(self)
-	components.push_back(component)
+	components[component.component_name] = component
+
+func initialize():
+	pass

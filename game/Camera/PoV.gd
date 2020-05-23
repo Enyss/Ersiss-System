@@ -1,4 +1,4 @@
-extends Spatial
+extends Component
 class_name Pov
 
 var sky
