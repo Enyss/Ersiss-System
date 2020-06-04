@@ -22,9 +22,9 @@ func _process(_delta):
 			target.click()
 	if Input.is_action_just_pressed("fps_zoom"):
 		zoom += 1
-		fov = 70-30*zoom
 		if zoom == 2:
 			zoom = 0
+		fov = 70-30*zoom
 
 func setup_camera():
 	camera.fov = fov
