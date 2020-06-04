@@ -104,8 +104,8 @@ Scene="*res://Singleton/scene_singleton.gd"
 
 [display]
 
-window/size/width=1570
-window/size/height=841
+window/size/width=1920
+window/size/height=1080
 window/size/borderless=true
 window/size/fullscreen=true
 window/stretch/mode="viewport"
