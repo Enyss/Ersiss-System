@@ -3,3 +3,4 @@
 *.pdb
 /builds
 /game/.import
+*.dblite

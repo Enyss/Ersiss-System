@@ -61,6 +61,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.649099, 0, -32.5418 )
 script = ExtResource( 6 )
 body_class = 3
 parent_body_path = NodePath("../Earth")
+true_anomaly_in_degree = 250.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )

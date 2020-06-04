@@ -4,7 +4,7 @@ var global_camera
 onready var camera = self
 var background
 
-var zoom = false
+var zoom = 0
 onready var raycast = $RayCast
 
 
@@ -21,11 +21,10 @@ func _process(_delta):
 		if target != null && target.has_method("click"):
 			target.click()
 	if Input.is_action_just_pressed("fps_zoom"):
-		zoom = !zoom
-		if zoom:
-			fov=30
-		else:
-			fov = 70
+		zoom += 1
+		fov = 70-30*zoom
+		if zoom == 2:
+			zoom = 0
 
 func setup_camera():
 	camera.fov = fov

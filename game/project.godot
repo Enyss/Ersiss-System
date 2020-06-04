@@ -106,6 +106,8 @@ Scene="*res://Singleton/scene_singleton.gd"
 
 window/size/width=1570
 window/size/height=841
+window/size/borderless=true
+window/size/fullscreen=true
 window/stretch/mode="viewport"
 
 [gdnative]
@@ -253,6 +255,10 @@ fps_zoom={
 [layer_names]
 
 3d_physics/layer_2="Interactive"
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [physics]
 
