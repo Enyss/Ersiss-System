@@ -18,7 +18,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-extends Interactable
+extends KinematicBody
+class_name Interactable
 
 func interact():
-	get_parent().click()
+	pass
+
+func _input_event( _camera,  event,  _click_position,  _click_normal,  _shape_idx ):
+	if (event.is_action_pressed("ui_click")):
+		interact()

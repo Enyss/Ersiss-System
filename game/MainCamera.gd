@@ -18,8 +18,8 @@ func _process(_delta):
 	var target = raycast.get_collider()
 	Player.looking_at = target
 	if Input.is_action_just_pressed("ui_click"):
-		if target != null && target.has_method("click"):
-			target.click()
+		if target is Interactable:
+			target.interact()
 	if Input.is_action_just_pressed("fps_zoom"):
 		zoom += 1
 		if zoom == 2:
