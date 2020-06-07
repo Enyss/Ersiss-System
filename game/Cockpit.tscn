@@ -1,11 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ship/SimpleShipOne/Color_D10_.material" type="Material" id=1]
-[ext_resource path="res://3DControls/BatteryUI/BatteryUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Battery.gd" type="Script" id=3]
-[ext_resource path="res://3DControls/Switch/Switch_data.gd" type="Script" id=4]
-[ext_resource path="res://3DControls/Switch/Switch.tscn" type="PackedScene" id=5]
-[ext_resource path="res://3DControls/Switch/Camera_Switch.gd" type="Script" id=6]
+[ext_resource path="res://ship/SimpleShipOne/Cockpit/Battery_Panel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -20,8 +16,6 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 346
 }
-
-[sub_resource type="BoxShape" id=2]
 
 [sub_resource type="ArrayMesh" id=3]
 surfaces/0 = {
@@ -43,58 +37,8 @@ surfaces/0 = {
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="BatteryUI" parent="group_28" instance=ExtResource( 2 )]
-transform = Transform( 3.46753e-07, 3.06418, 2.57115, -4.88096e-07, -2.57115, 3.06418, -4, 5.7937e-07, -1.51014e-07, 0.831301, 21.3057, -20.6997 )
-component_name = "battery_screen"
-system_name = "battery"
-
-[node name="Battery" type="Area" parent="group_28"]
-transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -19.8862, 0, 0 )
-script = ExtResource( 3 )
-nominal_voltage = 24.0
-nominal_capacity = 10.0
-
-[node name="CollisionShape" type="CollisionShape" parent="group_28/Battery"]
-shape = SubResource( 2 )
-
-[node name="Battery 1" parent="group_28" instance=ExtResource( 5 )]
-transform = Transform( -0.010813, -0.635117, 0.772341, 0.0141849, -0.772405, -0.634971, 0.999841, 0.00408966, 0.0173611, -0.0256996, 22.3514, -17.9076 )
-component_name = "battery_switch"
-system_name = "battery"
-
-[node name="on" type="Node" parent="group_28/Battery 1"]
-script = ExtResource( 4 )
-state = "on"
-color = Color( 0.196078, 1, 0, 1 )
-text = "BAT 1"
-font_color = Color( 0.196078, 1, 0, 1 )
-
-[node name="off" type="Node" parent="group_28/Battery 1"]
-script = ExtResource( 4 )
-state = "off"
-color = Color( 1, 1, 0, 1 )
-text = "BAT 1"
-font_color = Color( 1, 1, 0, 1 )
-
-[node name="Camera" parent="group_28" instance=ExtResource( 5 )]
-transform = Transform( 0.0054564, -0.412903, 0.910758, -0.00473677, -0.910773, -0.412881, 0.999974, -0.0020612, -0.00692537, 0, 22.3022, -16.7001 )
-script = ExtResource( 6 )
-component_name = "camera_switch"
-system_name = "screen"
-
-[node name="front" type="Node" parent="group_28/Camera"]
-script = ExtResource( 4 )
-state = "front_camera"
-color = Color( 0.196078, 1, 0, 1 )
-text = "FRONT"
-font_color = Color( 0.196078, 1, 0, 1 )
-
-[node name="back" type="Node" parent="group_28/Camera"]
-script = ExtResource( 4 )
-state = "back_camera"
-color = Color( 0.196078, 1, 0, 1 )
-text = "BACK"
-font_color = Color( 0.196078, 1, 0, 1 )
+[node name="Battery_Panel" parent="group_28" instance=ExtResource( 2 )]
+transform = Transform( -4.65261e-08, -0.642788, 0.766044, -2.49609e-07, -0.766044, -0.642788, 1, -2.21118e-07, -1.24804e-07, -0.040169, 22.2575, -16.1709 )
 
 [node name="group_29" type="MeshInstance" parent="."]
 transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -19.8862, 0, 0 )

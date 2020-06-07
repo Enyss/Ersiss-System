@@ -22,6 +22,7 @@ func register_systems() -> void:
 				
 func initialize_systems() -> void:
 	for system in systems.values():
+		system.ship = self
 		system.initialize()
 
 func get_systems_recursive(node : Node) -> void:
