@@ -25,6 +25,7 @@ func _process(_delta):
 	if Input.is_action_just_released("ui_click"):
 		if clicked_object != null:
 			clicked_object.release_interact()
+			clicked_object = null
 	if Input.is_action_just_pressed("fps_zoom"):
 		zoom += 1
 		if zoom == 2:

@@ -15,9 +15,9 @@ func _ready():
 
 func _process(delta):
 	var p = capacity/max_capacity
-	$Bar/Background/ColorRect.anchor_right = p
-	$Bar/Background/Label.text = ("%.1f %%" % (p*100))
-	$Legend/Label.text = data.format({
+	$VBoxContainer/Bar/Background/ColorRect.anchor_right = p
+	$VBoxContainer/Bar/Background/Label.text = ("%.1f %%" % (p*100))
+	$VBoxContainer/Legend/Label.text = data.format({
 		"capacity":capacity, 
 		"current":current, 
 		"voltage":voltage,
