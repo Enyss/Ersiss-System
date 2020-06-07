@@ -23,7 +23,12 @@ class_name Interactable
 
 func interact():
 	pass
+	
+func release_interact():
+	pass
 
 func _input_event( _camera,  event,  _click_position,  _click_normal,  _shape_idx ):
 	if (event.is_action_pressed("ui_click")):
 		interact()
+	if (event.is_action_pressed("ui_click")):
+		release_interact()

@@ -1,4 +1,4 @@
-extends KinematicBody
+extends Interactable
 
 export var active = false
 
@@ -14,5 +14,5 @@ var simbody
 #	$Control.set_process_input(new_state)
 #	active = new_state
 
-func click():
+func interact():
 	Player.set_controller($Control)

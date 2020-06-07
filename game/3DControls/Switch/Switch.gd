@@ -28,7 +28,8 @@ onready var audio : AudioStreamPlayer3D = $PressSound
 
 var states : Dictionary
 var current_state : SwitchData
-export (bool) var pressed : bool = false
+export (bool) var depressed : bool = false
+export (bool) var toggle_switch : bool = false
 
 func _ready():
 	#set the button texture
@@ -49,9 +50,18 @@ func _get_configuration_warning():
 	return "Missing Switch Data !"
 	
 func click():
-	pressed = !pressed
+	if toggle_switch:
+		depressed = !depressed
+	else:
+		depressed = true
 	move_button()
+	audio.play()
 	emit_signal("clicked",self)
+	
+func release_click():
+	if !toggle_switch:
+		depressed = false
+	move_button()
 
 func update_state(state : String) -> void:
 	var label = get_node("Texture/Label")
@@ -60,12 +70,11 @@ func update_state(state : String) -> void:
 	get_node("Texture/Outline").color = states[state].color
 
 func reset():
-	pressed = false
+	depressed = false
 	move_button()
 
 func move_button():
-	if pressed :
+	if depressed :
 		$Button.transform.origin = Vector3(0,-0.03,0)
 	else:
 		$Button.transform.origin = Vector3(0,0.05,0)
-	audio.play()

@@ -22,3 +22,6 @@ extends Interactable
 
 func interact():
 	get_parent().click()
+	
+func release_interact():
+	get_parent().release_click()

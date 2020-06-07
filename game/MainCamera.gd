@@ -7,6 +7,7 @@ var background
 var zoom = 0
 onready var raycast = $RayCast
 
+var clicked_object = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +20,11 @@ func _process(_delta):
 	Player.looking_at = target
 	if Input.is_action_just_pressed("ui_click"):
 		if target is Interactable:
+			clicked_object = target
 			target.interact()
+	if Input.is_action_just_released("ui_click"):
+		if clicked_object != null:
+			clicked_object.release_interact()
 	if Input.is_action_just_pressed("fps_zoom"):
 		zoom += 1
 		if zoom == 2:
