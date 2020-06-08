@@ -4,7 +4,7 @@ class_name System
 signal updated()
 
 export (String) var system_name
-var ship : Ship
+var ship
 var components : Dictionary
 
 func register_component(component):
