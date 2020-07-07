@@ -21,29 +21,60 @@
 using Godot;
 using System;
 
-
-
 public class OrbitalBody : Spatial
 {
     public enum BodyClass { NONE, CELESTIAL, SIMULATED, BUBBLE }
 
-	[Export]
-	private BodyClass bodyClass = BodyClass.NONE;
+    [Export]
+    public BodyClass bodyClass = BodyClass.NONE;
 
-	private Simbody simbody;
-    
-    public override void _Init()
-	{
-		simbody = Simboby();
-	}
+    //Simulation elements
+    public Vector3d position;
+    public Vector3d velocity;
+    public Vector3d acceleration;
+    public double mass;
 
-	public override void _Ready()
-	{
-		Simulation.AddBody(this);
-	}
-
-    public _ExitTree()
+    public override void _Ready()
     {
-        simbody.QueueFree();
+        Simulation.AddBody(this);
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        globalTransform.origin = (Vector3);
+    }
+
+
+    public Vector3d GetPositionRelativeTo(OrbitalBody b)
+    {
+        return position - b.position;
+    }
+
+    public Vector3d GetPositionRelativeTo(OrbitalBody b, double scale)
+    {
+        return (position - b.position) / scale;
+    }
+
+    public void SetPositionRelativeTo(OrbitalBody b, Vector3d relativePosition)
+    {
+        position = b.position + relativePosition;
+    }
+
+    public void SetPositionRelativeTo(OrbitalBody b, Vector3d relativePosition, double scale)
+    {
+        position = b.position + scale * relativePosition;
+    }
+    public Vector3d GetVelocityRelativeTo(OrbitalBody b)
+    {
+        return velocity - b.velocity;
+    }
+    public void SetVelocityRelativeTo(OrbitalBody b, Vector3d relativeVelocity)
+    {
+        velocity = b.velocity + v;
+    }
+
+    Double DistanceTo(Body b)
+    {
+        return (position - b.position).Length();
     }
 }
