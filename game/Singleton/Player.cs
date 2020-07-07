@@ -21,49 +21,38 @@
 using Godot;
 using System;
 
-public sealed class Player : Node
-{  
-    private Player()  
-    {  
-    }  
-    private static readonly Lazy<Singleton> lazy = new Lazy<Singleton>(() => new Singleton());  
-    public static Player Instance  
-    {  
-        get  
-        {  
-            return lazy.Value;  
-        }  
-    }
-
-private Controller baseController;
-private Controller controller;
-private Node lookingAt = null;
-
-public static void SetController(Controller newController)
+public class Player : Node
 {
-    //If the controller don't change
-	if (newController == Instance.controller)
-    {
-        return;
-    }
-	//If the controller change
-	if (Instance.controller != null)
-    {
-        Instance.controller.Desactivate();
-    }		
-	if (newController == null)
-    {
-        Instance.controller = Instance.baseController;
-    }
-    else
-    {
-        Instance.controller = newController;
-    }		
-	Instance.controller.activate();
-}
 
-public static void ResetController()
-{
-    SetController(baseController);
+    private Controller baseController;
+    private Controller controller;
+    private Node lookingAt = null;
+
+    public void SetController(Controller newController)
+    {
+        //If the controller don't change
+        if (newController == Instance.controller)
+        {
+            return;
+        }
+        //If the controller change
+        if (Instance.controller != null)
+        {
+            Instance.controller.Desactivate();
+        }
+        if (newController == null)
+        {
+            Instance.controller = Instance.baseController;
+        }
+        else
+        {
+            Instance.controller = newController;
+        }
+        Instance.controller.Activate();
+    }
+
+    public void ResetController()
+    {
+        SetController(baseController);
+    }
 }
-}  
