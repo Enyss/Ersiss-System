@@ -21,21 +21,8 @@
 using Godot;
 using System;
 
-public class Interactable : KinematicBody
+enum Interaction { PRESS, RELEASE }
+public class IInteractable 
 {
-
-    public void Interact()
-    {
-
-    }
-
-    public void ReleaseInteract()
-    {
-
-    }
-
-    public void _InputEvent(Godot.Object camera, Godot.InputEvent event, Godot.Vector3 clickPosition, Godot.Vector3 clickNormal, System.Int32 shapeId)
-
-    }
-
+	public void Interact(Interaction interaction);
 }
