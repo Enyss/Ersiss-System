@@ -1,4 +1,4 @@
-# Copyright (c) 2020 The Eriss-System Project Contributors
+/** Copyright (c) 2020 The Eriss-System Project Contributors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -16,19 +16,31 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# SOFTWARE. **/
 
-extends Node
+using Godot;
+using System;
 
-export (bool) var 
-	
-func _ready():
-	set_process(active)
+public class Controller : Node
+{
+    [export]
+    private bool isDefault = false;
 
-func set_active():
-	active = true
-	set_process(active)
+    public override void _ready()
+    {
+        AddToGroup("Controller");
+        SetProcess(false);
+        SetProcessInput(false);
+    }
+    public virtual void activate()
+    {
+        SetProcess(true);
+        SetProcessInput(true);
+    }
 
-func set_inactive():
-	active = false
-	set_process(active)
+    public virtual void desactivate()
+    {
+        SetProcess(false);
+        SetProcessInput(false);
+    }
+}
