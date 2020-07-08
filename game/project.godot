@@ -14,26 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Solar_System/Celestial_Body.gd"
 }, {
-"base": "Spatial",
-"class": "Component",
-"language": "GDScript",
-"path": "res://Core/Component.gd"
-}, {
-"base": "Node",
-"class": "Controller",
-"language": "GDScript",
-"path": "res://Controller.gd"
-}, {
-"base": "KinematicBody",
-"class": "Interactable",
-"language": "GDScript",
-"path": "res://Core/Interactable.gd"
-}, {
-"base": "Spatial",
-"class": "OrbitalBody",
-"language": "GDScript",
-"path": "res://Core/OrbitalBody.gd"
-}, {
 "base": "OrbitalBody",
 "class": "PlayerBody",
 "language": "GDScript",
@@ -49,21 +29,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Camera/PoV_Background.gd"
 }, {
-"base": "OrbitalBody",
-"class": "Ship",
-"language": "GDScript",
-"path": "res://Core/Ship.gd"
-}, {
-"base": "Node",
-"class": "Sim",
-"language": "NativeScript",
-"path": "res://bin/orbital_simulation.gdns"
-}, {
-"base": "Node",
-"class": "Simbody",
-"language": "NativeScript",
-"path": "res://bin/orbsim_body.gdns"
-}, {
 "base": "Component",
 "class": "Switch",
 "language": "GDScript",
@@ -73,27 +38,14 @@ _global_script_classes=[ {
 "class": "SwitchData",
 "language": "GDScript",
 "path": "res://3DControls/Switch/Switch_data.gd"
-}, {
-"base": "Node",
-"class": "System",
-"language": "GDScript",
-"path": "res://Core/System.gd"
 } ]
 _global_script_class_icons={
 "Celestial_Body": "",
-"Component": "",
-"Controller": "",
-"Interactable": "",
-"OrbitalBody": "",
 "PlayerBody": "",
 "Pov": "",
 "PovBackground": "",
-"Ship": "",
-"Sim": "",
-"Simbody": "",
 "Switch": "",
-"SwitchData": "",
-"System": ""
+"SwitchData": ""
 }
 
 [application]
@@ -104,9 +56,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Simulation="*res://Singleton/simulation_singleton.gd"
-Player="*res://Singleton/player_singleton.gd"
-Scene="*res://Singleton/scene_singleton.gd"
+Player="*res://Singleton/Player.cs"
+Scene="*res://Singleton/SceneManager.cs"
+Simulation="*res://Singleton/Simulation.cs"
 
 [display]
 
