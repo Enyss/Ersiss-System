@@ -22,54 +22,54 @@ using Godot;
 
 public class MainCamera : MainCamera
 {
-    private PovBackground globalCamera;
-    private Node background;
+	private PovBackground globalCamera;
+	private Node background;
 
-    private int zoomLevel = 0;
-    private RayCast raycast;
-    private Interactable interactionTarget = null;
+	private int zoomLevel = 0;
+	private RayCast raycast;
+	private Interactable interactionTarget = null;
 
-    public override void _Ready()
-    {
-        AddToGroup("PoV");
-        raycast = GetNode("RayCast");
-        Setup();
-        Player.pov = this;
-    }
-    public override void _Process(float delta)
-    {
-        Node target = raycast.GetCollider();
-        Player.looking_at = target;
-        if (Input.IsActionJustPressed("ui_click"))
-        {
-            if (target is IInteractable)
-            {
-                interactionTarget = target;
-                target.Interact(Interaction.PRESS);
-            }
-        }
-        if (Input.IsActionJustReleased("ui_click"))
-        {
-            if (interactionTarget != null)
-            {
-                interactionTarget.Interact(Interaction.RELEASE);
-            }
-        }
-        if (Input.IsActionJustPressed("fps_zoom"))
-        {
-            zoomLevel += 1;
-            if (zoomLevel > 1)
-            {
-                zoomLevel = 0;
-            }
-            fov = 70 - 30 * zoomLevel;
-        }
-    }
-    private void Setup()
-    {
-        globalCamera = SceneManager.AddPov(this);
-        background = GetNode("Background/texture");
-        background.texture = globalCamera.GetTexture();
-        globalCamera.size = GetNode("/root").size;
-    }
+	public override void _Ready()
+	{
+		AddToGroup("PoV");
+		raycast = GetNode("RayCast");
+		Setup();
+		Player.pov = this;
+	}
+	public override void _Process(float delta)
+	{
+		Node target = raycast.GetCollider();
+		Player.looking_at = target;
+		if (Input.IsActionJustPressed("ui_click"))
+		{
+			if (target is IInteractable)
+			{
+				interactionTarget = target;
+				target.Interact(Interaction.PRESS);
+			}
+		}
+		if (Input.IsActionJustReleased("ui_click"))
+		{
+			if (interactionTarget != null)
+			{
+				interactionTarget.Interact(Interaction.RELEASE);
+			}
+		}
+		if (Input.IsActionJustPressed("fps_zoom"))
+		{
+			zoomLevel += 1;
+			if (zoomLevel > 1)
+			{
+				zoomLevel = 0;
+			}
+			fov = 70 - 30 * zoomLevel;
+		}
+	}
+	private void Setup()
+	{
+		globalCamera = SceneManager.AddPov(this);
+		background = GetNode("Background/texture");
+		background.texture = globalCamera.GetTexture();
+		globalCamera.size = GetNode("/root").size;
+	}
 }

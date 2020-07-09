@@ -23,24 +23,24 @@ using System;
 
 public class Controller : Node
 {
-    [export]
-    private bool isDefault = false;
+	[export]
+	private bool isDefault = false;
 
-    public override void _ready()
-    {
-        AddToGroup("Controller");
-        SetProcess(false);
-        SetProcessInput(false);
-    }
-    public virtual void activate()
-    {
-        SetProcess(true);
-        SetProcessInput(true);
-    }
+	public override void _ready()
+	{
+		AddToGroup("Controller");
+		SetProcess(false);
+		SetProcessInput(false);
+	}
+	public virtual void activate()
+	{
+		SetProcess(true);
+		SetProcessInput(true);
+	}
 
-    public virtual void desactivate()
-    {
-        SetProcess(false);
-        SetProcessInput(false);
-    }
+	public virtual void desactivate()
+	{
+		SetProcess(false);
+		SetProcessInput(false);
+	}
 }
