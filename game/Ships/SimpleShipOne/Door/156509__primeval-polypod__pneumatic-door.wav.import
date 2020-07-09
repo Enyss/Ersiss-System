@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/156509__primeval-polypod__pneumatic-door.wav-8db724dfa940bdc7a5aba24a3112bbb6.sample"
+
+[deps]
+
+source_file="res://Ships/SimpleShipOne/Door/156509__primeval-polypod__pneumatic-door.wav"
+dest_files=[ "res://.import/156509__primeval-polypod__pneumatic-door.wav-8db724dfa940bdc7a5aba24a3112bbb6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
