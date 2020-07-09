@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://ship/orchid/NotABridge/Bridge/Control Panel 1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ships/orchid/NotABridge/Bridge/Control Panel 1.tscn" type="PackedScene" id=1]
+
 
 [sub_resource type="Environment" id=1]
 background_mode = 2

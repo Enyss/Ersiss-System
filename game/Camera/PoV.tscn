@@ -2,8 +2,10 @@
 
 [ext_resource path="res://Camera/PoV.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://ship/SimpleShipOne/Color_B01_.material" type="Material" id=3]
+[ext_resource path="res://Ships/SimpleShipOne/materials/Color_B01_.material" type="Material" id=3]
 [ext_resource path="res://BSOD.jpg" type="Texture" id=4]
+
+
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport3")

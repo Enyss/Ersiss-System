@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Solar_System/Celestial_Body.gd"
 }, {
-"base": "OrbitalBody",
-"class": "PlayerBody",
-"language": "GDScript",
-"path": "res://ship/PlayerBody/Player_Body.gd"
-}, {
 "base": "Component",
 "class": "Pov",
 "language": "GDScript",
@@ -41,7 +36,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Celestial_Body": "",
-"PlayerBody": "",
 "Pov": "",
 "PovBackground": "",
 "Switch": "",
@@ -52,7 +46,6 @@ _global_script_class_icons={
 
 config/name="Ersiss-System"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 
@@ -224,4 +217,3 @@ fps_zoom={
 [rendering]
 
 quality/filters/msaa=1
-environment/default_environment="res://default_env.tres"
