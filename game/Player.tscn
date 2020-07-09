@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Camera/MainCamera.cs" type="Script" id=1]
 [ext_resource path="res://GUI/Hint.cs" type="Script" id=2]
-[ext_resource path="res://player/Crosshair_01.png" type="Texture" id=6]
+[ext_resource path="res://GUI/Crosshair_01.png" type="Texture" id=6]
+
 
 [node name="Player" type="Node"]
 
