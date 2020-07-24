@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/8k_moon.jpg-94f0d7e576d443f3b222cfc2d73861fa.s3tc.stex"
-path.etc2="res://.import/8k_moon.jpg-94f0d7e576d443f3b222cfc2d73861fa.etc2.stex"
+path.s3tc="res://.import/8k_moon.jpg-6ff2b8786f50504f19385f492fb2629d.s3tc.stex"
+path.etc2="res://.import/8k_moon.jpg-6ff2b8786f50504f19385f492fb2629d.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://skybox/Moon/8k_moon.jpg"
-dest_files=[ "res://.import/8k_moon.jpg-94f0d7e576d443f3b222cfc2d73861fa.s3tc.stex", "res://.import/8k_moon.jpg-94f0d7e576d443f3b222cfc2d73861fa.etc2.stex" ]
+source_file="res://GlobalScene/Moon/8k_moon.jpg"
+dest_files=[ "res://.import/8k_moon.jpg-6ff2b8786f50504f19385f492fb2629d.s3tc.stex", "res://.import/8k_moon.jpg-6ff2b8786f50504f19385f492fb2629d.etc2.stex" ]
 
 [params]
 

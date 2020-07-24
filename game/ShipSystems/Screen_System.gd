@@ -4,6 +4,7 @@ signal camera_changed()
 
 var cameras : Dictionary
 var active_camera
+var components
 	
 func register_component(component):
 	.register_component(component)

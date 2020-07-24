@@ -20,17 +20,25 @@
 
 using Godot;
 
-public class Hint : Label
+public class PovBackground : Viewport
 {
-	public override void _Process(float delta)
-	{
-		if (Player.lookingAt != null)
-		{
-			text = Player.lookingAt.name;
-		}
-		else
-		{
-			text = "";
-		}
-	}	
+    private Pov pov;
+    private Camera camera;
+
+    public override void _Ready()
+    {
+        camera = GetNode("Camera");
+    }
+
+    public override void _Process(float delta)
+    {
+        camera.fov = pov.fov;
+        camera.globalTransform.basis = pov.globalTransform.basis;
+        camera.globalTransform.origin = pov.globalTransform.origin /1000000;
+    }
+
+    public void Setup(Pov pov)
+    {
+        this.pov = pov;
+    }
 }

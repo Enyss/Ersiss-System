@@ -22,68 +22,68 @@ using Godot;
 
 public class PlayerBodyController : Controller
 {
-    private PlayerBody body;
-    private float maxAcceleration = 1.0;
-    private float sensitivity = 0.3;
+	private PlayerBody body;
+	private float maxAcceleration = 1.0;
+	private float sensitivity = 0.3;
 
-    public override void _Ready()
-    {
-        Player.baseController = this;
-    }
+	public override void _Ready()
+	{
+		Player.baseController = this;
+	}
 
 public override void _Input(InputEvent e)
 {
-    if (e is InputEventMouseMotion)
-    {
+	if (e is InputEventMouseMotion)
+	{
 		var basis = parent.globalTransform.basis;
 		parent.globalRotate(basis.x.normalized(), -e.relative.y * sensibility/60);
 		parent.globalRotate(basis.y.normalized(), -e.relative.x * sensibility/60);
-    }
+	}
 }
 public override void _Process(float delta)
 {
-    Vector3 a = new Vector3();
+	Vector3 a = new Vector3();
 	Basis basis = parent.globalTransform.basis;
 	if (Input.IsActionPressed("move_forward"))
-    {
-        a-= basis.z;
-    }
+	{
+		a-= basis.z;
+	}
 	if (Input.IsActionPressed("move_back"))
-    {
+	{
 		a+= basis.z;
-    }
+	}
 	if (Input.IsActionPressed("move_up"))
-    {
+	{
 		a+= basis.y;
-    }
+	}
 	if (Input.IsActionPressed("move_down"))
-    {
+	{
 		a-= basis.y;
-    }
+	}
 	if (Input.IsActionPressed("move_left"))
-    {
+	{
 		a-= basis.x;
-    }
+	}
 	if (Input.IsActionPressed("move_right"))
-    {
+	{
 		a+= basis.x;
-    }
+	}
 	if (Input.IsActionPressed("roll_clockwise"))
-    {
+	{
 		parent.GlobalRotate(basis.z, -PI/4*delta);
-    }
+	}
 	if (Input.IsActionPressed("roll_counterclockwise"))
-    {
+	{
 		parent.GlobalRotate(basis.z, +PI/4*delta);
-    }
+	}
 	GetParent().acceleration = a.normalized()*maxAcceleration;
 	Player.pov.globalTransform = GetParent().globalTransform;
 }
 
-    
+	
 public override void Activate()
 {
-    base.Activate();
+	base.Activate();
 	parent = GetParent();
 	parent.Activate();
 	Scene.anchor = parent;
@@ -91,8 +91,8 @@ public override void Activate()
 	
 public override void Desactivate()
 {
-    base.Desactivate();
-    GetParent().Desactivate();
+	base.Desactivate();
+	GetParent().Desactivate();
 }
 	
 /**func set_movement(position, anchor):

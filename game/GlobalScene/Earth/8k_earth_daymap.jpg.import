@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/8k_earth_daymap.jpg-64c73f48b82213594505124ac0957f64.s3tc.stex"
-path.etc2="res://.import/8k_earth_daymap.jpg-64c73f48b82213594505124ac0957f64.etc2.stex"
+path.s3tc="res://.import/8k_earth_daymap.jpg-af50f559168d96db9bef229bae6c4c66.s3tc.stex"
+path.etc2="res://.import/8k_earth_daymap.jpg-af50f559168d96db9bef229bae6c4c66.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://skybox/Earth/8k_earth_daymap.jpg"
-dest_files=[ "res://.import/8k_earth_daymap.jpg-64c73f48b82213594505124ac0957f64.s3tc.stex", "res://.import/8k_earth_daymap.jpg-64c73f48b82213594505124ac0957f64.etc2.stex" ]
+source_file="res://GlobalScene/Earth/8k_earth_daymap.jpg"
+dest_files=[ "res://.import/8k_earth_daymap.jpg-af50f559168d96db9bef229bae6c4c66.s3tc.stex", "res://.import/8k_earth_daymap.jpg-af50f559168d96db9bef229bae6c4c66.etc2.stex" ]
 
 [params]
 

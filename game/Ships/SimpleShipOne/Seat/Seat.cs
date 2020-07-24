@@ -20,17 +20,20 @@
 
 using Godot;
 
-public class Hint : Label
+public class Seat : KinematicBody, IInteractable
 {
-	public override void _Process(float delta)
-	{
-		if (Player.lookingAt != null)
-		{
-			text = Player.lookingAt.name;
-		}
-		else
-		{
-			text = "";
-		}
-	}	
+    public bool isOccupied = false;
+    public void SetActive( bool active )
+    {
+/**        GetNode().SetProcessInput(active);
+	$Control.set_process_input(new_state)
+	$PoV/Camera.current = new_state
+	$CollisionShape.disabled = new_state
+	active = new_state**/
+    }
+
+    public void Interact()
+    {
+    	Player.SetController(GetNode("Control"));
+    }
 }

@@ -3,7 +3,6 @@
 [ext_resource path="res://GlobalScene/GlobalScene.cs" type="Script" id=4]
 [ext_resource path="res://GlobalScene/Skybox/MilkyWay.jpg" type="Texture" id=6]
 
-
 [sub_resource type="PanoramaSky" id=1]
 radiance_size = 1
 panorama = ExtResource( 6 )
