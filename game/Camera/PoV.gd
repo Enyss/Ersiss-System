@@ -3,8 +3,6 @@ class_name Pov
 
 var sky
 var global_camera
-var background
-var tex
 
 export(float, 0, 180, 5) var fov = 70
 export(Vector2) var viewport_size 
@@ -30,7 +28,7 @@ func setup_camera():
 	camera.fov = fov
 	global_camera = Scene.add_pov(self)
 	global_camera.camera.fov = camera.fov
-	background = $Viewport/Background
-	tex = global_camera.get_texture()
+	var background = $Viewport/Background
+	var tex = global_camera.get_texture()
 	background.texture = tex
 	global_camera.size = viewport_size

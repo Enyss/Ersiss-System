@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MilkyWay.jpg-376723d310be0990a96047b96814bd10.stex"
+path="res://.import/MilkyWay.jpg-f80fdc70a45f06235d04e15aa04992dd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://skybox/Skybox/MilkyWay.jpg"
-dest_files=[ "res://.import/MilkyWay.jpg-376723d310be0990a96047b96814bd10.stex" ]
+source_file="res://GlobalScene/Skybox/MilkyWay.jpg"
+dest_files=[ "res://.import/MilkyWay.jpg-f80fdc70a45f06235d04e15aa04992dd.stex" ]
 
 [params]
 

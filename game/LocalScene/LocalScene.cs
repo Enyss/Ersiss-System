@@ -19,18 +19,48 @@
 # SOFTWARE.**/
 
 using Godot;
+using System.Collections.Generic;
 
-public class Hint : Label
+public class LocalScene : Node
 {
-	public override void _Process(float delta)
+	public OrbitalBody center;
+	public OrbitalBody anchor;
+	private HashSet<OrbitalBody> localObjects;
+
+	public override void _Init()
 	{
-		if (Player.lookingAt != null)
+		localObjects = new HashSet<OrbitalBody>();
+	}
+
+	public void InitializeLocalObjects()
+	{
+		foreach (OrbitalBody body in localObjects)
 		{
-			text = Player.lookingAt.name;
+			body.SetPositionRelativeTo(center, body.transform.origin);
+			body.SetVelocityRelativeTo(center, body.velocity);
 		}
-		else
+
+	}
+
+	public void AddToLocalObjects(OrbitalBody body)
+	{
+		localObjects.Add(body);
+	}
+
+	public void CenterLocalScene()
+	{
+		center.SetPositionRelativeTo(anchor, Vector3d());
+		center.SetVelocityRelativeTo(anchor, Vector3d());
+		foreach (OrbitalBody body in localObjects)
 		{
-			text = "";
+			body.transform.origin = body.PositionRelativeTo(center);
 		}
-	}	
+	}
+	private void _OnRecenterLocalSceneTimeout()
+	{
+		CenterLocalScene();
+	}
+
+
 }
+

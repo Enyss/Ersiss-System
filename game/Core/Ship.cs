@@ -23,53 +23,53 @@ using System;
 
 public class Ship : OrbitalBody
 {
-    private Godot.Collections.Dictionary<ShipSystem> systems;
-    private Godot.Collections.Array<ShipComponent> components;
+	private Godot.Collections.Dictionary<ShipSystem> systems;
+	private Godot.Collections.Array<ShipComponent> components;
 
-    public override void _Ready()
-    {
-        systems = Godot.Collections.Dictionary<ShipSystem>();
-        components = Godot.Collections.Array<ShipComponent>();
-        registerSystems();
-        initializeSystems();
-        Scene.addToLocalObjects(this);
-    }
+	public override void _Ready()
+	{
+		systems = Godot.Collections.Dictionary<ShipSystem>();
+		components = Godot.Collections.Array<ShipComponent>();
+		registerSystems();
+		initializeSystems();
+		Scene.addToLocalObjects(this);
+	}
 
-    private void RegisterSystems()
-    {
-        GetSystemsRecursive(this);
-        foreach( ShipComponent component in components )
-        {
-            systems[component.systemName].registerComponent(component);
-        }
-    }
+	private void RegisterSystems()
+	{
+		GetSystemsRecursive(this);
+		foreach( ShipComponent component in components )
+		{
+			systems[component.systemName].registerComponent(component);
+		}
+	}
 
-    private void InitializeSystems()
-    {
-        foreach( ShipSystem system in systems.Values )
-        {
-            system.ship = this;
-            system.Initialize();
-        }
-    }
+	private void InitializeSystems()
+	{
+		foreach( ShipSystem system in systems.Values )
+		{
+			system.ship = this;
+			system.Initialize();
+		}
+	}
 
-    private void GetSystemsRecursive(Node node)
-    {
-        foreach( Node child in node.GetChildren() )
-        {
-            if (child is ShipSystem)
-            {
-                systems[child.systemName] = child;
-            }
-            else if (child is ShipComponent)
-            {
-                components.PushBack(child);
-            }
+	private void GetSystemsRecursive(Node node)
+	{
+		foreach( Node child in node.GetChildren() )
+		{
+			if (child is ShipSystem)
+			{
+				systems[child.systemName] = child;
+			}
+			else if (child is ShipComponent)
+			{
+				components.PushBack(child);
+			}
 
-            if (child.GetChildCount() > 0)
-            {
-                GetSystemsRecursive(child);
-            }
-        }
-    }
+			if (child.GetChildCount() > 0)
+			{
+				GetSystemsRecursive(child);
+			}
+		}
+	}
 }

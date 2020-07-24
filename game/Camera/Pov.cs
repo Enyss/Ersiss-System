@@ -20,17 +20,46 @@
 
 using Godot;
 
-public class Hint : Label
+public class Pov : ShipComponent
 {
-	public override void _Process(float delta)
-	{
-		if (Player.lookingAt != null)
-		{
-			text = Player.lookingAt.name;
-		}
-		else
-		{
-			text = "";
-		}
-	}	
+
+private PovBackground povBackground;
+private Camera camera;
+
+[export]
+private float fov = 70;
+
+[export]
+Vector2 viewportSize = Vector2(128,128);
+
+public override void _Ready()
+{
+	AddToGroup("PoV");
+	SetupViewport();
+	SetupCamera();
+}
+	
+public override void _Process(float delta)
+{
+	camera.translation = globalTransform.origin;
+	camera.globalTransform.basis = globalTransform.basis;
+}
+
+public void SetupViewport()
+{
+	GetNode("CameraViewport").size = viewportSize;
+	GetNode("CameraViewport").size = viewportSize;
+}
+
+public void SetupCamera()
+{
+	camera = GetNode("CameraViewport/Camera");
+	camera.fov = fov;
+	PovBackground backgroundCamera = Scene.AddPov(this);
+	backgroundCamera.camera.fov = fov;
+	Texture tex = backgroundCamera.GetTexture();
+	GetNode("Viewport/Background").texture = tex;
+	backgroundCamera.size = viewportSize;
+
+}
 }

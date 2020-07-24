@@ -1,2 +1,2 @@
-﻿59565
+﻿50136
 C:\Git\Godot\ersiss-system\game\Ersiss-System.exe

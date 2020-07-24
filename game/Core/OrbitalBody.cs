@@ -41,7 +41,7 @@ public class OrbitalBody : Spatial
 
     public override void _PhysicsProcess(float delta)
     {
-        globalTransform.origin = (Vector3);
+        globalTransform.origin = (Vector3)GetPositionRelativeTo(Scene.center);
     }
 
 
