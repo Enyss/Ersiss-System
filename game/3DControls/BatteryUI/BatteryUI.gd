@@ -14,6 +14,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
+	return
 	var p = capacity/max_capacity
 	$VBoxContainer/Bar/Background/ColorRect.anchor_right = p
 	$VBoxContainer/Bar/Background/Label.text = ("%.1f %%" % (p*100))

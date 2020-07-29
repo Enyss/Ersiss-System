@@ -22,44 +22,44 @@ using Godot;
 
 public struct Vector3d
 {
-    public double x=0;
-    public double y=0;
-    public double z=0;
+	public double x;
+	public double y;
+	public double z;
 
-    public Vector3d(double x, double y, double z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+	public Vector3d(double x, double y, double z)
+	{
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
 
-    public double Length()
-    {
-        return Math.Sqrt(x*x+y*y+z*z);
-    }
+	public double Length()
+	{
+		return Math.Sqrt(x*x+y*y+z*z);
+	}
 
-    public static implicit operator Vector3(Vector3d v) => new Vector3(v.x, v.y, v.z);
-    public static implicit operator Vector3d(Vector3 v) => new Vector3d(v.x, v.y, v.z);
+	public static implicit operator Vector3(Vector3d v) => new Vector3((float)v.x, (float)v.y, (float)v.z);
+	public static implicit operator Vector3d(Vector3 v) => new Vector3d(v.x, v.y, v.z);
 
-    public static Vector3d operator -(Vector3d a) => new Vector3d(-a.x, -a.y, -a.z);
+	public static Vector3d operator -(Vector3d a) => new Vector3d(-a.x, -a.y, -a.z);
 
-    public static Vector3d operator +(Vector3d a, Vector3d b)
-        => new Vector3d(a.x+b.x, a.y+b.y, a.z+b.z);
+	public static Vector3d operator +(Vector3d a, Vector3d b)
+		=> new Vector3d(a.x+b.x, a.y+b.y, a.z+b.z);
 
-    public static Vector3d operator -(Vector3d a, Vector3d b)
-        => a + (-b);
+	public static Vector3d operator -(Vector3d a, Vector3d b)
+		=> a + (-b);
 
-    public static Vector3d operator *(double a, Vector3d b)
-        => new Vector3d(a*b.x,a*b.y, a*b.z);
-    public static Vector3d operator *(Vector3d a, double b)
-        => b*a;
+	public static Vector3d operator *(double a, Vector3d b)
+		=> new Vector3d(a*b.x,a*b.y, a*b.z);
+	public static Vector3d operator *(Vector3d a, double b)
+		=> b*a;
 
-    public static Vector3d operator /(Vector3d a, double b)
-    {
-        if (b == 0)
-        {
-            throw new DivideByZeroException();
-        }
-        return new Vector3d(a.x/b, a.y/b, a.z/b);
-    }
+	public static Vector3d operator /(Vector3d a, double b)
+	{
+		if (b == 0)
+		{
+			//throw new DivideByZeroException();
+		}
+		return new Vector3d(a.x/b, a.y/b, a.z/b);
+	}
 }

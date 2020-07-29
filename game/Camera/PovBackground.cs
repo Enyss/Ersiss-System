@@ -22,23 +22,23 @@ using Godot;
 
 public class PovBackground : Viewport
 {
-    private Pov pov;
-    private Camera camera;
+	private Pov pov;
+	private Camera camera;
 
-    public override void _Ready()
-    {
-        camera = GetNode("Camera");
-    }
+	public override void _Ready()
+	{
+		camera = (Camera)GetNode("Camera");
+	}
 
-    public override void _Process(float delta)
-    {
-        camera.fov = pov.fov;
-        camera.globalTransform.basis = pov.globalTransform.basis;
-        camera.globalTransform.origin = pov.globalTransform.origin /1000000;
-    }
+	public override void _Process(float delta)
+	{
+		camera.fov = pov.fov;
+		camera.globalTransform.basis = pov.globalTransform.basis;
+		camera.globalTransform.origin = pov.globalTransform.origin /1000000;
+	}
 
-    public void Setup(Pov pov)
-    {
-        this.pov = pov;
-    }
+	public void Setup(Pov pov)
+	{
+		this.pov = pov;
+	}
 }
