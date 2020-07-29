@@ -20,6 +20,7 @@
 
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class ShipSystem : Node
 {
@@ -31,7 +32,7 @@ public class ShipSystem : Node
 	private string systemName;
 
 	private Ship ship;
-	private Godot.Collections.Dictionary<ShipComponent> components;
+	private Dictionary<ShipSystem, ShipComponent> components;
 
 	public override void _Ready()
 	{

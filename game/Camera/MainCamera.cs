@@ -20,19 +20,19 @@
 
 using Godot;
 
-public class MainCamera : MainCamera
+public class MainCamera : Camera
 {
 	private PovBackground globalCamera;
 	private Node background;
 
 	private int zoomLevel = 0;
 	private RayCast raycast;
-	private Interactable interactionTarget = null;
+	private IInteractable interactionTarget = null;
 
 	public override void _Ready()
 	{
 		AddToGroup("PoV");
-		raycast = GetNode("RayCast");
+		raycast = (RayCast)GetNode("RayCast");
 		Setup();
 		Player.pov = this;
 	}

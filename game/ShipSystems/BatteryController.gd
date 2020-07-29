@@ -8,6 +8,7 @@ func _ready():
 	$BatteryScreen.get_surface_material(0).albedo_texture = $Viewport.get_texture()
 
 func _process(_delta):
+	return
 	battery_ui.max_capacity = system.nominal_capacity
 	battery_ui.capacity = system.capacity
 	battery_ui.current = system.amperage

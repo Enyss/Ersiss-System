@@ -25,53 +25,53 @@ using System.Collections.Generic;
 public class SceneManager : Node
 {
 
-    private Simbody center;
-    private OrbitalBody anchor;
-    private double maxDistance = 100;
-    private List<OrbitalBody> localObjects;
+	private OrbitalBody center;
+	private OrbitalBody anchor;
+	private double maxDistance = 100;
+	private List<OrbitalBody> localObjects;
 
-    public override void _physics_process(float delta)
-    {
-        if (anchor != null && center.distanceTo(anchor.simbody) > max_distance)
-        {
-            CenterBubble();
-        }
-    }
+	public override void _PhysicsProcess(float delta)
+	{
+		if (anchor != null && center.distanceTo(anchor.simbody) > max_distance)
+		{
+			CenterBubble();
+		}
+	}
 
-    public void Initialize()
-    {
-        Player.reset_controller();
-        foreach (OrbitalBody body in localObjects)
-        {
-            body.simbody.SetPositionRelativeTo(center, object.transform.origin);
-            body.simbody.SetVelocityRelativeTo(center, object.velocity);
-        }
-    }
+	public void Initialize()
+	{
+		Player.reset_controller();
+		foreach (OrbitalBody body in localObjects)
+		{
+			body.simbody.SetPositionRelativeTo(center, object.transform.origin);
+			body.simbody.SetVelocityRelativeTo(center, object.velocity);
+		}
+	}
 
 
-    public void AddToLocalObjects(OrbitalBody body)
-    {
-        localObjects.Add(body);
-    }
+	public void AddToLocalObjects(OrbitalBody body)
+	{
+		localObjects.Add(body);
+	}
 
-    public void CenterBubble()
-    {
-        center.SetPositionRelativeTo(anchor.simbody, Vector3());
-        center.SetVelocityRelativeTo(anchor.simbody, Vector3());
-        foreach (OrbitalBody body in localObjects)
-        {
-            body.transform.origin = body.simbody.PositionRelativeTo(center);
-        }
+	public void CenterBubble()
+	{
+		center.SetPositionRelativeTo(anchor.simbody, Vector3());
+		center.SetVelocityRelativeTo(anchor.simbody, Vector3());
+		foreach (OrbitalBody body in localObjects)
+		{
+			body.transform.origin = body.simbody.PositionRelativeTo(center);
+		}
 
-    }
+	}
 
-    public PovBackground AddPov(Pov pov)
-    {
-        PovBackground bg = povBackground.Instance();
-        bg.Setup(pov);
-        GetNode("/root/Main/Global").AddChild(bg);
-        return bg;
+	public PovBackground AddPov(Pov pov)
+	{
+		PovBackground bg = povBackground.Instance();
+		bg.Setup(pov);
+		GetNode("/root/Main/Global").AddChild(bg);
+		return bg;
 
-    }
+	}
 
 }

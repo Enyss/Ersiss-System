@@ -26,11 +26,11 @@ public class Pov : ShipComponent
 private PovBackground povBackground;
 private Camera camera;
 
-[export]
+[Export]
 private float fov = 70;
 
-[export]
-Vector2 viewportSize = Vector2(128,128);
+[Export]
+private Vector2 viewportSize = Vector2(128,128);
 
 public override void _Ready()
 {

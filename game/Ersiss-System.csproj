@@ -57,6 +57,26 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+  
+    <Compile Include="Main.cs" />
+    <Compile Include="Camera/MainCamera.cs" />
+    <Compile Include="Camera/Pov.cs" />
+    <Compile Include="Camera/PovBackground.cs" />
+    <Compile Include="Core/Controller.cs" />
+    <Compile Include="Core/IInteractable.cs" />
+    <Compile Include="Core/OrbitalBody.cs" />
+    <Compile Include="Core/Ship.cs" />
+    <Compile Include="Core/ShipComponent.cs" />
+    <Compile Include="Core/ShipSystem.cs" />
+    <Compile Include="GlobalScene/GlobalScene.cs" />
+    <Compile Include="GUI/Hint.cs" />
+    <Compile Include="LocalScene/LocalScene.cs" />
+    <Compile Include="Maths/Vector3d.cs" />
+    <Compile Include="Ships/PlayerBody/PlayerBody.cs" />
+    <Compile Include="Ships/PlayerBody/PlayerBodyController.cs" />
+    <Compile Include="Singleton/Player.cs" />
+    <Compile Include="Singleton/SceneManager.cs" />
+    <Compile Include="Singleton/Simulation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

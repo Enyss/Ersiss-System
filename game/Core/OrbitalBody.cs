@@ -23,58 +23,58 @@ using System;
 
 public class OrbitalBody : Spatial
 {
-    public enum BodyClass { NONE, CELESTIAL, SIMULATED, BUBBLE }
+	public enum BodyClass { NONE, CELESTIAL, SIMULATED, BUBBLE }
 
-    [Export]
-    public BodyClass bodyClass = BodyClass.NONE;
+	[Export]
+	public BodyClass bodyClass = BodyClass.NONE;
 
-    //Simulation elements
-    public Vector3d position;
-    public Vector3d velocity;
-    public Vector3d acceleration;
-    public double mass;
+	//Simulation elements
+	public Vector3d position;
+	public Vector3d velocity;
+	public Vector3d acceleration;
+	public double mass;
 
-    public override void _Ready()
-    {
-        Simulation.AddBody(this);
-    }
+	public override void _Ready()
+	{
+		Simulation.AddBody(this);
+	}
 
-    public override void _PhysicsProcess(float delta)
-    {
-        globalTransform.origin = (Vector3)GetPositionRelativeTo(Scene.center);
-    }
+	public override void _PhysicsProcess(float delta)
+	{
+		globalTransform.origin = (Vector3)GetPositionRelativeTo(Scene.center);
+	}
 
 
-    public Vector3d GetPositionRelativeTo(OrbitalBody b)
-    {
-        return position - b.position;
-    }
+	public Vector3d GetPositionRelativeTo(OrbitalBody b)
+	{
+		return position - b.position;
+	}
 
-    public Vector3d GetPositionRelativeTo(OrbitalBody b, double scale)
-    {
-        return (position - b.position) / scale;
-    }
+	public Vector3d GetPositionRelativeTo(OrbitalBody b, double scale)
+	{
+		return (position - b.position) / scale;
+	}
 
-    public void SetPositionRelativeTo(OrbitalBody b, Vector3d relativePosition)
-    {
-        position = b.position + relativePosition;
-    }
+	public void SetPositionRelativeTo(OrbitalBody b, Vector3d relativePosition)
+	{
+		position = b.position + relativePosition;
+	}
 
-    public void SetPositionRelativeTo(OrbitalBody b, Vector3d relativePosition, double scale)
-    {
-        position = b.position + scale * relativePosition;
-    }
-    public Vector3d GetVelocityRelativeTo(OrbitalBody b)
-    {
-        return velocity - b.velocity;
-    }
-    public void SetVelocityRelativeTo(OrbitalBody b, Vector3d relativeVelocity)
-    {
-        velocity = b.velocity + v;
-    }
+	public void SetPositionRelativeTo(OrbitalBody b, Vector3d relativePosition, double scale)
+	{
+		position = b.position + scale * relativePosition;
+	}
+	public Vector3d GetVelocityRelativeTo(OrbitalBody b)
+	{
+		return velocity - b.velocity;
+	}
+	public void SetVelocityRelativeTo(OrbitalBody b, Vector3d relativeVelocity)
+	{
+		velocity = b.velocity + v;
+	}
 
-    Double DistanceTo(Body b)
-    {
-        return (position - b.position).Length();
-    }
+	Double DistanceTo(OrbitalBody b)
+	{
+		return (position - b.position).Length();
+	}
 }

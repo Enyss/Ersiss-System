@@ -20,16 +20,17 @@
 
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class Ship : OrbitalBody
 {
-	private Godot.Collections.Dictionary<ShipSystem> systems;
-	private Godot.Collections.Array<ShipComponent> components;
+	private Dictionary<string, ShipSystem> systems;
+	private List<ShipComponent> components;
 
 	public override void _Ready()
 	{
-		systems = Godot.Collections.Dictionary<ShipSystem>();
-		components = Godot.Collections.Array<ShipComponent>();
+		systems = new Dictionary<string, ShipSystem>();
+		components = List<ShipComponent>();
 		registerSystems();
 		initializeSystems();
 		Scene.addToLocalObjects(this);

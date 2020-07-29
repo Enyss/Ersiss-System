@@ -1,3 +1,3 @@
-extends Spatial
+extends Node
 class_name System
 

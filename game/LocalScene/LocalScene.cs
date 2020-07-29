@@ -27,7 +27,7 @@ public class LocalScene : Node
 	public OrbitalBody anchor;
 	private HashSet<OrbitalBody> localObjects;
 
-	public override void _Init()
+	public LocalScene()
 	{
 		localObjects = new HashSet<OrbitalBody>();
 	}

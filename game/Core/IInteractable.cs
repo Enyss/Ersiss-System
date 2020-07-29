@@ -21,8 +21,8 @@
 using Godot;
 using System;
 
-enum Interaction { PRESS, RELEASE }
-public class IInteractable 
+public enum Interaction { PRESS, RELEASE }
+interface IInteractable 
 {
-	public void Interact(Interaction interaction);
+	void Interact(Interaction interaction);
 }
