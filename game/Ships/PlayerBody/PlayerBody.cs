@@ -26,7 +26,7 @@ public class PlayerBody : OrbitalBody
 
 	public override void _Ready()
 	{
-		SceneManager.AddToLocalObjects(this);
+		SceneManager.Instance.AddToLocalObjects(this);
 	}
 
 	public void Desactivate()
@@ -38,28 +38,28 @@ public class PlayerBody : OrbitalBody
 	{
 		SetProcess(true);
 		SetPhysicsProcess(true);
-		Scene.SetAnchor(this);
+		SceneManager.Instance.Anchor = this;
 	}
 
 
 	public override void _PhysicsProcess(float delta)
 	{
-		OrbitalBody center = Scene.center;
-		KinematicCollision collision = MoveAndCollide(VelocityRelativeTo(center) * delta, true, true, true);
+		OrbitalBody center = SceneManager.Instance.Center;
+		/*KinematicCollision collision = MoveAndCollide(GetVelocityRelativeTo(center) * delta, true, true, true);
 
 		if (collision != null)
 		{
-			Vector3d newPosition = PositionRelativeTo(center) - collision.remainder + collision.remainder.bounce(collision.normal);
+			Vector3d newPosition = (Vector3)GetPositionRelativeTo(center) - collision.Remainder + collision.Remainder.Bounce(collision.Normal);
 			SetPositionRelativeTo(center, newPosition);
-			float damp = 0.2;
-			Vector3d dv = VelocityRelativeTo(center) - collision.colliderVelocity;
-			Vector3d newSpeed = damp * (dv.bounce(collision.normal));
-			SetVelocityRelativeTo(center, newSpeed + collision.colliderVelocity);
-		}
-		Vector3 p = PositionRelativeTo(center);
-		if (p.length() < 50000)
+			float damp = 0.2f;
+			Vector3 dv = (Vector3)GetVelocityRelativeTo(center) - collision.ColliderVelocity;
+			Vector3 newSpeed = damp * (dv.Bounce(collision.Normal));
+			SetVelocityRelativeTo(center, newSpeed + collision.ColliderVelocity);
+		}*/
+		Vector3 p = GetPositionRelativeTo(center);
+		if (p.Length() < 50000)
 		{
-			transform.origin = p;
+			Transform = new Transform(Transform.basis, p);
 		}
 		else
 		{

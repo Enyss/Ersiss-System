@@ -30,24 +30,42 @@ public class Ship : OrbitalBody
 	public override void _Ready()
 	{
 		systems = new Dictionary<string, ShipSystem>();
-		components = List<ShipComponent>();
-		registerSystems();
-		initializeSystems();
-		Scene.addToLocalObjects(this);
+		components = new List<ShipComponent>();
+		RegisterSystems();
+		InitializeSystems();
+		SceneManager.Instance.AddToLocalObjects(this);
 	}
 
 	private void RegisterSystems()
 	{
 		GetSystemsRecursive(this);
-		foreach( ShipComponent component in components )
+		foreach (ShipComponent component in components)
 		{
-			systems[component.systemName].registerComponent(component);
+			if (component.systemName != null)
+			{
+				ShipSystem system = systems[component.systemName];
+
+				if (system != null)
+				{
+					system.RegisterComponent(component);
+				}
+				else
+				{
+					string error = String.Format("Error : Component {0} try to register to unknown system {1}", component.componentName, component.systemName);
+					GD.Print(error);
+				}
+			}
+			else
+			{
+				string error = String.Format("Error : Component {0} has no system to register to", component.componentName, component.systemName);
+				GD.Print(error);
+			}
 		}
 	}
 
 	private void InitializeSystems()
 	{
-		foreach( ShipSystem system in systems.Values )
+		foreach (ShipSystem system in systems.Values)
 		{
 			system.ship = this;
 			system.Initialize();
@@ -56,15 +74,15 @@ public class Ship : OrbitalBody
 
 	private void GetSystemsRecursive(Node node)
 	{
-		foreach( Node child in node.GetChildren() )
+		foreach (Node child in node.GetChildren())
 		{
 			if (child is ShipSystem)
 			{
-				systems[child.systemName] = child;
+				systems[((ShipSystem)child).systemName] = (ShipSystem)child;
 			}
 			else if (child is ShipComponent)
 			{
-				components.PushBack(child);
+				components.Add((ShipComponent)child);
 			}
 
 			if (child.GetChildCount() > 0)

@@ -24,12 +24,12 @@ using System;
 public class ShipComponent : Spatial
 {
     [Export]
-    private string componentName;
+    public string componentName;
 
     [Export]
-    private string systemName;
+    public string systemName;
 
-    private ShipSystem system;
+    public ShipSystem system;
 
     public void SetSystem(ShipSystem system)
     {

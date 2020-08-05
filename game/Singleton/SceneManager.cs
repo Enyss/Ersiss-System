@@ -24,15 +24,32 @@ using System.Collections.Generic;
 
 public class SceneManager : Node
 {
-
-	private OrbitalBody center;
-	private OrbitalBody anchor;
+	private static SceneManager instance;
+	public static SceneManager Instance { get { return instance; } }
 	private double maxDistance = 100;
+	private OrbitalBody center;   
+	public OrbitalBody Center
+	{
+		get => center;
+	}
+	private OrbitalBody anchor;
+	public OrbitalBody Anchor
+	{
+		get { return anchor; }
+		set { anchor = value; }
+	}
+
 	private List<OrbitalBody> localObjects;
+
+	public SceneManager()
+	{
+		instance = this;
+		localObjects = new List<OrbitalBody>();
+	}
 
 	public override void _PhysicsProcess(float delta)
 	{
-		if (anchor != null && center.distanceTo(anchor.simbody) > max_distance)
+		if (anchor != null && center.DistanceTo(anchor) > maxDistance)
 		{
 			CenterBubble();
 		}
@@ -40,14 +57,18 @@ public class SceneManager : Node
 
 	public void Initialize()
 	{
-		Player.reset_controller();
+		Player.Instance.ResetController();
 		foreach (OrbitalBody body in localObjects)
 		{
-			body.simbody.SetPositionRelativeTo(center, object.transform.origin);
-			body.simbody.SetVelocityRelativeTo(center, object.velocity);
+			body.SetPositionRelativeTo(center, body.Transform.origin);
+			body.SetVelocityRelativeTo(center, body.velocity);
 		}
 	}
 
+public void SetCenter(OrbitalBody center)
+{
+	this.center = center;
+}
 
 	public void AddToLocalObjects(OrbitalBody body)
 	{
@@ -56,22 +77,22 @@ public class SceneManager : Node
 
 	public void CenterBubble()
 	{
-		center.SetPositionRelativeTo(anchor.simbody, Vector3());
-		center.SetVelocityRelativeTo(anchor.simbody, Vector3());
+		center.SetPositionRelativeTo(anchor, new Vector3d());
+		center.SetVelocityRelativeTo(anchor, new Vector3d());
 		foreach (OrbitalBody body in localObjects)
 		{
-			body.transform.origin = body.simbody.PositionRelativeTo(center);
+			body.Transform = new Transform( body.Transform.basis, body.GetPositionRelativeTo(center));
 		}
 
 	}
 
-	public PovBackground AddPov(Pov pov)
-	{
-		PovBackground bg = povBackground.Instance();
+	public PovBackground AddPov(IPov pov)
+	{        
+		PackedScene povBackground = ResourceLoader.Load<PackedScene>("res://Camera/PoV_Background.tscn");
+		PovBackground bg = (PovBackground)povBackground.Instance();
 		bg.Setup(pov);
-		GetNode("/root/Main/Global").AddChild(bg);
+		GetNode("/root/Main/GlobalScene").AddChild(bg);
 		return bg;
-
 	}
 
 }

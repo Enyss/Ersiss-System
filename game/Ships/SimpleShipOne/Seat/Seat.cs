@@ -22,18 +22,18 @@ using Godot;
 
 public class Seat : KinematicBody, IInteractable
 {
-    public bool isOccupied = false;
-    public void SetActive( bool active )
-    {
+	public bool isOccupied = false;
+	public void SetActive( bool active )
+	{
 /**        GetNode().SetProcessInput(active);
 	$Control.set_process_input(new_state)
 	$PoV/Camera.current = new_state
 	$CollisionShape.disabled = new_state
 	active = new_state**/
-    }
+	}
 
-    public void Interact()
-    {
-    	Player.SetController(GetNode("Control"));
-    }
+	public void Interact(Interaction interaction)
+	{
+		Player.Instance.SetController(GetNode<Controller>("Control"));
+	}
 }

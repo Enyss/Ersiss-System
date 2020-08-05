@@ -25,6 +25,7 @@ public class Controller : Node
 {
 	[Export]
 	private bool isDefault = false;
+	protected Spatial parent;
 
 	public override void _Ready()
 	{

@@ -26,6 +26,10 @@ public class Simulation : Node
 {
 	public const double GMe = 3.986e14; // gravitational parameter = G x Earth Mass
 
+
+	private static Simulation instance;
+	public static Simulation Instance { get {return instance;} }
+
 	public double time;
 	public int simulationSpeed;
 
@@ -35,8 +39,10 @@ public class Simulation : Node
 
 	public Simulation()
 	{
-		bodies = new HashSet();
-		nBodies = new HashSet();
+		instance = this;
+		
+		bodies = new HashSet<OrbitalBody>();
+		nBodies = new HashSet<OrbitalBody>();
 		nBodiesData = new Dictionary<OrbitalBody, Vector3d>();
 	}
 
@@ -74,7 +80,7 @@ public class Simulation : Node
 		}
 	}
 
-	private void ComputeBodyMovement(OrbitalBody body, float dt)
+	private void ComputeBodyMovement(OrbitalBody body, double dt)
 	{
 		// Using RK4 to compute the body movement
 		Vector3d k1_v = dt * (ComputeGravity(body, body.position) + body.acceleration);
@@ -102,13 +108,13 @@ public class Simulation : Node
 				force += p * (nBodiesData[nBody] - position)/ l;
 			}
 		}
-		return f;
+		return force;
 	}
 
 	public void AddBody(OrbitalBody body)
 	{
 		bodies.Add(body);
-		if (body.bodyClass == body.BodyClass.CELESTIAL)
+		if (body.bodyClass == OrbitalBody.BodyClass.CELESTIAL)
 		{
 			nBodies.Add(body);
 		}
@@ -116,7 +122,7 @@ public class Simulation : Node
 
 	public void BodyClassChanged(OrbitalBody body)
 	{
-		if (body.bodyClass == body.BodyClass.CELESTIAL)
+		if (body.bodyClass == OrbitalBody.BodyClass.CELESTIAL)
 		{
 			nBodies.Add(body);
 		}

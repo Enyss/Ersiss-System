@@ -36,7 +36,7 @@ public class LocalScene : Node
 	{
 		foreach (OrbitalBody body in localObjects)
 		{
-			body.SetPositionRelativeTo(center, body.transform.origin);
+			body.SetPositionRelativeTo(center, body.Transform.origin);
 			body.SetVelocityRelativeTo(center, body.velocity);
 		}
 
@@ -49,11 +49,11 @@ public class LocalScene : Node
 
 	public void CenterLocalScene()
 	{
-		center.SetPositionRelativeTo(anchor, Vector3d());
-		center.SetVelocityRelativeTo(anchor, Vector3d());
+		center.SetPositionRelativeTo(anchor, new Vector3d());
+		center.SetVelocityRelativeTo(anchor, new Vector3d());
 		foreach (OrbitalBody body in localObjects)
 		{
-			body.transform.origin = body.PositionRelativeTo(center);
+			body.Transform = new Transform(body.Transform.basis, body.GetPositionRelativeTo(center));
 		}
 	}
 	private void _OnRecenterLocalSceneTimeout()

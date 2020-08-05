@@ -20,17 +20,18 @@
 
 using Godot;
 
-public class Pov : ShipComponent
+public class Pov : ShipComponent, IPov
 {
 
 private PovBackground povBackground;
 private Camera camera;
 
 [Export]
+public float Fov {get => Fov; set => fov = value;}
 private float fov = 70;
 
 [Export]
-private Vector2 viewportSize = Vector2(128,128);
+private Vector2 viewportSize = new Vector2(128,128);
 
 public override void _Ready()
 {
@@ -41,25 +42,25 @@ public override void _Ready()
 	
 public override void _Process(float delta)
 {
-	camera.translation = globalTransform.origin;
-	camera.globalTransform.basis = globalTransform.basis;
+	Transform transform = new Transform(GlobalTransform.basis, GlobalTransform.origin);
+	camera.Transform = transform;
 }
 
 public void SetupViewport()
 {
-	GetNode("CameraViewport").size = viewportSize;
-	GetNode("CameraViewport").size = viewportSize;
+	GetNode<Viewport>("CameraViewport").Size = viewportSize;
+	GetNode<Viewport>("CameraViewport").Size = viewportSize;
 }
 
 public void SetupCamera()
 {
-	camera = GetNode("CameraViewport/Camera");
-	camera.fov = fov;
-	PovBackground backgroundCamera = Scene.AddPov(this);
-	backgroundCamera.camera.fov = fov;
+	camera = GetNode<Camera>("CameraViewport/Camera");
+	camera.Fov = fov;
+	PovBackground backgroundCamera = SceneManager.Instance.AddPov(this);
+	backgroundCamera.camera.Fov = fov;
 	Texture tex = backgroundCamera.GetTexture();
-	GetNode("Viewport/Background").texture = tex;
-	backgroundCamera.size = viewportSize;
+	GetNode<TextureRect>("Viewport/Background").Texture = tex;
+	backgroundCamera.Size = viewportSize;
 
 }
 }
