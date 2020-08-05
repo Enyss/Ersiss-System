@@ -24,13 +24,13 @@ public class Hint : Label
 {
 	public override void _Process(float delta)
 	{
-		if (Player.lookingAt != null)
+		if (Player.Instance.lookingAt != null)
 		{
-			text = Player.lookingAt.name;
+			Text = Player.Instance.lookingAt.Name;
 		}
 		else
 		{
-			text = "";
+			Text = "";
 		}
 	}	
 }

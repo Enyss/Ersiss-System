@@ -1,4 +1,4 @@
-/**# Copyright (c) 2020 The Eriss-System Project Contributors
+/** Copyright (c) 2020 The Eriss-System Project Contributors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -16,28 +16,17 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.**/
+# SOFTWARE. **/
 
 using Godot;
+using System;
 
-public class PovBackground : Viewport
+interface IController
 {
-	public IPov pov;
-	public Camera camera;
+	[Export]
+	bool IsDefault {get; set;}
+	Spatial Parent {get; set;}
 
-	public override void _Ready()
-	{
-		camera = GetNode<Camera>("Camera");
-	}
-
-	public override void _Process(float delta)
-	{
-		camera.Fov = pov.Fov;
-		camera.GlobalTransform = new Transform(pov.GlobalTransform.basis,pov.GlobalTransform.origin /1000000);
-	}
-
-	public void Setup(IPov pov)
-	{
-		this.pov = pov;
-	}
+	void Activate();
+	void Desactivate();
 }

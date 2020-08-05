@@ -24,31 +24,46 @@ using System;
 public class Player : Node
 {
 
-    private Controller baseController;
-    private Controller controller;
-    private Node lookingAt = null;
+    private static Player instance;
+    public static Player Instance { get { return instance; } }
+    public Controller baseController;
 
+    private Controller controller;
+    public Controller Controller
+    {
+        get { return Controller; }
+        set { SetController(value); }
+    }
+    public Node lookingAt = null;
+
+    public Pov pov;
+
+    public Player()
+    {
+        instance = this;
+    }
+    
     public void SetController(Controller newController)
     {
         //If the controller don't change
-        if (newController == Instance.controller)
+        if (newController == controller)
         {
             return;
         }
         //If the controller change
-        if (Instance.controller != null)
+        if (controller != null)
         {
-            Instance.controller.Desactivate();
+            controller.Desactivate();
         }
         if (newController == null)
         {
-            Instance.controller = Instance.baseController;
+            controller = Instance.baseController;
         }
         else
         {
-            Instance.controller = newController;
+            controller = newController;
         }
-        Instance.controller.Activate();
+        controller.Activate();
     }
 
     public void ResetController()

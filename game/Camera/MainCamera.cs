@@ -20,10 +20,10 @@
 
 using Godot;
 
-public class MainCamera : Camera
+public class MainCamera : Camera, IPov
 {
 	private PovBackground globalCamera;
-	private Node background;
+	private TextureRect background;
 
 	private int zoomLevel = 0;
 	private RayCast raycast;
@@ -34,18 +34,18 @@ public class MainCamera : Camera
 		AddToGroup("PoV");
 		raycast = (RayCast)GetNode("RayCast");
 		Setup();
-		Player.pov = this;
+		//Player.Instance.pov = this;
 	}
 	public override void _Process(float delta)
 	{
-		Node target = raycast.GetCollider();
-		Player.looking_at = target;
+		Node target = (Node)raycast.GetCollider();
+		Player.Instance.lookingAt = target;
 		if (Input.IsActionJustPressed("ui_click"))
 		{
 			if (target is IInteractable)
 			{
-				interactionTarget = target;
-				target.Interact(Interaction.PRESS);
+				interactionTarget = (IInteractable)target;
+				interactionTarget.Interact(Interaction.PRESS);
 			}
 		}
 		if (Input.IsActionJustReleased("ui_click"))
@@ -62,14 +62,14 @@ public class MainCamera : Camera
 			{
 				zoomLevel = 0;
 			}
-			fov = 70 - 30 * zoomLevel;
+			this.Fov = 70 - 30 * zoomLevel;
 		}
 	}
 	private void Setup()
 	{
-		globalCamera = SceneManager.AddPov(this);
-		background = GetNode("Background/texture");
-		background.texture = globalCamera.GetTexture();
-		globalCamera.size = GetNode("/root").size;
+		globalCamera = SceneManager.Instance.AddPov(this);
+		background = GetNode<TextureRect>("Background/texture");
+		background.Texture = globalCamera.GetTexture();
+		globalCamera.Size = GetNode<Viewport>("/root").Size;
 	}
 }

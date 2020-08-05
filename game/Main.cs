@@ -24,24 +24,25 @@ public class Main : Node
 {
 	public override void _Ready()
 	{
-		Scene.Initialize();
+		SceneManager.Instance.Initialize();
 	}
 
 	public override void _Input(InputEvent e)
 	{
+		Simulation sim = Simulation.Instance;
 		if (e.IsActionPressed("sim_speed_up"))
 		{
-			if (Simulation.simulationSpeed == 0)
+			if (sim.simulationSpeed == 0)
 			{
-				Simulation.simulationSpeed = 1;
+				sim.simulationSpeed = 1;
 			}
 			else
 			{
-				Simulation.simulationSpeed *= 2;
+				sim.simulationSpeed *= 2;
 			}
-			if (e.is_action_pressed("sim_speed_down"))
+			if (e.IsActionPressed("sim_speed_down"))
 			{
-				Simulation.simulationSpeed /= 2;
+				sim.simulationSpeed /= 2;
 			}
 		}
 	}

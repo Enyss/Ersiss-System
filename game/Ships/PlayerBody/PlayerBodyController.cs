@@ -19,31 +19,32 @@
 # SOFTWARE.**/
 
 using Godot;
+using System;
 
 public class PlayerBodyController : Controller
 {
 	private PlayerBody body;
-	private float maxAcceleration = 1.0;
-	private float sensitivity = 0.3;
+	private float maxAcceleration = 1.0f;
+	private float sensitivity = 0.3f;
 
 	public override void _Ready()
 	{
-		Player.baseController = this;
+		Player.Instance.baseController = this;
 	}
 
 public override void _Input(InputEvent e)
 {
 	if (e is InputEventMouseMotion)
 	{
-		var basis = parent.globalTransform.basis;
-		parent.globalRotate(basis.x.normalized(), -e.relative.y * sensibility/60);
-		parent.globalRotate(basis.y.normalized(), -e.relative.x * sensibility/60);
+		var basis = body.GlobalTransform.basis;
+		body.GlobalRotate(basis.x.Normalized(), -((InputEventMouseMotion)e).Relative.y * sensitivity/60);
+		body.GlobalRotate(basis.y.Normalized(), -((InputEventMouseMotion)e).Relative.x * sensitivity/60);
 	}
 }
 public override void _Process(float delta)
 {
 	Vector3 a = new Vector3();
-	Basis basis = parent.globalTransform.basis;
+	Basis basis = parent.GlobalTransform.basis;
 	if (Input.IsActionPressed("move_forward"))
 	{
 		a-= basis.z;
@@ -70,29 +71,29 @@ public override void _Process(float delta)
 	}
 	if (Input.IsActionPressed("roll_clockwise"))
 	{
-		parent.GlobalRotate(basis.z, -PI/4*delta);
+		parent.GlobalRotate(basis.z, (float)(-Math.PI/4*delta) );
 	}
 	if (Input.IsActionPressed("roll_counterclockwise"))
 	{
-		parent.GlobalRotate(basis.z, +PI/4*delta);
+		parent.GlobalRotate(basis.z, (float)(Math.PI/4*delta));
 	}
-	GetParent().acceleration = a.normalized()*maxAcceleration;
-	Player.pov.globalTransform = GetParent().globalTransform;
+	((PlayerBody)parent).acceleration = a.Normalized()*maxAcceleration;
+	Player.Instance.pov.GlobalTransform = GetParent<Spatial>().GlobalTransform;
 }
 
 	
 public override void Activate()
 {
 	base.Activate();
-	parent = GetParent();
-	parent.Activate();
-	Scene.anchor = parent;
+	parent = GetParent<Spatial>();
+	((PlayerBody)parent).Activate();
+	SceneManager.Instance.Anchor = (OrbitalBody)parent;
 }
 	
 public override void Desactivate()
 {
 	base.Desactivate();
-	GetParent().Desactivate();
+	GetParent<PlayerBody>().Desactivate();
 }
 	
 /**func set_movement(position, anchor):

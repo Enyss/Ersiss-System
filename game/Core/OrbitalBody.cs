@@ -36,12 +36,13 @@ public class OrbitalBody : Spatial
 
 	public override void _Ready()
 	{
-		Simulation.AddBody(this);
+		Simulation.Instance.AddBody(this);
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
-		globalTransform.origin = (Vector3)GetPositionRelativeTo(Scene.center);
+		Vector3 origin = GetPositionRelativeTo(SceneManager.Instance.Center);
+		GlobalTransform = new Transform(GlobalTransform.basis, origin);
 	}
 
 
@@ -70,10 +71,10 @@ public class OrbitalBody : Spatial
 	}
 	public void SetVelocityRelativeTo(OrbitalBody b, Vector3d relativeVelocity)
 	{
-		velocity = b.velocity + v;
+		velocity = b.velocity + relativeVelocity;
 	}
 
-	Double DistanceTo(OrbitalBody b)
+	public Double DistanceTo(OrbitalBody b)
 	{
 		return (position - b.position).Length();
 	}

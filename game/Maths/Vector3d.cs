@@ -19,6 +19,7 @@
 # SOFTWARE.**/
 
 using Godot;
+using System;
 
 public struct Vector3d
 {

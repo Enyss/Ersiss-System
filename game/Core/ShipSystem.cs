@@ -29,10 +29,10 @@ public class ShipSystem : Node
 	delegate void updated();
 
 	[Export]
-	private string systemName;
+	public string systemName;
 
-	private Ship ship;
-	private Dictionary<ShipSystem, ShipComponent> components;
+	public Ship ship;
+	private Dictionary<string, ShipComponent> components;
 
 	public override void _Ready()
 	{
@@ -42,7 +42,7 @@ public class ShipSystem : Node
 	public void RegisterComponent(ShipComponent component)
 	{
 		component.SetSystem(this);
-		components[component.ComponentName] = component;
+		components[component.componentName] = component;
 	}
 
 	public void Initialize()

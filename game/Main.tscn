@@ -23,4 +23,3 @@ size = Vector2( 1, 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04138, 2.3781, -9.62192 )
 
 [node name="SSO" parent="LocalScene" instance=ExtResource( 5 )]
-body_class = 2
