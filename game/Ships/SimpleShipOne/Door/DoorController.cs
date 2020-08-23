@@ -19,33 +19,48 @@
 # SOFTWARE. **/
 
 using Godot;
-using System;
-using System.Collections.Generic;
 
-public class ShipSystem : Node
+public class Door : ShipComponent
 {
+    [Signal] public delegate void CloseDoor();
+    [Signal] public delegate void OpenDoor();
+    [Export] public bool isOpen;
+    public bool isMoving = false;
 
-	[Signal]
-	delegate void updated();
+    public void Setup()
+    {
+        Connect("CloseDoor", system, "OnCloseDoor");
+        Connect("door_open", system, "on_door_open")
+    
+    system.Connect("updated", this, "OnSystemUpdate");
+    }
 
-	[Export]
-	public string systemName;
+    public void OnSystemUpdate()
+    {
+        /* switch (system.State)
+         {
+             case "opening":
+                 if !moving:
+                     $AnimationPlayer.play("Open_Door")
+                     moving = true
+             "closing": 
+                 if !moving:
+                     $AnimationPlayer.play("Close_Door")
+                     moving = true
+                     */
+        return;
+    }
 
-	public Ship ship;
-	private Dictionary<string, ShipComponent> components;
 
-	public override void _Ready()
-	{
-		
-	}
+    /*func _on_AnimationPlayer_animation_finished(anim_name):
+        match anim_name:
+            "Open_Door":
+                moving=false
+                emit_signal("door_open")
+            "Close_Door":
+                moving=false
+                emit_signal("door_close")
 
-	public void RegisterComponent(ShipComponent component)
-	{
-		component.SetSystem(this);
-		components[component.componentName] = component;
-	}
+    */
 
-	public virtual void Initialize()
-	{
-	}
 }

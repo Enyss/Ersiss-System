@@ -1,4 +1,4 @@
-[gd_scene load_steps=308 format=2]
+[gd_scene load_steps=307 format=2]
 
 [ext_resource path="res://ShipSystems/Battery_System.gd" type="Script" id=1]
 [ext_resource path="res://ShipSystems/Screen_System.gd" type="Script" id=2]
@@ -21,7 +21,6 @@
 [ext_resource path="res://Ships/SimpleShipOne/materials/material.material" type="Material" id=19]
 [ext_resource path="res://Ships/SimpleShipOne/materials/Color_003_.material" type="Material" id=20]
 [ext_resource path="res://Ships/SimpleShipOne/materials/_10Color_005.material" type="Material" id=21]
-[ext_resource path="res://Ships/SimpleShipOne/Seat/Seat.cs" type="Script" id=22]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 60, 40, 10 )
@@ -4213,17 +4212,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.98663, 0 )
 
 [node name="PoV_Back" parent="Ship" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, -0.0801816, -0.99678, 0, 0.99678, -0.0801816, -0.194061, 1.21558, -1.85966 )
-component_name = "back_camera"
-system_name = "screen"
-fov = 120.0
-viewport_size = Vector2( 2000, 2000 )
+componentName = "Back_Camera"
+systemName = "Screen"
+Fov = 90.0
 
 [node name="PoV_Front" parent="Ship" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 16.7531, -1.65269 )
-component_name = "front_camera"
-system_name = "screen"
-fov = 120.0
-viewport_size = Vector2( 2000, 2000 )
+componentName = "Front_Camera"
+systemName = "Screen"
+Fov = 90.0
 
 [node name="Inside" type="Spatial" parent="Ship"]
 transform = Transform( 0.0254, 0, 0, 0, 0.0254, 0, 0, 0, 0.0254, -0.0323033, 0, 9.99043 )
@@ -5237,7 +5234,6 @@ mesh = SubResource( 180 )
 material/0 = null
 
 [node name="Seat" parent="Ship/Inside/Seat" instance=ExtResource( 7 )]
-script = ExtResource( 22 )
 
 [node name="Cockpit_Screen" parent="Ship/Inside" instance=ExtResource( 11 )]
 transform = Transform( -6.41422e-06, -39.3701, 0, 39.3701, -6.41422e-06, 0, 0, 0, 39.3701, 8.64033, 638.126, -538.036 )
@@ -5849,22 +5845,17 @@ text = "Error"
 font_color = Color( 1, 0, 0, 1 )
 
 [node name="Door" parent="Ship" instance=ExtResource( 13 )]
-component_name = "door"
-system_name = "door"
 
 [node name="Systems" type="Node" parent="."]
 
 [node name="Door" type="Node" parent="Systems"]
 script = ExtResource( 6 )
-system_name = "door"
 
 [node name="Battery" type="Node" parent="Systems"]
 script = ExtResource( 1 )
-system_name = "battery"
 nominal_capacity = 50.0
 capacity = 50.0
 voltage = 12.0
 
 [node name="Screen" type="Node" parent="Systems"]
 script = ExtResource( 2 )
-system_name = "screen"

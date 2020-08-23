@@ -1,4 +1,4 @@
-# Copyright (c) 2020 The Eriss-System Project Contributors
+/** Copyright (c) 2020 The Eriss-System Project Contributors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -16,25 +16,45 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# SOFTWARE. **/
 
-extends OmniLight
+using Godot;
+using System.Collections.Generic;
+
+public class ScreenSystem : ShipSystem
+{
+    [Signal] public delegate void CameraChanged();
+
+    List<Pov> shipCameras;
+    Pov activeCamera;
+
+    public override void Initialize()
+    {
+        foreach (Pov camera in shipCameras)
+        {
+            camera.setup();
+        }
+        SetActiveCamera("front_camera");
+    }
+
+    public void SetActiveCamera(string cameraName)
+    {
+        activeCamera = shipCameras.Find(x => x.componentName == cameraName);
+        EmitSignal("CameraChanged");
+    }
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+    public void NextCamera()
+    {
 
+        if (activeCamera.componentName == "front_camera")
+        {
+            SetActiveCamera("back_camera");
+        }
+        else
+        {
+            SetActiveCamera("front_camera");
+        }
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_Rotating_switch_2_changed(index):
-	light_energy=index
+    }
+}
