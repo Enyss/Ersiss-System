@@ -1,4 +1,4 @@
-# Copyright (c) 2020 The Eriss-System Project Contributors
+/**# Copyright (c) 2020 The Eriss-System Project Contributors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -16,36 +16,41 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# SOFTWARE.**/
 
-extends Node
+using Godot;
 
-#Bodies in Local Scene
-export (NodePath) var starting_body_path
+public class DoorSystem : ShipSystem
+{
+    [Export] public bool doorIsOpen = false;
+    public string state = "can_open";
 
-var center : Simbody
-var anchor : Simbody
-var local_objects := Array()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	add_to_group("Bubble")
-#	player_body.set_active(true)
-	
-func set_bubble_anchor(simbody : Simbody) -> void:
-	anchor = simbody
-	
-func initialize_simbody(simbody : Simbody) -> void:
-	center = simbody
-	for object in local_objects:
-		object.simbody.set_position_relative_to(center, object.transform.origin)
-		object.simbody.set_velocity_relative_to(center, object.velocity )
 
-func add_to_local_objects(object):
-	local_objects.append(object)
+    public void OnDoorButtonPressed()
+    {
 
-func _on_Center_Local_Bubble_timeout():
-	center.set_position_relative_to(anchor, Vector3() )	
-	center.set_velocity_relative_to(anchor, Vector3() )	
-	for object in local_objects:
-		object.transform.origin = object.simbody.position_relative_to(center)
+        switch (state)
+        {
+            case "can_open":
+                state = "opening";
+                break;
+            case "can_close":
+                state = "closing";
+                break;
+        }
+        EmitSignal("updated");
+    }
+
+    public void OnDoorClose()
+    {
+        state = "can_open";
+        EmitSignal("updated");
+    }
+
+    public void OnDoorOpen()
+    {
+        state = "can_close";
+        EmitSignal("updated");
+    }
+}

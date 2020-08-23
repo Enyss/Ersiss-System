@@ -1,4 +1,4 @@
-# Copyright (c) 2020 The Eriss-System Project Contributors
+/** Copyright (c) 2020 The Eriss-System Project Contributors
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -16,31 +16,11 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# SOFTWARE. **/
 
-extends Node
+using Godot;
 
-var pov
-var base_controller : Controller
-var controller : Controller setget set_controller, get_controller
-var looking_at : Node = null
-
-func set_controller(new_controller : Controller) -> void:
-	#If the controller don't change
-	if (new_controller == controller):
-		return;
-	#If the controller change
-	if (controller != null):
-		controller.desactivate()
-	if (new_controller == null):
-		controller = base_controller
-	else:
-		controller = new_controller
-	controller.activate()
-	
-func get_controller() -> Controller:
-	return controller
-
-func reset_controller() -> void:
-	set_controller(base_controller)
-#	controller.set_movement(position, $Simulation/LocalBubble.anchor )
+public class Battery : ShipComponent
+{
+    
+}

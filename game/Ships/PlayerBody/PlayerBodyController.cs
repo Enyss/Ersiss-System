@@ -30,6 +30,7 @@ public class PlayerBodyController : Controller
 	public override void _Ready()
 	{
 		Player.Instance.baseController = this;
+		body = GetParent<PlayerBody>();
 	}
 
 public override void _Input(InputEvent e)

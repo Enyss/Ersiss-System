@@ -9,55 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Spatial",
-"class": "Celestial_Body",
-"language": "GDScript",
-"path": "res://Solar_System/Celestial_Body.gd"
-}, {
-"base": "Spatial",
-"class": "Component",
-"language": "GDScript",
-"path": "res://Core/gdComponent.gd"
-}, {
-"base": "Spatial",
-"class": "Interactable",
-"language": "GDScript",
-"path": "res://Core/Interactable.gd"
-}, {
-"base": "Component",
-"class": "Pov",
-"language": "GDScript",
-"path": "res://Camera/PoV.gd"
-}, {
-"base": "Viewport",
-"class": "PovBackground",
-"language": "GDScript",
-"path": "res://Camera/PoV_Background.gd"
-}, {
-"base": "Component",
-"class": "Switch",
-"language": "GDScript",
-"path": "res://3DControls/Switch/Switch.gd"
-}, {
 "base": "Node",
 "class": "SwitchData",
 "language": "GDScript",
 "path": "res://3DControls/Switch/Switch_data.gd"
-}, {
-"base": "Node",
-"class": "System",
-"language": "GDScript",
-"path": "res://Core/gdSystem.gd"
 } ]
 _global_script_class_icons={
-"Celestial_Body": "",
-"Component": "",
-"Interactable": "",
-"Pov": "",
-"PovBackground": "",
-"Switch": "",
-"SwitchData": "",
-"System": ""
+"SwitchData": ""
 }
 
 [application]
