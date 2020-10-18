@@ -1,18 +1,17 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Ships/SimpleShipOne/Cockpit/Bat1.gd" type="Script" id=1]
+[ext_resource path="res://Ships/SimpleShipOne/Cockpit/Bat1.cs" type="Script" id=1]
 [ext_resource path="res://3DControls/Switch/Switch_data.gd" type="Script" id=2]
-[ext_resource path="res://3DControls/Switch/Camera_Switch.gd" type="Script" id=3]
+[ext_resource path="res://3DControls/Switch/CameraSwitch.cs" type="Script" id=3]
 [ext_resource path="res://3DControls/Switch/Switch.tscn" type="PackedScene" id=4]
 [ext_resource path="res://3DControls/BatteryUI/BatteryUI.tscn" type="PackedScene" id=5]
 
 [node name="Battery_Panel" type="Spatial"]
+script = ExtResource( 1 )
 
 [node name="Camera" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 1.12934, 0, -0.481853 )
 script = ExtResource( 3 )
-component_name = "camera_switch"
-system_name = "screen"
 
 [node name="front" type="Node" parent="Camera"]
 script = ExtResource( 2 )
@@ -30,7 +29,6 @@ font_color = Color( 0.196078, 1, 0, 1 )
 
 [node name="Battery 1" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225869, 0, -0.496911 )
-script = ExtResource( 1 )
 
 [node name="on" type="Node" parent="Battery 1"]
 script = ExtResource( 2 )

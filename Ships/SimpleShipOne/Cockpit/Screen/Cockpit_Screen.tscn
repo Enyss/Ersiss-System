@@ -1,8 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Ships/SimpleShipOne/Cockpit/Screen/Cockpit_Screen.gd" type="Script" id=1]
+[ext_resource path="res://Ships/SimpleShipOne/Cockpit/Screen/CockpitScreen.cs" type="Script" id=1]
 [ext_resource path="res://Ships/SimpleShipOne/Cockpit/Screen/Color_008__001.material" type="Material" id=3]
-
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "group_24003"
@@ -22,8 +21,6 @@ surfaces/0 = {
 [node name="Cockpit_Screen" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05991e-06, 0, 9.15527e-05 )
 script = ExtResource( 1 )
-component_name = "main_screen"
-system_name = "screen"
 
 [node name="Cockpit_Mesh" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0, 1, 0, -1, 1 )
