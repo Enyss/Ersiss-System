@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Ships/SimpleShipOne/Door/156509__primeval-polypod__pneumatic-door.wav" type="AudioStream" id=1]
 [ext_resource path="res://Ships/SimpleShipOne/materials/material.material" type="Material" id=3]
-[ext_resource path="res://Ships/SimpleShipOne/Door/Door_Controller.gd" type="Script" id=6]
+[ext_resource path="res://Ships/SimpleShipOne/Door/DoorController.cs" type="Script" id=6]
+
 
 
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://3DControls/rotating_switch/rotating-switch_sound-01.wav" type="AudioStream" id=1]
-[ext_resource path="res://3DControls/rotating_switch/Rotating_Switch.gd" type="Script" id=2]
+[ext_resource path="res://3DControls/Rotating_Switch/RotatingSwitch.cs" type="Script" id=2]
 [ext_resource path="res://Materials/Black_plastic.tres" type="Material" id=3]
 
 [sub_resource type="ArrayMesh" id=1]

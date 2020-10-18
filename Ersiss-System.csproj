@@ -1,21 +1,6 @@
 ﻿<Project Sdk="Godot.NET.Sdk/3.2.3">
   <PropertyGroup>
-    <ProjectGuid>{FE660238-0523-4C91-954D-F12B1D7D1FBB}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>ErsissSystem</RootNamespace>
-    <AssemblyName>Ersiss-System</AssemblyName>
-    <GodotProjectGeneratorVersion>1.0.0.0</GodotProjectGeneratorVersion>
     <TargetFramework>net472</TargetFramework>
-    <!--The following properties were overriden during migration to prevent errors.
-    Enabling them may require other manual changes to the project and its files.-->
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Deterministic>false</Deterministic>
+    <RootNamespace>ErsissSystem</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="**\*.cs" />
-  </ItemGroup>
 </Project>

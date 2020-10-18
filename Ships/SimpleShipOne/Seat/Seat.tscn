@@ -1,13 +1,10 @@
 [gd_scene load_steps=60 format=2]
 
-[ext_resource path="res://Ships/SimpleShipOne/Seat/Seat_Control.gd" type="Script" id=1]
+[ext_resource path="res://Ships/SimpleShipOne/Seat/SeatControl.cs" type="Script" id=1]
 [ext_resource path="res://Ships/SimpleShipOne/materials/Color_003_.material" type="Material" id=2]
 [ext_resource path="res://Ships/SimpleShipOne/materials/Color_B19_.material" type="Material" id=3]
 [ext_resource path="res://Ships/SimpleShipOne/materials/Color_005_.material" type="Material" id=4]
-[ext_resource path="res://Ships/SimpleShipOne/Seat/Seat.gd" type="Script" id=5]
-
-
-
+[ext_resource path="res://Ships/SimpleShipOne/Seat/Seat.cs" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 10.195, 17.0028, 8 )
