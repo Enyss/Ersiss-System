@@ -1,0 +1,39 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "SwitchData",
+"language": "GDScript",
+"path": "res://3DControls/Switch/Switch_data.gd"
+} ]
+_global_script_class_icons={
+"SwitchData": ""
+}
+
+[application]
+
+config/name="Ersiss-System"
+run/main_scene="res://Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+SceneManager="*res://Singleton/SceneManager.cs"
+Simulation="*res://Singleton/Simulation.cs"
+Player="*res://Singleton/Player.cs"
+
+[mono]
+
+debugger_agent/wait_for_debugger=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

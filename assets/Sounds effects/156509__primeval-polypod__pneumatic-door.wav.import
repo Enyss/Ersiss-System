@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/156509__primeval-polypod__pneumatic-door.wav-bcfe78b95107a0601b58dcd812a1335c.sample"
+
+[deps]
+
+source_file="res://assets/Sounds effects/156509__primeval-polypod__pneumatic-door.wav"
+dest_files=[ "res://.import/156509__primeval-polypod__pneumatic-door.wav-bcfe78b95107a0601b58dcd812a1335c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
