@@ -1,6 +1,0 @@
-C:\Git\Godot\ersiss-system\game\.mono\temp\obj\Debug\Ersiss-System.csprojAssemblyReference.cache
-C:\Git\Godot\ersiss-system\game\.mono\temp\obj\Debug\Ersiss-System.csproj.CoreCompileInputs.cache
-C:\Git\Godot\ersiss-system\game\.mono\temp\bin\Debug\Ersiss-System.dll
-C:\Git\Godot\ersiss-system\game\.mono\temp\bin\Debug\Ersiss-System.pdb
-C:\Git\Godot\ersiss-system\game\.mono\temp\obj\Debug\Ersiss-System.dll
-C:\Git\Godot\ersiss-system\game\.mono\temp\obj\Debug\Ersiss-System.pdb
