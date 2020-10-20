@@ -17,11 +17,18 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
  * */
-
-using Godot;
 
 public class Battery : ShipComponent
 {
-    
+    public float NominalCapacity { get; protected set; }
+    public float Capacity { get; protected set; }
+    public float Amperage { get; protected set; }
+    public float Voltage { get; protected set; }
+
+    public void Charge(float chargeAmount)
+    {
+        
+    }
 }
