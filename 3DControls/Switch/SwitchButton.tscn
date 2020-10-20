@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
+[ext_resource path="res://3DControls/Switch/SwitchButton.cs" type="Script" id=1]
 [ext_resource path="res://Materials/Black_plastic.tres" type="Material" id=2]
 [ext_resource path="res://3DControls/Switch/smart-switch_sound-01.wav" type="AudioStream" id=3]
 
@@ -28,7 +29,8 @@ emission_texture = SubResource( 4 )
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 0.5, 0.05, 0.5 )
 
-[node name="Switch" type="Spatial"]
+[node name="SwitchButton" type="Spatial"]
+script = ExtResource( 1 )
 
 [node name="Button" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )

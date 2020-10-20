@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Drawing.Text;
 
 public class BatteryController : Battery
 {
@@ -14,8 +15,8 @@ public class BatteryController : Battery
     public override void _Ready()
     {
         batteryScreenMaterial = GetNode<MeshInstance>("BatteryScreen").GetSurfaceMaterial(0) as SpatialMaterial;
-        viewportTexture = GetNode<Viewport>("Viewport").GetTexture();
-        batteryUI = GetNode<BatteryUI>("../BatteryUI");
+        viewportTexture = GetNode<Viewport>("BatteryViewport").GetTexture();
+        batteryUI = GetNode<BatteryUI>("BatteryViewport/BatteryScreenUI");
     }
 
   // Called every frame. 'delta' is the elapsed time since the previous frame.
