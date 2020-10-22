@@ -87,10 +87,10 @@ public void SetCenter(OrbitalBody center)
 
 	}
 
-	public PovBackground AddPov(IPov pov)
+	public void AddPov(IPov pov)
 	{        
-		PackedScene povBackground = ResourceLoader.Load<PackedScene>("res://Camera/PoV_Background.tscn");
-		PovBackground bg = (PovBackground)povBackground.Instance();
+		PackedScene backgroundCamera = ResourceLoader.Load<PackedScene>("res://Camera/BackgroundCamera.tscn");
+		Viewport bg = backgroundCamera.Instance() as Viewport;
 		bg.Setup(pov);
 		GetNode("/root/Main/GlobalScene").AddChild(bg);
 		return bg;

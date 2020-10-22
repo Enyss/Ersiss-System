@@ -19,6 +19,7 @@
  * SOFTWARE.
  * */
 
+/*
 using Godot;
 
 public interface IPov 
@@ -26,4 +27,4 @@ public interface IPov
     float Fov {get; set;}
     Transform GlobalTransform {get; set;}
 
-}
+}*/
