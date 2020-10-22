@@ -19,6 +19,7 @@
  * SOFTWARE.
  * */
 
+/*
 using Godot;
 
 public class Pov : ShipComponent, IPov
@@ -65,3 +66,4 @@ public void SetupCamera()
 
 }
 }
+*/

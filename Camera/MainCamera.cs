@@ -23,7 +23,14 @@ using Godot;
 
 public class MainCamera : Camera, IPov
 {
-	private PovBackground globalCamera;
+    // IPov properties
+    public Viewport LocalViewport { get; set; }
+    public Camera LocalCamera { get; set; }
+    public Viewport GlobalViewport { get; set; }
+    public Camera GlobalCamera { get; set; }
+
+
+	//private PovBackground globalCamera;
 	private TextureRect background;
 
 	private int zoomLevel = 0;
@@ -68,9 +75,11 @@ public class MainCamera : Camera, IPov
 	}
 	private void Setup()
 	{
-		globalCamera = SceneManager.Instance.AddPov(this);
+
+		
+		GlobalViewport = SceneManager.Instance.AddPov(this);
 		background = GetNode<TextureRect>("Background/texture");
-		background.Texture = globalCamera.GetTexture();
-		globalCamera.Size = GetNode<Viewport>("/root").Size;
+		background.Texture = GlobalViewport.GetTexture();
+		GlobalViewport.Size = GetNode<Viewport>("/root").Size;
 	}
 }
