@@ -26,21 +26,21 @@ public class ScreenSystem : ShipSystem
 {
     [Signal] public delegate void CameraChanged();
 
-    List<Pov> shipCameras = default;
-    Pov activeCamera;
+    List<ShipCamera> shipCameras = default;
+    ShipCamera activeCamera;
 
     public override void Initialize()
     {
-        foreach (Pov camera in shipCameras)
+        foreach (ShipCamera camera in shipCameras)
         {
-            camera.setup();
+            camera.Setup();
         }
         SetActiveCamera("front_camera");
     }
 
     public void SetActiveCamera(string cameraName)
     {
-        activeCamera = shipCameras.Find(x => x.componentName == cameraName);
+        activeCamera = shipCameras.Find(x => x.ComponentName == cameraName);
         EmitSignal("CameraChanged");
     }
 
@@ -48,7 +48,7 @@ public class ScreenSystem : ShipSystem
     public void NextCamera()
     {
 
-        if (activeCamera.componentName == "front_camera")
+        if (activeCamera.ComponentName == "front_camera")
         {
             SetActiveCamera("back_camera");
         }

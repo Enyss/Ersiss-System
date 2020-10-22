@@ -11,6 +11,7 @@
 
 # Godot-specific ignores
 .import/
+*.import
 export.cfg
 export_presets.cfg
 
@@ -519,3 +520,4 @@ MigrationBackup/
 .ionide/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudio,visualstudiocode,jetbrains+all,linux,godot
+*.import
