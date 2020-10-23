@@ -37,7 +37,7 @@ public class Player : Node
     }
     public Node lookingAt = null;
 
-    public IPov pov;
+    public MainCamera pov;
 
     public Player()
     {
