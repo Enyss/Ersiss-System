@@ -25,75 +25,68 @@ using System.Collections.Generic;
 
 public class SceneManager : Node
 {
-	private static SceneManager instance;
-	public static SceneManager Instance { get { return instance; } }
-	private double maxDistance = 100;
-	private OrbitalBody center;   
-	public OrbitalBody Center
-	{
-		get => center;
-	}
-	private OrbitalBody anchor;
-	public OrbitalBody Anchor
-	{
-		get { return anchor; }
-		set { anchor = value; }
-	}
+    private static SceneManager instance;
+    public static SceneManager Instance { get { return instance; } }
+    private double maxDistance = 100;
+    private OrbitalBody center;
+    public OrbitalBody Center
+    {
+        get => center;
+    }
+    private OrbitalBody anchor;
+    public OrbitalBody Anchor
+    {
+        get { return anchor; }
+        set { anchor = value; }
+    }
 
-	private List<OrbitalBody> localObjects;
+    private List<OrbitalBody> localObjects;
 
-	public SceneManager()
-	{
-		instance = this;
-		localObjects = new List<OrbitalBody>();
-	}
+    public SceneManager()
+    {
+        instance = this;
+        localObjects = new List<OrbitalBody>();
+    }
 
-	public override void _PhysicsProcess(float delta)
-	{
-		if (anchor != null && center.DistanceTo(anchor) > maxDistance)
-		{
-			CenterBubble();
-		}
-	}
+    public override void _PhysicsProcess(float delta)
+    {
+        if (anchor != null && center.DistanceTo(anchor) > maxDistance)
+        {
+            CenterBubble();
+        }
+    }
 
-	public void Initialize()
-	{
-		Player.Instance.ResetController();
-		foreach (OrbitalBody body in localObjects)
-		{
-			body.SetPositionRelativeTo(center, body.Transform.origin);
-			body.SetVelocityRelativeTo(center, body.velocity);
-		}
-	}
+    public void Initialize()
+    {
+        Player.Instance.ResetController();
+        foreach (OrbitalBody body in localObjects)
+        {
+            body.SetPositionRelativeTo(center, body.Transform.origin);
+            body.SetVelocityRelativeTo(center, body.velocity);
+        }
+    }
 
-public void SetCenter(OrbitalBody center)
-{
-	this.center = center;
+    public void SetCenter(OrbitalBody center)
+    {
+        this.center = center;
+    }
+
+    public void AddToLocalObjects(OrbitalBody body)
+    {
+        localObjects.Add(body);
+    }
+
+
+    public void CenterBubble()
+    {
+        center.SetPositionRelativeTo(anchor, new Vector3d());
+        center.SetVelocityRelativeTo(anchor, new Vector3d());
+        foreach (OrbitalBody body in localObjects)
+        {
+            body.Transform = new Transform(body.Transform.basis, body.GetPositionRelativeTo(center));
+        }
+    }
 }
 
-	public void AddToLocalObjects(OrbitalBody body)
-	{
-		localObjects.Add(body);
-	}
-
-	public void CenterBubble()
-	{
-		center.SetPositionRelativeTo(anchor, new Vector3d());
-		center.SetVelocityRelativeTo(anchor, new Vector3d());
-		foreach (OrbitalBody body in localObjects)
-		{
-			body.Transform = new Transform( body.Transform.basis, body.GetPositionRelativeTo(center));
-		}
-
-	}
-
-	public void AddPov(IPov pov)
-	{        
-		PackedScene backgroundCamera = ResourceLoader.Load<PackedScene>("res://Camera/BackgroundCamera.tscn");
-		Viewport bg = backgroundCamera.Instance() as Viewport;
-		bg.Setup(pov);
-		GetNode("/root/Main/GlobalScene").AddChild(bg);
-		return bg;
-	}
-
-}
+    
+    

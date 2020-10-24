@@ -19,6 +19,7 @@
  * SOFTWARE.
  * */
 
+/*
 using Godot;
 
 public class PovBackground : Viewport
@@ -42,3 +43,4 @@ public class PovBackground : Viewport
 		this.pov = pov;
 	}
 }
+*/
