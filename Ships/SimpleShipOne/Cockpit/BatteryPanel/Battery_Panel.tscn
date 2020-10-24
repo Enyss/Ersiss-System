@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Ships/SimpleShipOne/Cockpit/Bat1.cs" type="Script" id=1]
-[ext_resource path="res://3DControls/Switch/Switch_data.gd" type="Script" id=2]
-[ext_resource path="res://3DControls/Switch/CameraSwitch.cs" type="Script" id=3]
-[ext_resource path="res://3DControls/Switch/Switch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://3DControls/Switch/SwitchData.cs" type="Script" id=2]
+[ext_resource path="res://Ships/SimpleShipOne/Cockpit/BatteryPanel/CameraSwitch.cs" type="Script" id=3]
+[ext_resource path="res://3DControls/Switch/SwitchButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://3DControls/BatteryUI/BatteryUI.tscn" type="PackedScene" id=5]
 
 [node name="Battery_Panel" type="Spatial"]
@@ -15,36 +15,34 @@ script = ExtResource( 3 )
 
 [node name="front" type="Node" parent="Camera"]
 script = ExtResource( 2 )
-state = "front_camera"
-color = Color( 0.196078, 1, 0, 1 )
+stateName = "front_camera"
+buttonColor = Color( 0.196078, 1, 0, 1 )
 text = "FRONT"
-font_color = Color( 0.196078, 1, 0, 1 )
+textColor = Color( 0.196078, 1, 0, 1 )
 
 [node name="back" type="Node" parent="Camera"]
 script = ExtResource( 2 )
-state = "back_camera"
-color = Color( 0.196078, 1, 0, 1 )
+stateName = "back_camera"
+buttonColor = Color( 0.196078, 1, 0, 1 )
 text = "BACK"
-font_color = Color( 0.196078, 1, 0, 1 )
+textColor = Color( 0.196078, 1, 0, 1 )
 
 [node name="Battery 1" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225869, 0, -0.496911 )
 
 [node name="on" type="Node" parent="Battery 1"]
 script = ExtResource( 2 )
-state = "on"
-color = Color( 0.196078, 1, 0, 1 )
+stateName = "bat1_on"
+buttonColor = Color( 0.196078, 1, 0, 1 )
 text = "BAT 1"
-font_color = Color( 0.196078, 1, 0, 1 )
+textColor = Color( 0.196078, 1, 0, 1 )
 
 [node name="off" type="Node" parent="Battery 1"]
 script = ExtResource( 2 )
-state = "off"
-color = Color( 1, 1, 0, 1 )
+stateName = "bat1_off"
+buttonColor = Color( 1, 1, 0, 1 )
 text = "BAT 1"
-font_color = Color( 1, 1, 0, 1 )
+textColor = Color( 1, 1, 0, 1 )
 
 [node name="BatteryUI" parent="." instance=ExtResource( 5 )]
 transform = Transform( 4, 0, 0, 0, -6.51683e-07, 4, 0, -4, -6.51683e-07, -2.99652, 0, 0.993822 )
-component_name = "battery_screen"
-system_name = "battery"

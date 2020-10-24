@@ -3,7 +3,6 @@
 [ext_resource path="res://ShipSystems/BatterySystem.cs" type="Script" id=1]
 [ext_resource path="res://ShipSystems/ScreenSystem.cs" type="Script" id=2]
 [ext_resource path="res://Core/Ship.cs" type="Script" id=3]
-[ext_resource path="res://3DControls/Switch/Switch_data.gd" type="Script" id=4]
 [ext_resource path="res://Ships/SimpleShipOne/Door/DoorButton.cs" type="Script" id=5]
 [ext_resource path="res://Ships/SimpleShipOne/Door/DoorSystem.cs" type="Script" id=6]
 [ext_resource path="res://Ships/SimpleShipOne/Cockpit/Seat.tscn" type="PackedScene" id=7]
@@ -13,7 +12,7 @@
 [ext_resource path="res://Ships/SimpleShipOne/Cockpit/Screen/Cockpit_Screen.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Camera/PoV.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Ships/SimpleShipOne/Door/Door.tscn" type="PackedScene" id=13]
-[ext_resource path="res://3DControls/Switch/Switch.tscn" type="PackedScene" id=14]
+[ext_resource path="res://3DControls/Switch/SwitchButton.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Ships/SimpleShipOne/Cockpit/Cockpit.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Ships/SimpleShipOne/materials/Color_D10_.material" type="Material" id=16]
 [ext_resource path="res://Ships/SimpleShipOne/materials/Color_D02_.material" type="Material" id=17]
@@ -21,6 +20,7 @@
 [ext_resource path="res://Ships/SimpleShipOne/materials/material.material" type="Material" id=19]
 [ext_resource path="res://Ships/SimpleShipOne/materials/Color_003_.material" type="Material" id=20]
 [ext_resource path="res://Ships/SimpleShipOne/materials/_10Color_005.material" type="Material" id=21]
+[ext_resource path="res://3DControls/Switch/SwitchData.cs" type="Script" id=22]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 60, 40, 10 )
@@ -5811,38 +5811,39 @@ transform = Transform( -3.93701, -1.28284e-06, -6.41421e-07, 6.41421e-07, 1.045e
 script = ExtResource( 5 )
 
 [node name="Off" type="Node" parent="Ship/Outside/Door_Switch"]
-script = ExtResource( 4 )
-state = "off"
-color = Color( 0.231373, 0.231373, 0.231373, 1 )
-font_color = Color( 0.231373, 0.231373, 0.231373, 1 )
+script = ExtResource( 22 )
+stateName = "off"
+buttonColor = Color( 0.231373, 0.231373, 0.231373, 1 )
+text = "-- DISABLED --"
+textColor = Color( 0.231373, 0.231373, 0.231373, 1 )
 
 [node name="CanOpen" type="Node" parent="Ship/Outside/Door_Switch"]
-script = ExtResource( 4 )
-state = "canOpen"
-color = Color( 0.196078, 1, 0, 1 )
+script = ExtResource( 22 )
+stateName = "canOpen"
+buttonColor = Color( 0.196078, 1, 0, 1 )
 text = "OPEN"
-font_color = Color( 0.196078, 1, 0, 1 )
+textColor = Color( 0.196078, 1, 0, 1 )
 
 [node name="CanClose" type="Node" parent="Ship/Outside/Door_Switch"]
-script = ExtResource( 4 )
-state = "canClose"
-color = Color( 0.196078, 1, 0, 1 )
+script = ExtResource( 22 )
+stateName = "canClose"
+buttonColor = Color( 0.196078, 1, 0, 1 )
 text = "CLOSE"
-font_color = Color( 0.196078, 1, 0, 1 )
+textColor = Color( 0.196078, 1, 0, 1 )
 
 [node name="Moving" type="Node" parent="Ship/Outside/Door_Switch"]
-script = ExtResource( 4 )
-state = "move"
-color = Color( 1, 1, 0, 1 )
+script = ExtResource( 22 )
+stateName = "move"
+buttonColor = Color( 1, 1, 0, 1 )
 text = "MOVING"
-font_color = Color( 1, 1, 0, 1 )
+textColor = Color( 1, 1, 0, 1 )
 
 [node name="Error" type="Node" parent="Ship/Outside/Door_Switch"]
-script = ExtResource( 4 )
-state = "error"
-color = Color( 1, 0, 0, 1 )
+script = ExtResource( 22 )
+stateName = "error"
+buttonColor = Color( 1, 0, 0, 1 )
 text = "Error"
-font_color = Color( 1, 0, 0, 1 )
+textColor = Color( 1, 0, 0, 1 )
 
 [node name="Door" parent="Ship" instance=ExtResource( 13 )]
 

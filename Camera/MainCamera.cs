@@ -75,18 +75,18 @@ public class MainCamera : Camera, IPov
 	}
 	private void Setup()
 	{
-        // Create the Global viewport&Camera
+    // Create the Global viewport&Camera
 		PackedScene backgroundCamera = ResourceLoader.Load<PackedScene>("res://Camera/BackgroundCamera.tscn");
 		GlobalViewport = backgroundCamera.Instance() as Viewport;
 		GetNode("/root/Main/GlobalScene").AddChild(GlobalViewport);
-        GlobalViewport.Size = GetNode<Viewport>("/root").Size;
+    GlobalViewport.Size = GetNode<Viewport>("/root").Size;
 
-        //Setup the Global camera
-        GlobalCamera = GlobalViewport.GetNode<Camera>("Camera");
-        GlobalCamera.Fov = 70;
+    //Setup the Global camera
+    GlobalCamera = GlobalViewport.GetNode<Camera>("Camera");
+    GlobalCamera.Fov = 70;
 
-        // To be modified later 		
+    // To be modified later 		
 		background = GetNode<TextureRect>("Background/texture");
-		background.Texture = GlobalViewport.GetTexture();
+	  background.Texture = GlobalViewport.GetTexture();
 	}
 }

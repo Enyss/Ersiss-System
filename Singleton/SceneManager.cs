@@ -76,6 +76,7 @@ public class SceneManager : Node
         localObjects.Add(body);
     }
 
+
     public void CenterBubble()
     {
         center.SetPositionRelativeTo(anchor, new Vector3d());
@@ -84,7 +85,6 @@ public class SceneManager : Node
         {
             body.Transform = new Transform(body.Transform.basis, body.GetPositionRelativeTo(center));
         }
-
     }
 }
 

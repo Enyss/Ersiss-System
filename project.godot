@@ -8,14 +8,9 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "SwitchData",
-"language": "GDScript",
-"path": "res://3DControls/Switch/Switch_data.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"SwitchData": ""
+
 }
 
 [application]

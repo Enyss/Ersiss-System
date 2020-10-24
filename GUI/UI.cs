@@ -17,18 +17,30 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
  * */
 
-public class Battery : ShipComponent
-{
-    public float NominalCapacity { get; protected set; }
-    public float Capacity { get; protected set; }
-    public float Amperage { get; protected set; }
-    public float Voltage { get; protected set; }
+using Godot;
 
-    public void Charge(float chargeAmount)
+public class UI : Control
+{
+    public override void _Ready()
     {
-        
+        Input.SetMouseMode(Input.MouseMode.Captured);
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ui_cancel"))
+        {
+            GetTree().Quit();
+        }
+
+        if (@event.IsActionPressed("ui_mouse_lock"))
+        {
+            Input.SetMouseMode(
+                Input.GetMouseMode() == Input.MouseMode.Visible
+                    ? Input.MouseMode.Captured
+                    : Input.MouseMode.Visible);
+        }
     }
 }
