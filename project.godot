@@ -25,10 +25,6 @@ SceneManager="*res://Singleton/SceneManager.cs"
 Simulation="*res://Singleton/Simulation.cs"
 Player="*res://Singleton/Player.cs"
 
-[mono]
-
-debugger_agent/wait_for_debugger=true
-
 [rendering]
 
 environment/default_environment="res://default_env.tres"

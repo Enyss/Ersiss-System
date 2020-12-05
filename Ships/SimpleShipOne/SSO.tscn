@@ -1,9 +1,8 @@
-[gd_scene load_steps=307 format=2]
+[gd_scene load_steps=306 format=2]
 
 [ext_resource path="res://ShipSystems/BatterySystem.cs" type="Script" id=1]
 [ext_resource path="res://ShipSystems/ScreenSystem.cs" type="Script" id=2]
 [ext_resource path="res://Core/Ship.cs" type="Script" id=3]
-[ext_resource path="res://Ships/SimpleShipOne/Door/DoorButton.cs" type="Script" id=5]
 [ext_resource path="res://Ships/SimpleShipOne/Door/DoorSystem.cs" type="Script" id=6]
 [ext_resource path="res://Ships/SimpleShipOne/Cockpit/Seat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Ships/SimpleShipOne/materials/Color_B19_.material" type="Material" id=8]
@@ -5808,7 +5807,7 @@ material/0 = null
 
 [node name="Door_Switch" parent="Ship/Outside" instance=ExtResource( 14 )]
 transform = Transform( -3.93701, -1.28284e-06, -6.41421e-07, 6.41421e-07, 1.045e-13, -3.93701, 1.28284e-06, -3.93701, 1.045e-13, -47.6134, 458.764, -220.401 )
-script = ExtResource( 5 )
+script = null
 
 [node name="Off" type="Node" parent="Ship/Outside/Door_Switch"]
 script = ExtResource( 22 )

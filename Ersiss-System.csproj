@@ -3,4 +3,7 @@
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>ErsissSystem</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="addons" />
+  </ItemGroup>
 </Project>
