@@ -25,6 +25,10 @@ SceneManager="*res://Singleton/SceneManager.cs"
 Simulation="*res://Singleton/Simulation.cs"
 Player="*res://Singleton/Player.cs"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "ErsissSystemShipEditor" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
