@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Door_System" type="Spatial" parent="."]
+
+[node name="Door" type="Spatial" parent="."]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ships/SimpleShipOne/Seat/SeatControl.cs" type="Script" id=1]
+[ext_resource path="res://Ships/SimpleShipOne/Seat/Seat.cs" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 10, 21.0262, 11.6669 )
+
+[node name="Seat" type="KinematicBody"]
+transform = Transform( 1, 8.9407e-08, 0, -8.9407e-08, 1, 0, 0, 0, 1, 13.6974, 27.7044, 0 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.991462, -0.130388, 0, 0.130388, 0.991462, 0, 0, 0, 0.999999, -1.11969, -0.360931, -11.8739 )
+shape = SubResource( 1 )
+
+[node name="Control" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49.6118 )
+script = ExtResource( 1 )
+
+[node name="Camera_position" type="Spatial" parent="Control"]
+transform = Transform( 9.84112e-10, 0.00585813, -0.0247152, -3.93855e-09, 0.0247152, 0.00585813, 0.0254, 3.6054e-09, 1.86595e-09, 7.57983, 13.277, 37.7224 )
+
+[node name="Anchor" type="Spatial" parent="Control/Camera_position"]
+transform = Transform( 0.999999, 0, -4.26326e-14, -4.26326e-14, 1, 1.04276e-14, -2.84217e-14, 1.04276e-14, 1, 0, 19.7456, -178.978 )
+
+[node name="Spawn_point" type="Spatial" parent="Control"]

@@ -1,0 +1,23 @@
+[gd_scene format=2]
+
+[node name="SystemItem" type="HBoxContainer"]
+margin_top = 30.0
+margin_right = 200.0
+margin_bottom = 50.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditSystemButton" type="Button" parent="."]
+margin_right = 173.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "System Name"
+align = 0
+
+[node name="DeleteSystemButton" type="Button" parent="."]
+margin_left = 183.0
+margin_right = 200.0
+margin_bottom = 20.0
+text = "-"

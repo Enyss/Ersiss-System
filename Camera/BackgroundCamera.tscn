@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="Viewport" type="Viewport"]
+size = Vector2( 1500, 1500 )
+keep_3d_linear = true
+render_target_v_flip = true
+
+[node name="Camera" type="Camera" parent="."]
+fov = 100.0
+far = 1e+06

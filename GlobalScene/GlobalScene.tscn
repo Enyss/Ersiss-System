@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://GlobalScene/LocalSceneCenter.cs" type="Script" id=1]
+[ext_resource path="res://GlobalScene/GlobalScene.cs" type="Script" id=4]
+[ext_resource path="res://GlobalScene/Skybox/MilkyWay.jpg" type="Texture" id=6]
+
+[sub_resource type="PanoramaSky" id=1]
+radiance_size = 1
+panorama = ExtResource( 6 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_color = Color( 0.0117647, 0.0235294, 0.0980392, 1 )
+background_energy = 0.42
+ambient_light_sky_contribution = 0.0
+dof_blur_far_distance = 20.0
+glow_intensity = 0.83
+glow_blend_mode = 0
+adjustment_enabled = true
+adjustment_contrast = 1.25
+adjustment_saturation = 1.5
+
+[node name="GlobalScene" type="Viewport"]
+size = Vector2( 128, 128 )
+own_world = true
+render_target_clear_mode = 1
+render_target_update_mode = 0
+script = ExtResource( 4 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="LocalSceneCenter" type="Spatial" parent="."]
+script = ExtResource( 1 )
+bodyClass = 2
