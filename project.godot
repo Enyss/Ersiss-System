@@ -29,6 +29,49 @@ Player="*res://Singleton/Player.cs"
 
 enabled=PoolStringArray( "ErsissSystemShipEditor" )
 
+[input]
+
+move_forward={
+"deadzone": 0.5,
+"events": [  ]
+}
+move_back={
+"deadzone": 0.5,
+"events": [  ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [  ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [  ]
+}
+move_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+move_down={
+"deadzone": 0.5,
+"events": [  ]
+}
+roll_clockwise={
+"deadzone": 0.5,
+"events": [  ]
+}
+roll_counterclockwise={
+"deadzone": 0.5,
+"events": [  ]
+}
+sim_speed_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+sim_speed_down={
+"deadzone": 0.5,
+"events": [  ]
+}
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
