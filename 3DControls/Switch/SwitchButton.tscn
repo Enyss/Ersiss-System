@@ -11,10 +11,10 @@ size = Vector3( 1, 0.1, 1 )
 size = Vector2( 0.95, 0.95 )
 
 [sub_resource type="ViewportTexture" id=3]
-viewport_path = NodePath("Viewport")
+viewport_path = NodePath("Texture")
 
 [sub_resource type="ViewportTexture" id=4]
-viewport_path = NodePath("Viewport")
+viewport_path = NodePath("Texture")
 
 [sub_resource type="SpatialMaterial" id=5]
 resource_local_to_scene = true
@@ -31,24 +31,6 @@ extents = Vector3( 0.5, 0.05, 0.5 )
 
 [node name="SwitchButton" type="Spatial"]
 script = ExtResource( 1 )
-
-[node name="Button" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )
-mesh = SubResource( 1 )
-material/0 = ExtResource( 2 )
-
-[node name="Text" type="MeshInstance" parent="Button"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.06, 0 )
-mesh = SubResource( 2 )
-material/0 = SubResource( 5 )
-
-[node name="Collider" type="KinematicBody" parent="."]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="Collider"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )
-shape = SubResource( 6 )
 
 [node name="Texture" type="Viewport" parent="."]
 size = Vector2( 64, 64 )
@@ -75,6 +57,24 @@ custom_colors/font_color = Color( 0.360784, 1, 0, 1 )
 text = "START"
 align = 1
 valign = 1
+
+[node name="Button" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="Text" type="MeshInstance" parent="Button"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.06, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 5 )
+
+[node name="Collider" type="KinematicBody" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Collider"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )
+shape = SubResource( 6 )
 
 [node name="PressSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 3 )

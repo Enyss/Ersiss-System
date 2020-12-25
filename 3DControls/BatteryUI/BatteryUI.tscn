@@ -6,7 +6,7 @@
 [sub_resource type="QuadMesh" id=1]
 
 [sub_resource type="ViewportTexture" id=2]
-viewport_path = NodePath("BatteryUI/Viewport")
+viewport_path = NodePath("BatteryViewport")
 
 [sub_resource type="SpatialMaterial" id=3]
 resource_local_to_scene = true
